@@ -50,6 +50,27 @@
   border-radius: 10px;
   border: none;
 }
+.btn-elegante {
+  display: inline-block;
+  padding: 12px 28px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-elegante:hover {
+  transform: translateY(-3px);
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 8px 25px rgba(0, 234, 255, 0.6);
+}
 
   </style>
 </head>
@@ -62,6 +83,8 @@
   <main class="container">
     <section class="card">
       <h2>1 — Materiales</h2>
+      <a href="tienda.html" class="btn-elegante">Ir a la Tienda</a>
+
       <ul>
         <li>Arduino UNO, Nano o compatible</li>
         <li>Módulo Bluetooth HC-05 o HC-06 (clásico)</li>
@@ -388,5 +411,6 @@ void stopMotors(){
   </main>
 </body>
 </html>
+
 
 
