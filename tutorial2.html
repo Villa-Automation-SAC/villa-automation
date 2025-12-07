@@ -19,6 +19,36 @@
     .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media(max-width:760px){.split{grid-template-columns:1fr}}
     .wiring{font-family:monospace;background:#021616;padding:10px;border-radius:8px}
+    .video-gallery {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.video-card {
+  background: #0d1117;
+  border-radius: 15px;
+  padding: 15px;
+  width: 300px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: perspective(800px) rotateY(12deg) translateX(15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  border: none;
+}
+
   </style>
 </head>
 <body>
@@ -33,6 +63,38 @@
       <p>Construir un sistema que mantenga la humedad relativa o humedad del sustrato en un rango definido mediante un humidificador (atomizador ultrasónico o bomba de niebla), controlado por una placa (Arduino/ESP32) con sensor DHT22 / SHT30 y protección de nivel de agua.</p>
     </section>
 
+    <div class="video-section">
+  <div class="video-gallery">
+
+    <!-- Tarjeta 1 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/2GAgMMS4x6Y" allowfullscreen></iframe>
+      </div>
+      <h3>Se arma el robot agrícola con chasis resistente, ruedas todo terreno o orugas, motores potentes y batería. 
+        Se fijan sensores o herramientas según la tarea (riego, fumigación, cosecha o monitoreo).</h3>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/_lfgCTtjCx0" allowfullscreen></iframe>
+      </div>
+      <h3>Se conectan sensores como cámara, humedad, temperatura, GPS o ultrasonido.
+        Se instala la unidad de control (Arduino, ESP32 o similar) y el módulo de comunicación para controlar o enviar datos.</h3>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/CZiWPq_htyM" allowfullscreen></iframe> 
+      </div>
+      <h3>Se programa para que ejecute su trabajo: recorrer cultivos, regar, fumigar, medir condiciones o detectar plantas y plagas. Se ajustan rutas, velocidad y seguridad para que opere de forma autónoma o remota.</h3>
+    </div>
+
+  </div>
+</div>
+    
     <section class="card">
       <h2>2 — Materiales</h2>
       <ul>
@@ -199,3 +261,4 @@ void loop(){
   </main>
 </body>
 </html>
+
