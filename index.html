@@ -606,9 +606,10 @@ Con un equipo multidisciplinario de ingenieros, investigadores y especialistas y
 <!-- BOTÓN FLOTANTE SUPERIOR DEL CURSO GRATUITO -->
 <div style="display:flex; flex-direction:column; gap:10px;">
     
-    <a href="cursos.html" class="alerta-superior alerta-1">
-        🔔 Curso gratuito disponible – ¡Haz clic aquí!
-    </a>
+<a href="tienda.html" class="btn-elegante" id="contadorBtn"
+   style="color: #00eaff; font-weight: bold; text-shadow: 0 0 8px #00eaff;">
+  Ir a la Tienda — Cargando...
+</a>
 
     <a href="https://play.google.com/store/apps/details?id=com.villa.app_villa_mobil&pcampaignid=web_share"
        class="alerta-superior alerta-2">
@@ -1015,12 +1016,12 @@ fetch(url)
   .then(data => {
     const numero = String(data.visitas).padStart(3, '0');
     document.getElementById("contadorBtn").innerHTML =
-      `Ir a la Tienda — Visitante: ${numero}`;
+      `Visitantes: ${numero}`;
   })
   .catch(err => {
     console.error("Error:", err);
     document.getElementById("contadorBtn").innerHTML =
-      `Ir a la Tienda — Visitante: ---`;
+      `Visitantes: ---`;
   });
 </script>
 
