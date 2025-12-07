@@ -430,3 +430,39 @@ nav a:hover {
 /* =========================
    CATÁLOGO (AISLADO)
    ========================= */
+/* Contenedor de servicios */
+.services {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Animación flotante + desplazamiento */
+.service.card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 20px;
+  animation: floatMove 6s ease-in-out infinite;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Animación */
+@keyframes floatMove {
+  0% {
+    transform: translateX(20px);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(20px);
+  }
+}
+
+/* Variación para que no se muevan igual */
+.service.card:nth-child(odd) {
+  animation-duration: 7s;
+}
+.service.card:nth-child(even) {
+  animation-duration: 5.5s;
+}
