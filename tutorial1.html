@@ -20,6 +20,37 @@
     footer{text-align:center;padding:18px;font-size:13px;opacity:0.8}
     .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
     @media(max-width:720px){ .split{grid-template-columns:1fr} }
+
+    .video-gallery {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.video-card {
+  background: #0d1117;
+  border-radius: 15px;
+  padding: 15px;
+  width: 300px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: perspective(800px) rotateY(12deg) translateX(15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  border: none;
+}
+
   </style>
 </head>
 <body>
@@ -39,9 +70,41 @@
         <li>Batería 7.4V (2S LiPo) o pack de pilas según requerimiento</li>
         <li>Cables, protoboard (opcional), chasis, ruedas y sensores opcionales</li>
         <li>Smartphone con app "Bluetooth Serial" o "Bluetooth Terminal"</li>
-      </ul>
+      </ul>  
     </section>
+    
+<div class="video-section">
+  <div class="video-gallery">
 
+    <!-- Tarjeta 1 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/5V3w89FAhzA" allowfullscreen></iframe>
+      </div>
+      <h3>Arma la estructura del robot montando dos motores en el chasis, coloca las ruedas en cada motor y una rueda loca adelante o atrás. 
+        Instala la batería en un lugar seguro y fija el driver de motores y la placa de control (Arduino o similar) sobre el chasis. Asegúrate de que todo esté firme.</h3>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/U2wUfyOa30g" allowfullscreen></iframe>
+      </div>
+      <h3>Conecta los motores al driver. Une la batería al driver para que pueda alimentar los motores. Conecta el driver a la placa controladora usando sus pines de control.
+        Asegúrate de unir todas las tierras (GND) para que exista referencia común. Revisa polaridades antes de encender.</h3>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/K8-cSfbmJ40" allowfullscreen></iframe>
+      </div>
+      <h3>Configura la velocidad y tiempos de movimiento.Después de cargar el programa, realiza pruebas cortas, ajusta velocidades y corrige cualquier problema de conexión, equilibrio o potencia.</h3>
+    </div>
+
+  </div>
+</div>
+    
     <section class="card">
       <h2>2 — Principio de funcionamiento</h2>
       <p>El módulo HC-05 crea un enlace serial inalámbrico entre el Arduino y un teléfono. El teléfono envía caracteres (por ejemplo: <code>F</code> adelante, <code>B</code> atrás, <code>L</code> izquierda, <code>R</code> derecha, <code>S</code> stop). Arduino lee esos caracteres por <code>Serial</code> (o <code>Serial1</code> en placas con puerto hardware extra) y activa los pines del driver de motor para mover los motores.</p>
@@ -325,4 +388,5 @@ void stopMotors(){
   </main>
 </body>
 </html>
+
 
