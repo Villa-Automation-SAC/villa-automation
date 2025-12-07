@@ -306,7 +306,7 @@ resumeBtn.addEventListener('click', ()=>{ running=true; centerBox.style.display=
 function crearCohete(){ return { x: W*0.5 - 30, y: H - 180, w: 60, h: 110, vx: 0, vy: 0, angle: -Math.PI/2, thrust: 0.16 }; }
 
 // generadores
-function generarMeteorito(){ meteoros.push({ x: Math.random()*W, y: -60, r: 18 + Math.random()*28, vx: (Math.random()-0.5)*0.6, vy: 2 + Math.random()*3 }); }
+function generarMeteorito(){ meteoros.push({ x: Math.random()*W, y: -60, r: 40 + Math.random()*48, vx: (Math.random()-0.5)*0.6, vy: 2 + Math.random()*3 }); }
 function generarSatelite(){satelites.push({ x: Math.random()*W, y: -80, w: 120, h: 60, vy: 1.5 + Math.random() });}
 
 
@@ -490,7 +490,7 @@ satelites.forEach(s=>{
     }
 
     // --- ÉXITO POR PUNTAJE ---
-    if(score >= 5000 && !gameOver){
+    if(score >= 10000 && !gameOver){
         gameOver = true;
         running = false;
         centerText.innerHTML = '🏆 ¡FELICIDADES! llegaste a Marte, Ganaste un bono de descuento de 5s/ (reclama ya !)';
@@ -632,6 +632,7 @@ resetAndStart();
 
 </body>
 </html>
+
 
 
 
