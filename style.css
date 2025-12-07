@@ -466,3 +466,48 @@ nav a:hover {
 .service.card:nth-child(even) {
   animation-duration: 5.5s;
 }
+
+/* Contenedor con perspectiva 3D */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  perspective: 1200px;
+}
+
+/* Tarjetas estilo 3D */
+.project.card {
+  height: 190px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(.03,.98,.52,.99),
+              box-shadow 0.45s ease;
+  transform-style: preserve-3d;
+}
+
+/* Movimiento al pasar el mouse */
+.project.card:hover {
+  transform: rotateY(12deg) rotateX(8deg) scale(1.06);
+  box-shadow: 0 25px 45px rgba(0,0,0,0.35);
+}
+
+/* Levantar el texto un poco en 3D */
+.project.card .meta {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  padding: 5px 10px;
+  backdrop-filter: blur(4px);
+  background: rgba(0,0,0,0.45);
+  border-radius: 8px;
+  transform: translateZ(40px);
+  transition: transform 0.45s ease;
+}
+
+/* El texto también se acerca en hover */
+.project.card:hover .meta {
+  transform: translateZ(60px);
+}
