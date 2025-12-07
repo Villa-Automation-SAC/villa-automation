@@ -219,6 +219,8 @@ const imgCohete = new Image();
 imgCohete.src = "assets/cohete4.png";
 const imgSatelite = new Image();
 imgSatelite.src = "assets/satelite1.png";   //
+const imgMeteoro = new Image();
+imgMeteoro.src = "assets/meteoro2.png";   //
 
 // estado
 let cohete;
@@ -382,7 +384,25 @@ function drawExhaust(){
 function draw(){
   ctx.fillStyle = '#000812'; ctx.fillRect(0,0,W,H);
   for(let i=0;i<60;i++){ ctx.fillStyle='rgba(255,255,255,'+(Math.random()*0.25+0.05)+')'; ctx.fillRect(Math.random()*W, Math.random()*H, Math.random()*1.8, Math.random()*1.8); }
-  meteoros.forEach(m=>{ ctx.fillStyle='rgba(220,160,90,0.98)'; ctx.beginPath(); ctx.arc(m.x,m.y,m.r,0,Math.PI*2); ctx.fill(); ctx.strokeStyle='rgba(220,160,90,0.25)'; ctx.lineWidth=2; ctx.beginPath(); ctx.moveTo(m.x - m.vx*10,m.y - m.vy*10); ctx.lineTo(m.x,m.y); ctx.stroke(); });
+ meteoros.forEach(m=>{
+    ctx.save();
+    ctx.translate(m.x, m.y);
+
+    const size = m.r * 2;  // el meteoro será del tamaño del radio original
+
+    if (imgMeteoro.complete) {
+        ctx.drawImage(imgMeteoro, -size/2, -size/2, size, size);
+    } else {
+        // Dibujo temporal mientras carga la imagen
+        ctx.beginPath();
+        ctx.fillStyle = "orange";
+        ctx.arc(0, 0, m.r, 0, Math.PI*2);
+        ctx.fill();
+    }
+
+    ctx.restore();
+});
+
   satelites.forEach(s=>{
     ctx.save();
     ctx.translate(s.x, s.y);
@@ -612,6 +632,7 @@ resetAndStart();
 
 </body>
 </html>
+
 
 
 
