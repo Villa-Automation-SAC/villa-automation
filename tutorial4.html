@@ -20,7 +20,59 @@
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#041218;text-decoration:none;font-weight:600}
     footer{margin-top:22px;color:var(--muted);font-size:13px}
     @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .video-gallery {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.video-card {
+  background: #0d1117;
+  border-radius: 15px;
+  padding: 15px;
+  width: 300px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.video-card:hover {
+  transform: perspective(800px) rotateY(12deg) translateX(15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+.video-container iframe {
+  width: 100%;
+  height: 170px;
+  border-radius: 10px;
+  border: none;
+}
+    .btn-elegante {
+  display: inline-block;
+  padding: 12px 28px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-elegante:hover {
+  transform: translateY(-3px);
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 8px 25px rgba(0, 234, 255, 0.6);
+}
+
   </style>
+  
 </head>
 <body>
   <div class="container">
@@ -38,10 +90,48 @@
           <h2>Objetivo</h2>
           <p class="small">Automatizar el riego en macetas o un pequeño huerto usando un sensor de humedad de suelo. Cuando la humedad sea baja, el sistema activa una bomba mediante un relé por un tiempo configurable.</p>
         </section>
+        
+<div class="video-section">
+  <div class="video-gallery">
 
+    <!-- Tarjeta 1 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/2GAgMMS4x6Y" allowfullscreen></iframe>
+      </div>
+      <h3>Se arma el sensor de suelo en la tierra cerca de la raíz de la planta. Se conecta a la unidad de control Arduino, asegurando buena profundidad y contacto con el sustrato.</h3>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/IY8pxXMkAVI" allowfullscreen></iframe>
+      </div>
+      <h3>Se instala una bomba, solenoide o válvula conectada al depósito de agua o tubería. Esta salida de agua se conecta a la unidad de control mediante un rele o módulo de potencia..</h3>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/VNhhwVOEY8k" allowfullscreen></iframe> 
+      </div>
+      <h3>La unidad de control mide el nivel de humedad que entrega el sensor. Si la tierra está seca, activa la bomba o válvula. Si la tierra está húmeda, mantiene todo apagado..</h3>
+    </div>
+
+        <!-- Tarjeta 3 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/DdRATCureMI" allowfullscreen></iframe> 
+      </div>
+      <h3>Se programa el nivel mínimo de humedad para regar. El sistema revisa la humedad varias veces al día y riega solo cuando es necesario, permitiendo ahorro de agua y mantenimiento automático..</h3>
+    </div>
+  </div>
+</div>
+        
         <section class="card">
           <h2>Materiales</h2>
           <ul class="clean small">
+            <a href="tienda.html" class="btn-elegante">Ir a la Tienda</a>
             <li>Arduino UNO (o compatible)</li>
             <li>Sensor de humedad de suelo (capacitivo recomendado) — por ejemplo FC-28 o sensor capacitivo)</li>
             <li>Módulo relé 5V (1 canal)</li>
@@ -188,5 +278,6 @@ void pararRiego() {
   </div>
 </body>
 </html>
+
 
 
