@@ -18,6 +18,29 @@
     .small{font-size:13px;color:var(--muted)}
     .btn{display:inline-block;padding:10px 14px;border-radius:10px;background:var(--accent);color:#041218;text-decoration:none;font-weight:600}
     @media (max-width:920px){.grid{grid-template-columns:1fr}}
+
+    .btn-elegante {
+  display: inline-block;
+  padding: 12px 28px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.35s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.btn-elegante:hover {
+  transform: translateY(-3px);
+  background: #00eaff;
+  color: #000;
+  box-shadow: 0 8px 25px rgba(0, 234, 255, 0.6);
+}
+
   </style>
 </head>
 <body>
@@ -39,6 +62,7 @@
 
         <section class="card">
           <h2>Materiales</h2>
+          <a href="tienda.html" class="btn-elegante">Ir a la Tienda</a>
           <ul class="small">
             <li>Arduino UNO (o compatible)</li>
             <li>LEDs: 4 x Rojo/Amarillo/Verde (12 LEDs) o 2 conjuntos para cada dirección</li>
@@ -218,5 +242,6 @@ void aplicarFase(Fase f){
   </div>
 </body>
 </html>
+
 
 
