@@ -157,18 +157,6 @@
 
 <h1>🎮 VILLA AUTOMATION GAMES</h1>
 
-<!-- CONTADOR GLOBAL DE JUGADORES -->
- <div style="text-align:center;margin-top:20px;">
-    <img src="https://hitwebcounter.com/counter/counter.php?page=1234567&style=0006&nbdigits=7&type=page&initCount=100000" 
-         title="Contador"
-         alt="contador"
-         border="0" >
-</div>
-   
-<div id="contador-jugadores" style="text-align:center; font-size:28px; color:white; font-weight:bold;">
-    Cargando jugadores...
-</div>
-
 
 <div class="grid-games">
 
@@ -202,33 +190,7 @@
 
 
 
-    
-    
-<!-- SCRIPT DEL CONTADOR GLOBAL -->
-<script>
-const urlGet = "https://api.npoint.io/9b5e7ed4e4e2c21ee5a0";
-const urlPut = "https://api.npoint.io/9b5e7ed4e4e2c21ee5a0/edit";
 
-fetch(urlGet)
-  .then(r => r.json())
-  .then(data => {
-      let nuevoValor = parseInt(data.visitas) + 1;
-
-      // ACTUALIZAR valor
-      fetch(urlPut, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ visitas: nuevoValor })
-      });
-
-      document.getElementById("contador-jugadores").innerText =
-        "Jugadores que han ingresado: " + nuevoValor;
-  })
-  .catch(() => {
-      document.getElementById("contador-jugadores").innerText =
-        "Contador no disponible";
-  });
-</script>
 
 <!-- ============================================= -->
 <!--   SECCIÓN DE TUTORIALES DE ROBÓTICA Y ARDUINO -->
@@ -415,6 +377,7 @@ fetch(urlGet)
 
 </body>
 </html>
+
 
 
 
