@@ -519,22 +519,64 @@ nav a:hover {
    CONTENEDOR DEL BANNER
 -------------------------------------*/
 /* ------------------------------------
-   CONTENEDOR DEL BANNER
+      BANNER CON BRILLO Y PULSOS
 -------------------------------------*/
-/* ------------------------------------
-   CONTENEDOR DEL BANNER (SIN FONDO)
--------------------------------------*/
+.banner-navidad {
+  position: relative;
+  text-align: center;
+  padding: 35px 20px;
+  border-radius: 18px;
 
-@keyframes brillo {
-  0% { box-shadow: 0 0 8px gold; }
-  100% { box-shadow: 0 0 22px #ffe38a; }
+  background: rgba(255, 255, 255, 0.05); /* fondo suave opcional */
+  border: 3px solid gold;
+
+  box-shadow: 
+    0 0 12px gold,
+    0 0 25px rgba(255,215,0,0.6);
+
+  animation: pulseBanner 2.8s infinite ease-in-out,
+             glowBanner 2s infinite alternate;
+}
+
+/* Pulso suave */
+@keyframes pulseBanner {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* Brillo dorado */
+@keyframes glowBanner {
+  from { box-shadow: 0 0 10px gold; }
+  to   { box-shadow: 0 0 28px #ffeb99; }
 }
 
 /* ------------------------------------
-     PAPÁ NOEL ANIMADO
+       TEXTO CON FLAMEO + PULSO
 -------------------------------------*/
+.flameo {
+  font-size: 40px;
+  font-weight: bold;
+  color: #fff;
 
-@keyframes santaMove {
-  0% { left: -200px; }
-  100% { left: 100%; }
+  text-shadow:
+    0 0 8px #ffd37b,
+    0 0 20px #ff7a29,
+    0 0 35px #ff5500;
+
+  animation: flameText 2s infinite alternate ease-in-out,
+             pulseText 1.7s infinite ease-in-out;
+}
+
+/* Efecto flameo */
+@keyframes flameText {
+  0% { text-shadow: 0 0 10px #ffb84d, 0 0 20px #ff7a29; }
+  100% { text-shadow: 0 0 22px #ffe38a, 0 0 45px #ff5500; }
+}
+
+/* Pulso del texto */
+@keyframes pulseText {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.07); }
+  100% { transform: scale(1); }
 }
