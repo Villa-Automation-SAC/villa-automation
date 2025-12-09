@@ -512,22 +512,33 @@ nav a:hover {
   transform: translateZ(60px);
 }
 
+/* ------------------------------
+   CONTENEDOR GENERAL DEL BANNER
+--------------------------------*/
 .banner-navidad {
+  position: relative;
   text-align: center;
-  padding: 30px 20px;
+  padding: 50px 20px;
   background: linear-gradient(45deg, #b30000, #ff4d4d, #ffd700);
-  border-radius: 15px;
+  border-radius: 20px;
   margin: 20px auto;
-  max-width: 850px;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+  max-width: 900px;
+  overflow: hidden;
   animation: brillo 3s infinite alternate;
+  border: 4px solid gold;
+  box-shadow: 0 0 20px gold;
 }
 
+/* ------------------------------
+      TEXTO FLAMEANDO
+--------------------------------*/
 .flameo {
   font-size: 42px;
   color: #ffffff;
   font-weight: bold;
   margin: 0;
+  z-index: 10;
+  position: relative;
   text-shadow:
     0 0 10px #ffdd55,
     0 0 20px #ff9933,
@@ -537,18 +548,86 @@ nav a:hover {
 }
 
 @keyframes flamear {
-  0% {
-    text-shadow: 0 0 15px #ffdd55, 0 0 30px #ff9933, 0 0 45px #ff5500;
-  }
-  50% {
-    text-shadow: 0 0 20px #fff066, 0 0 40px #ffbb33, 0 0 60px #ff6600;
-  }
-  100% {
-    text-shadow: 0 0 12px #ffcc33, 0 0 25px #ff8833, 0 0 40px #ff3300;
-  }
+  0% { text-shadow: 0 0 15px #ffdd55, 0 0 30px #ff9933, 0 0 45px #ff5500; }
+  50% { text-shadow: 0 0 20px #fff066, 0 0 40px #ffbb33, 0 0 60px #ff6600; }
+  100% { text-shadow: 0 0 12px #ffcc33, 0 0 25px #ff8833, 0 0 40px #ff3300; }
 }
 
+/* ------------------------------
+      BORDE DORADO ANIMADO
+--------------------------------*/
 @keyframes brillo {
-  0% { box-shadow: 0 0 10px rgba(255,0,0,0.5); }
-  100% { box-shadow: 0 0 25px rgba(255,255,100,0.8); }
+  0% { box-shadow: 0 0 10px gold; }
+  100% { box-shadow: 0 0 25px rgb(255,220,120); }
 }
+
+/* ------------------------------
+    COPOS DE NIEVE ANIMADOS
+--------------------------------*/
+.snow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    url('https://i.imgur.com/5y5Y4hC.png'),
+    url('https://i.imgur.com/5y5Y4hC.png'),
+    url('https://i.imgur.com/5y5Y4hC.png');
+  background-size: 80px, 60px, 40px;
+  animation: nieve 7s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes nieve {
+  0% { background-position: 0 0, 0 0, 0 0; }
+  100% { background-position: 0 600px, 0 400px, 0 300px; }
+}
+
+/* ------------------------------
+    LUCES NAVIDEÑAS PARPADEANDO
+--------------------------------*/
+.luces-navidad {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120%;
+  height: 10px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      red 0 10px,
+      yellow 10px 20px,
+      green 20px 30px,
+      cyan 30px 40px,
+      red 40px 50px
+    );
+  animation: luces 1s infinite alternate;
+}
+
+@keyframes luces {
+  0% { filter: brightness(1); }
+  100% { filter: brightness(2); }
+}
+
+/* ------------------------------
+       SANTA MOVIÉNDOSE
+--------------------------------*/
+.santa {
+  position: absolute;
+  bottom: 10px;
+  left: -200px;
+  width: 180px;
+  height: 100px;
+  background: url('https://i.imgur.com/rgVxgdr.png') no-repeat;
+  background-size: contain;
+  animation: santaMove 10s linear infinite;
+}
+
+@keyframes santaMove {
+  0% { left: -200px; transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { left: 100%; transform: scale(1); }
+}
+
