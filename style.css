@@ -515,63 +515,39 @@ nav a:hover {
 /* ------------------------------
    CONTENEDOR GENERAL DEL BANNER
 --------------------------------*/
-/* ------------------------------------
-   CONTENEDOR DEL BANNER
--------------------------------------*/
-/* ------------------------------------
-      BANNER CON BRILLO Y PULSOS
--------------------------------------*/
+/* Contenedor sin fondo ni bordes */
 .banner-navidad {
-  position: relative;
   text-align: center;
-  padding: 35px 20px;
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.05); /* fondo suave opcional */
-  border: 3px solid gold;
-
-  box-shadow: 
-    0 0 12px gold,
-    0 0 25px rgba(255,215,0,0.6);
-
-  animation: pulseBanner 2.8s infinite ease-in-out,
-             glowBanner 2s infinite alternate;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 20px 0;
 }
 
-/* Pulso suave */
-@keyframes pulseBanner {
-  0%   { transform: scale(1); }
-  50%  { transform: scale(1.03); }
-  100% { transform: scale(1); }
-}
-
-/* Brillo dorado */
-@keyframes glowBanner {
-  from { box-shadow: 0 0 10px gold; }
-  to   { box-shadow: 0 0 28px #ffeb99; }
-}
-
-/* ------------------------------------
-       TEXTO CON FLAMEO + PULSO
--------------------------------------*/
+/* Texto con brillo + flameo + pulsos */
 .flameo {
-  font-size: 40px;
+  font-size: 45px;
   font-weight: bold;
-  color: #fff;
+  color: #ffffff;
 
+  /* Efecto de brillo navideño */
   text-shadow:
-    0 0 8px #ffd37b,
-    0 0 20px #ff7a29,
-    0 0 35px #ff5500;
+    0 0 10px #ffd37b,
+    0 0 20px #ff9f4d,
+    0 0 35px #ff5500,
+    0 0 55px #ff3300;
 
-  animation: flameText 2s infinite alternate ease-in-out,
-             pulseText 1.7s infinite ease-in-out;
+  /* Animaciones combinadas */
+  animation:
+    flameText 2.2s infinite alternate ease-in-out,
+    pulseText 1.4s infinite ease-in-out,
+    glowText 2.5s infinite alternate;
 }
 
-/* Efecto flameo */
+/* Flameo suave del texto */
 @keyframes flameText {
-  0% { text-shadow: 0 0 10px #ffb84d, 0 0 20px #ff7a29; }
-  100% { text-shadow: 0 0 22px #ffe38a, 0 0 45px #ff5500; }
+  0%   { text-shadow: 0 0 12px #ffa94d, 0 0 25px #ff7a29; }
+  100% { text-shadow: 0 0 28px #ffe38a, 0 0 55px #ff5500; }
 }
 
 /* Pulso del texto */
@@ -579,4 +555,10 @@ nav a:hover {
   0%   { transform: scale(1); }
   50%  { transform: scale(1.07); }
   100% { transform: scale(1); }
+}
+
+/* Brillo cálido */
+@keyframes glowText {
+  0%   { opacity: 0.85; }
+  100% { opacity: 1; }
 }
