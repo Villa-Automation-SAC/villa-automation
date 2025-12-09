@@ -605,18 +605,6 @@ nav a:hover {
 /* ------------------------------------
      PAPÁ NOEL ANIMADO
 -------------------------------------*/
-.santa {
-  position: absolute;
-  bottom: 5px;
-  left: -200px;
-  width: 160px;
-  height: 90px;
-
-  background: url('https://i.imgur.com/rgVxgdr.png') no-repeat;
-  background-size: contain;
-
-  animation: santaMove 9s linear infinite;
-}
 
 @keyframes santaMove {
   0% { left: -200px; }
