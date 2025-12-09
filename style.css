@@ -529,9 +529,6 @@ nav a:hover {
   box-shadow: 0 0 20px gold;
 }
 
-/* ------------------------------
-      TEXTO FLAMEANDO
---------------------------------*/
 .flameo {
   font-size: 42px;
   color: #ffffff;
@@ -553,17 +550,11 @@ nav a:hover {
   100% { text-shadow: 0 0 12px #ffcc33, 0 0 25px #ff8833, 0 0 40px #ff3300; }
 }
 
-/* ------------------------------
-      BORDE DORADO ANIMADO
---------------------------------*/
 @keyframes brillo {
   0% { box-shadow: 0 0 10px gold; }
   100% { box-shadow: 0 0 25px rgb(255,220,120); }
 }
 
-/* ------------------------------
-    COPOS DE NIEVE ANIMADOS
---------------------------------*/
 .snow {
   position: absolute;
   top: 0;
@@ -584,9 +575,6 @@ nav a:hover {
   100% { background-position: 0 600px, 0 400px, 0 300px; }
 }
 
-/* ------------------------------
-    LUCES NAVIDEÑAS PARPADEANDO
---------------------------------*/
 .luces-navidad {
   position: absolute;
   top: 0;
@@ -611,9 +599,6 @@ nav a:hover {
   100% { filter: brightness(2); }
 }
 
-/* ------------------------------
-       SANTA MOVIÉNDOSE
---------------------------------*/
 .santa {
   position: absolute;
   bottom: 10px;
@@ -630,4 +615,3 @@ nav a:hover {
   50% { transform: scale(1.05); }
   100% { left: 100%; transform: scale(1); }
 }
-
