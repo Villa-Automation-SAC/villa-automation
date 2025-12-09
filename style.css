@@ -549,25 +549,6 @@ nav a:hover {
 /* ------------------------------------
      TEXTO FLAMEANDO
 -------------------------------------*/
-.flameo {
-  font-size: 40px;
-  color: white;
-  font-weight: bold;
-  z-index: 5;
-  position: relative;
-
-  text-shadow:
-    0 0 12px #ffd37b,
-    0 0 22px #ff8c29,
-    0 0 40px #ff5500;
-
-  animation: flamear 2.3s infinite alternate ease-in-out;
-}
-
-@keyframes flamear {
-  0% { text-shadow: 0 0 12px #ffb84d, 0 0 22px #ff7a29; }
-  100% { text-shadow: 0 0 25px #ffe38a, 0 0 48px #ff5500; }
-}
 
 /* ------------------------------------
       COPOS DE NIEVE
