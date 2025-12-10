@@ -236,62 +236,128 @@ const skipBtn = document.getElementById('skipBtn');
 const musica = document.getElementById('musica-fondo');
 const corona = document.getElementById('corona');
 
-// ===== Generador de preguntas (variedad: aritmética / razonamiento simple) =====
+// ===== Generador de preguntas AVANZADAS =====
 function generarPregunta(){
   const tipo = Math.random();
-  if(tipo < 0.5){
-    // Aritmética básica (suma/resta/multiplicación)
-    const a = Math.floor(Math.random()*90)+5;
-    const b = Math.floor(Math.random()*20)+2;
-    const opTipo = Math.random();
-    let q, ans;
-    if(opTipo < 0.6){
-      q = `${a} + ${b}`;
-      ans = a + b;
-    } else if(opTipo < 0.85){
-      q = `${a} - ${b}`;
-      ans = a - b;
-    } else {
-      const c = Math.floor(Math.random()*9)+2;
-      q = `${c} × ${Math.floor(Math.random()*12)+2}`;
-      ans = c * (Math.floor(Math.random()*12)+2);
+
+  // ================== MATEMÁTICA ==================
+  if(tipo < 0.6){
+    const sub = Math.random();
+
+    // ----- Porcentajes -----
+    if(sub < 0.2){
+      const base = Math.floor(Math.random()*200)+50;
+      const pct = [5,10,15,20,25][Math.floor(Math.random()*5)];
+      const ans = Math.round(base * pct / 100);
+      return {
+        q:`¿Cuánto es el ${pct}% de ${base}?`,
+        ans:String(ans),
+        opciones: generarOpciones(ans)
+      };
     }
-    const opciones = generarOpciones(ans);
-    return { q:`¿Cuánto es ${q}?`, ans:String(ans), opciones };
-  } else {
-    // Razonamiento simple / comparaciones
-    const r = Math.random();
-    if(r < 0.5){
-      // Comparación
-      const a = Math.floor(Math.random()*90)+10;
-      const b = Math.floor(Math.random()*90)+10;
-      const op = (a>b) ? '>' : (a<b) ? '<' : '=';
-      const correct = op;
-      const opciones = ['>','<','='].sort(()=>Math.random()-0.5);
-      return { q:`¿Cuál símbolo hace verdadera la comparación ${a} __ ${b}?`, ans:correct, opciones };
-    } else {
-      // Serie / razonamiento
-      const start = Math.floor(Math.random()*8)+2;
-      const step = Math.floor(Math.random()*5)+2;
-      const missingIndex = Math.floor(Math.random()*3)+1;
-      const seq = [start, start+step, start+2*step, start+3*step];
-      const missingValue = seq[missingIndex];
-      const opciones = generarOpciones(missingValue);
-      return { q:`Completa la serie: ${seq.map((v,i)=> i===missingIndex ? '___' : v).join(', ')}`, ans:String(missingValue), opciones };
+
+    // ----- Ecuación simple -----
+    if(sub < 0.4){
+      const x = Math.floor(Math.random()*15)+2;
+      const b = Math.floor(Math.random()*20)+5;
+      const c = x + b;
+      return {
+        q:`Si x + ${b} = ${c}, ¿cuánto vale x?`,
+        ans:String(x),
+        opciones: generarOpciones(x)
+      };
     }
+
+    // ----- Potencias -----
+    if(sub < 0.6){
+      const a = Math.floor(Math.random()*5)+2;
+      const b = 2;
+      const ans = a ** b;
+      return {
+        q:`¿Cuánto es ${a}²?`,
+        ans:String(ans),
+        opciones: generarOpciones(ans)
+      };
+    }
+
+    // ----- Raíz cuadrada -----
+    if(sub < 0.8){
+      const roots = [16,25,36,49,64,81];
+      const base = roots[Math.floor(Math.random()*roots.length)];
+      const ans = Math.sqrt(base);
+      return {
+        q:`¿Cuál es la raíz cuadrada de ${base}?`,
+        ans:String(ans),
+        opciones: generarOpciones(ans)
+      };
+    }
+
+    // ----- Serie numérica avanzada -----
+    const start = Math.floor(Math.random()*5)+2;
+    const seq = [start, start*2, start*4, start*8];
+    return {
+      q:`Completa la serie: ${seq[0]}, ${seq[1]}, ___ , ${seq[3]}`,
+      ans:String(seq[2]),
+      opciones: generarOpciones(seq[2])
+    };
+  }
+
+  // ================== CULTURA GENERAL DEL PERÚ ==================
+  else {
+    const preguntasPeru = [
+      {
+        q: "¿Cuál fue la capital del Imperio Inca?",
+        ans: "Cusco",
+        opciones: ["Cusco","Lima","Quito","Arequipa"]
+      },
+      {
+        q: "¿Cuál es el río más largo del Perú?",
+        ans: "Amazonas",
+        opciones: ["Amazonas","Ucayali","Marañón","Apurímac"]
+      },
+      {
+        q: "¿En qué año se proclamó la independencia del Perú?",
+        ans: "1821",
+        opciones: ["1819","1820","1821","1824"]
+      },
+      {
+        q: "¿Cuál es el pico más alto del Perú?",
+        ans: "Huascarán",
+        opciones: ["Huascarán","Alpamayo","Coropuna","Ausangate"]
+      },
+      {
+        q: "¿Qué civilización construyó Chan Chan?",
+        ans: "Chimú",
+        opciones: ["Inca","Moche","Nazca","Chimú"]
+      },
+      {
+        q: "¿Cuál de estos productos es originario del Perú?",
+        ans: "Papa",
+        opciones: ["Papa","Trigo","Arroz","Cebada"]
+      }
+    ];
+
+    const p = preguntasPeru[Math.floor(Math.random()*preguntasPeru.length)];
+    return {
+      q: p.q,
+      ans: p.ans,
+      opciones: p.opciones.sort(()=>Math.random()-0.5)
+    };
   }
 }
 
-// Generar opciones cercanas coherentes
+// ===== Opciones cercanas coherentes =====
 function generarOpciones(correct){
   const opts = new Set();
   opts.add(String(correct));
   const base = Number(correct);
+
   while(opts.size < 4){
-    const delta = Math.ceil(Math.random()*8);
-    const sign = (Math.random() < 0.5) ? 1 : -1;
+    const delta = Math.ceil(Math.random()*10);
+    const sign = Math.random() < 0.5 ? 1 : -1;
     opts.add(String(base + sign*delta));
   }
+
   return Array.from(opts).sort(()=>Math.random()-0.5);
 }
 
@@ -541,6 +607,7 @@ window.addEventListener('touchmove', function(e){ /* allow default only for mult
 </script>
 </body>
 </html>
+
 
 
 
