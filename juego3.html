@@ -557,6 +557,11 @@ function updateMobileControls(){
     mobileControls.setAttribute('aria-hidden','true');
   }
 }
+// 🔥 EJECUTAR DESDE EL INICIO
+document.addEventListener('DOMContentLoaded', updateMobileControls);
+window.addEventListener('load', updateMobileControls);
+window.addEventListener('resize', updateMobileControls);
+window.addEventListener('orientationchange', updateMobileControls);
 
 // ejecutar apenas carga
 window.addEventListener('DOMContentLoaded', updateMobileControls);
@@ -617,6 +622,7 @@ window.addEventListener('touchmove', function(e){ /* allow default only for mult
 </script>
 </body>
 </html>
+
 
 
 
