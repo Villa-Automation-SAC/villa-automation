@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
@@ -7,10 +7,17 @@
 
 <style>
 :root{ --accent:#00c0ff; --panel:rgba(0,0,0,0.55); }
-body{ margin:0; font-family:Inter,Arial,sans-serif; background:#071126; color:#e6f6ff; overflow:hidden; }
 
-canvas{ 
-  display:block; 
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#071126;
+  color:#e6f6ff;
+  overflow:hidden;
+}
+
+canvas{
+  display:block;
   position:fixed;
   inset:0;
   width:100%;
@@ -18,32 +25,90 @@ canvas{
 }
 
 /* HUD */
-.hud{ position:fixed; left:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
+.hud{
+  position:fixed;
+  left:12px;
+  top:12px;
+  z-index:999;
+  background:var(--panel);
+  padding:10px 12px;
+  border-radius:10px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.6);
+}
 .hud .line{ font-size:14px; margin:4px 0; }
 
 /* Controls */
-.controlsUI{ position:fixed; right:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
-.btn{ display:inline-block; background:var(--accent); color:#042b34; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none; margin:6px 4px; cursor:pointer; }
-
-/* Center */
-#centerBox{ 
-  position:fixed; 
-  left:50%; 
-  top:50%; 
-  transform:translate(-50%,-50%); 
-  z-index:1001; 
-  background:rgba(0,0,0,0.82); 
-  padding:18px; 
-  border-radius:12px; 
-  text-align:center; 
-  width:340px; 
-  color:#e6f6ff; 
+.controlsUI{
+  position:fixed;
+  right:12px;
+  top:12px;
+  z-index:999;
+  background:var(--panel);
+  padding:10px 12px;
+  border-radius:10px;
+}
+.btn{
+  display:inline-block;
+  background:var(--accent);
+  color:#042b34;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:800;
+  text-decoration:none;
+  margin:6px 4px;
+  cursor:pointer;
 }
 
-/* Modal preguntas */
-#questionModal{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2000; background:rgba(2,10,20,0.95); padding:18px; border-radius:12px; width:360px; display:none; color:#e6f6ff; }
-.optionBtn{ display:block; width:100%; text-align:left; padding:10px; margin:8px 0; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); cursor:pointer; }
-.small{ font-size:13px; color:#cfefff; }
+/* Inicio */
+#centerBox{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:1001;
+  background:rgba(0,0,0,0.85);
+  padding:18px;
+  border-radius:12px;
+  width:360px;
+  text-align:center;
+}
+
+/* Preguntas */
+#questionModal{
+  position:fixed;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:2000;
+  background:rgba(0,0,0,0.95);
+  padding:20px;
+  border-radius:14px;
+  width:360px;
+  display:none;
+}
+
+#qText{
+  font-size:18px;
+  font-weight:800;
+  margin-bottom:12px;
+  color:#ffffff;
+}
+
+.optionBtn{
+  display:block;
+  width:100%;
+  text-align:center;
+  padding:12px;
+  margin:8px 0;
+  border-radius:10px;
+  background:#0fa3ff;
+  border:none;
+  color:#001820;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+.optionBtn:hover{ background:#3bc1ff; }
 </style>
 </head>
 
@@ -53,23 +118,27 @@ canvas{
 <!-- HUD -->
 <div class="hud">
   <div class="line">🚗 Recorrido Ayacucho</div>
-  <div class="line">Combustible: <span id="fuel">100</span>% • Vida: <span id="life">100</span>%</div>
+  <div class="line">
+    Combustible: <span id="fuel">100</span>% • Vida: <span id="life">100</span>%
+  </div>
   <div class="line">Puntos: <span id="score">0</span></div>
 </div>
 
-<!-- Controls -->
+<!-- Controles -->
 <div class="controlsUI">
-  <div style="font-weight:700;margin-bottom:6px">Controles</div>
-  <div style="font-size:13px">WASD / Flechas • SPACE Acelerar • Ctrl Freno</div>
-  <div style="margin-top:8px">
+  <div style="font-weight:800">Controles</div>
+  <div style="font-size:13px">WASD / Flechas • SPACE acelerar • Ctrl freno</div>
+  <div>
     <a class="btn" id="restartBtn">Reiniciar</a>
-    <a class="btn" id="backBtn" href="index.html">Volver</a>
+    <a class="btn" href="index.html">Volver</a>
   </div>
 </div>
 
-<!-- Start box -->
+<!-- Inicio -->
 <div id="centerBox">
-  <div id="centerText" style="font-size:18px;margin-bottom:8px">Inicio: Ciudadela Warpa Picchu → Meta: Villa Automation SAC</div>
+  <div style="font-size:18px;margin-bottom:10px">
+    Ciudadela Warpa Picchu → Villa Automation SAC
+  </div>
   <a class="btn" id="startBtn">Iniciar</a>
 </div>
 
@@ -77,198 +146,182 @@ canvas{
 <div id="questionModal">
   <div id="qText"></div>
   <div id="qOptions"></div>
-  <div style="margin-top:8px;text-align:right">
+  <div style="text-align:right;margin-top:8px">
     <a class="btn" id="skipBtn">Saltar (-10 vida)</a>
   </div>
 </div>
 
 <script>
-// CANVAS
-const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
-let W = canvas.width = window.innerWidth, H = canvas.height = window.innerHeight;
-window.addEventListener('resize', ()=>{ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; puntosEnPixeles(); });
+/* CANVAS */
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+let W = canvas.width = innerWidth;
+let H = canvas.height = innerHeight;
 
-// --- MAPA FIJO ---
+addEventListener("resize",()=>{
+  W = canvas.width = innerWidth;
+  H = canvas.height = innerHeight;
+  puntosEnPixeles();
+});
+
+/* MAPA */
 const mapImg = new Image();
-mapImg.src = "assets/mapa.png";
+mapImg.src="assets/mapa.png";
 
-// --- AUTO ---
+/* AUTO */
 const carImg = new Image();
-carImg.src = "assets/carro1.png";
+carImg.src="assets/carro1.png";
 
-let car = { x:0, y:0, angle:0, vx:0, vy:0, w:70, h:38 };
+let car={x:0,y:0,angle:0,vx:0,vy:0,w:70,h:38};
 
-// --- PUNTOS REALES ---
-let puntos = [
-  { nombre: "Ciudadela Warpa Picchu", x:0.50, y:0.88, id:"warpa" },
-  { nombre: "Parque Miraflores",     x:0.49, y:0.72 },
-  { nombre: "Terminal Sur",          x:0.52, y:0.63 },
-  { nombre: "Hospital Arequipa",     x:0.44, y:0.55 },
-  { nombre: "MiskyFro",              x:0.45, y:0.52 },
-  { nombre: "EMADI",                 x:0.41, y:0.47 },
-  { nombre: "Aeropuerto",            x:0.57, y:0.33 },
-  { nombre: "Villa Automation SAC",  x:0.47, y:0.37, id:"meta" }
+/* PUNTOS */
+let puntos=[
+ {nombre:"Ciudadela Warpa Picchu",x:0.50,y:0.88},
+ {nombre:"Parque Miraflores",x:0.49,y:0.72},
+ {nombre:"Terminal Sur",x:0.52,y:0.63},
+ {nombre:"Hospital Arequipa",x:0.44,y:0.55},
+ {nombre:"MiskyFro",x:0.45,y:0.52},
+ {nombre:"EMADI",x:0.41,y:0.47},
+ {nombre:"Aeropuerto",x:0.57,y:0.33},
+ {nombre:"Villa Automation SAC",x:0.47,y:0.37,id:"meta"}
 ];
 
-// Normalización
 function puntosEnPixeles(){
   puntos.forEach(p=>{
-    p.X = p.x * W;
-    p.Y = p.y * H;
+    p.X=p.x*W;
+    p.Y=p.y*H;
   });
 }
 puntosEnPixeles();
 
-// Estado
-let actual = 0;
-let running = false;
-let keys = {};
-let fuel = 100, life = 100, score = 0;
+/* ESTADO */
+let actual=0,running=false,keys={};
+let fuel=100,life=100,score=0;
 
-// Preguntas
+/* PREGUNTAS */
 function generarPregunta(){
-  let a = Math.floor(Math.random()*30)+5;
-  let b = Math.floor(Math.random()*15)+2;
-  let ans = a + b;
-  let opciones = [ans, ans+5, ans-3, ans+8].sort(()=>Math.random()-0.5);
-
-  return { q:`¿Cuánto es ${a} + ${b}?`, ans:String(ans), opciones };
+  let a=Math.floor(Math.random()*30)+5;
+  let b=Math.floor(Math.random()*15)+2;
+  let ans=a+b;
+  let opciones=[ans,ans+4,ans-3,ans+7].sort(()=>Math.random()-0.5);
+  return {q:`¿Cuánto es ${a} + ${b}?`,ans:String(ans),opciones};
 }
 
-// HUD refs
-const fuelEl = document.getElementById('fuel');
-const lifeEl = document.getElementById('life');
-const scoreEl = document.getElementById('score');
+/* MODAL */
+const modal=qModal=document.getElementById("questionModal");
+const qText=document.getElementById("qText");
+const qOptions=document.getElementById("qOptions");
 
-// MODALES
-const modal = document.getElementById('questionModal');
-const qText = document.getElementById('qText');
-const qOptions = document.getElementById('qOptions');
-
-// Dibujar escena
+/* DIBUJO */
 function draw(){
   ctx.clearRect(0,0,W,H);
 
   if(mapImg.complete){
-    const scale = Math.max(W/mapImg.width, H/mapImg.height);
-    const iw = mapImg.width*scale;
-    const ih = mapImg.height*scale;
-    ctx.drawImage(mapImg, (W - iw)/2, (H - ih)/2, iw, ih);
+    const scale=Math.min(W/mapImg.width,H/mapImg.height);
+    const iw=mapImg.width*scale, ih=mapImg.height*scale;
+    ctx.drawImage(mapImg,(W-iw)/2,(H-ih)/2,iw,ih);
   }
 
-  // puntos
+  /* sombreado */
+  ctx.fillStyle="rgba(0,0,0,0.45)";
+  ctx.fillRect(0,0,W,H);
+
+  /* puntos */
   puntos.forEach((p,i)=>{
     ctx.beginPath();
-    ctx.fillStyle = (i <= actual) ? "#00ff7b" : "white";
-    ctx.arc(p.X, p.Y, 8, 0, Math.PI*2);
+    ctx.lineWidth=6;
+    ctx.strokeStyle="rgba(0,0,0,0.7)";
+    ctx.arc(p.X,p.Y,14,0,Math.PI*2);
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.fillStyle=i<=actual?"#00ff7b":"#ffffff";
+    ctx.arc(p.X,p.Y,9,0,Math.PI*2);
     ctx.fill();
 
-    ctx.fillStyle="white";
-    ctx.font="12px Arial";
-    ctx.fillText(p.nombre, p.X+10, p.Y-10);
+    ctx.font="bold 13px Arial";
+    ctx.fillStyle="rgba(0,0,0,0.8)";
+    ctx.fillText(p.nombre,p.X+12,p.Y-12);
+    ctx.fillStyle="#fff";
+    ctx.fillText(p.nombre,p.X+11,p.Y-13);
   });
 
-  // auto
+  /* auto */
   ctx.save();
-  ctx.translate(car.x, car.y);
+  ctx.translate(car.x,car.y);
   ctx.rotate(car.angle);
-  ctx.drawImage(carImg, -car.w/2, -car.h/2, car.w, car.h);
+  ctx.drawImage(carImg,-car.w/2,-car.h/2,car.w,car.h);
   ctx.restore();
 }
 
-// Bucle
+/* LOOP */
 function loop(){
-  if(!running) return;
+  if(!running)return;
 
-  // controles
-  if(keys["ArrowLeft"]||keys["a"]) car.angle -= 0.04;
-  if(keys["ArrowRight"]||keys["d"]) car.angle += 0.04;
+  if(keys.a||keys.ArrowLeft)car.angle-=0.04;
+  if(keys.d||keys.ArrowRight)car.angle+=0.04;
 
-  if((keys["w"]||keys["ArrowUp"]||keys[" "]) && fuel>0){
-    car.vx += Math.cos(car.angle)*0.4;
-    car.vy += Math.sin(car.angle)*0.4;
-    fuel -= 0.06;
-  } else {
-    car.vx *= 0.98;
-    car.vy *= 0.98;
-  }
+  if((keys.w||keys.ArrowUp||keys[" "])&&fuel>0){
+    car.vx+=Math.cos(car.angle)*0.4;
+    car.vy+=Math.sin(car.angle)*0.4;
+    fuel-=0.06;
+  } else { car.vx*=0.98; car.vy*=0.98; }
 
-  car.x += car.vx;
-  car.y += car.vy;
+  car.x+=car.vx; car.y+=car.vy;
 
-  // HUD
-  fuelEl.innerText = fuel.toFixed(0);
-  lifeEl.innerText = life.toFixed(0);
-  scoreEl.innerText = score.toFixed(0);
+  fuelEl.textContent=fuel|0;
+  lifeEl.textContent=life|0;
+  scoreEl.textContent=score|0;
 
-  // proximidad punto
-  const p = puntos[actual];
-  if(Math.hypot(car.x - p.X, car.y - p.Y) < 35){
-    abrirPregunta();
-  }
+  let p=puntos[actual];
+  if(Math.hypot(car.x-p.X,car.y-p.Y)<35)abrirPregunta();
 
   draw();
   requestAnimationFrame(loop);
 }
 
-// preguntas
+/* PREGUNTAS */
 function abrirPregunta(){
-  running = false;
-  const pq = generarPregunta();
-  modal.style.display = "block";
-  qText.innerText = pq.q;
-  qOptions.innerHTML = "";
-
+  running=false;
+  let pq=generarPregunta();
+  modal.style.display="block";
+  qText.textContent=pq.q;
+  qOptions.innerHTML="";
   pq.opciones.forEach(op=>{
-    let b = document.createElement("button");
+    let b=document.createElement("button");
     b.className="optionBtn";
-    b.innerText = op;
-    b.onclick = ()=>resolver(op, pq.ans);
+    b.textContent=op;
+    b.onclick=()=>resolver(op,pq.ans);
     qOptions.appendChild(b);
   });
 }
 
-function resolver(op, ans){
-  if(String(op) === String(ans)){
-    score += 150;
-    actual++;
-
-    if(puntos[actual] && puntos[actual].id==="meta"){
-      modal.style.display="none";
-      victory();
-      return;
-    }
-  } else {
-    life -= 15;
-  }
-
+function resolver(op,ans){
+  if(String(op)===ans){ score+=150; actual++; }
+  else life-=15;
   modal.style.display="none";
-  running = true;
+  running=true;
   loop();
 }
 
-function victory(){
-  running = false;
-  alert("🎉 ¡MISIÓN COMPLETADA! Llegaste a Villa Automation SAC");
-}
+/* EVENTOS */
+onkeydown=e=>keys[e.key]=true;
+onkeyup=e=>keys[e.key]=false;
 
-// eventos
-window.onkeydown = e => keys[e.key]=true;
-window.onkeyup = e => keys[e.key]=false;
+/* UI */
+const fuelEl=document.getElementById("fuel");
+const lifeEl=document.getElementById("life");
+const scoreEl=document.getElementById("score");
 
-// iniciar
-document.getElementById("startBtn").onclick = ()=>{
-  car.x = puntos[0].X;
-  car.y = puntos[0].Y;
-  running = true;
+document.getElementById("startBtn").onclick=()=>{
+  car.x=puntos[0].X;
+  car.y=puntos[0].Y;
+  running=true;
   document.getElementById("centerBox").style.display="none";
   loop();
 };
 
-document.getElementById("restartBtn").onclick = ()=> location.reload();
-
-// **MOSTRAR PANEL INICIAL**
-document.getElementById("centerBox").style.display = "block";
+document.getElementById("restartBtn").onclick=()=>location.reload();
 
 draw();
 </script>
