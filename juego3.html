@@ -7,17 +7,12 @@
 
 <style>
 :root{ --accent:#00c0ff; --panel:rgba(0,0,0,0.55); }
+*{ box-sizing:border-box; }
+body{ margin:0; font-family:Inter,Arial,sans-serif; background:#071126; color:#e6f6ff; overflow:hidden; -webkit-tap-highlight-color: transparent; }
 
-body{
-  margin:0;
-  font-family:Inter,Arial,sans-serif;
-  background:#071126;
-  color:#e6f6ff;
-  overflow:hidden;
-}
-
-canvas{
-  display:block;
+/* Canvas */
+canvas{ 
+  display:block; 
   position:fixed;
   inset:0;
   width:100%;
@@ -25,90 +20,75 @@ canvas{
 }
 
 /* HUD */
-.hud{
-  position:fixed;
-  left:12px;
-  top:12px;
-  z-index:999;
-  background:var(--panel);
-  padding:10px 12px;
-  border-radius:10px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.6);
-}
+.hud{ position:fixed; left:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); max-width:320px; }
 .hud .line{ font-size:14px; margin:4px 0; }
 
-/* Controls */
-.controlsUI{
-  position:fixed;
-  right:12px;
-  top:12px;
-  z-index:999;
-  background:var(--panel);
-  padding:10px 12px;
-  border-radius:10px;
+/* Controls (desktop) */
+.controlsUI{ position:fixed; right:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); max-width:260px; text-align:left; }
+.btn{ display:inline-block; background:var(--accent); color:#042b34; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none; margin:6px 4px; cursor:pointer; }
+
+/* Center */
+#centerBox{ 
+  position:fixed; 
+  left:50%; 
+  top:50%; 
+  transform:translate(-50%,-50%); 
+  z-index:1001; 
+  background:rgba(0,0,0,0.82); 
+  padding:18px; 
+  border-radius:12px; 
+  text-align:center; 
+  width:340px; 
+  color:#e6f6ff; 
 }
-.btn{
-  display:inline-block;
-  background:var(--accent);
+
+/* Preguntas modal */
+#questionModal{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2000; background:linear-gradient(180deg, rgba(2,10,20,0.98), rgba(2,10,20,0.95)); padding:18px; border-radius:12px; width:360px; display:none; color:#e6f6ff; box-shadow:0 10px 40px rgba(0,0,0,0.7); }
+#qText{ font-weight:700; font-size:18px; margin-bottom:10px; color:#dff8ff; text-align:left; }
+#qOptions{ margin-top:6px; }
+.optionBtn{ display:block; width:100%; text-align:left; padding:12px 14px; margin:8px 0; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); cursor:pointer; font-size:16px; color:#e6f6ff; }
+.optionBtn:hover{ background:rgba(0,192,255,0.12); border-color:rgba(0,192,255,0.18); transform:translateY(-2px); }
+.small{ font-size:13px; color:#cfefff; }
+
+/* Mobile controls */
+.mobileControls{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:12px;
+  z-index:1500;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  pointer-events:auto;
+}
+.pad{ background:rgba(0,0,0,0.45); padding:8px; border-radius:12px; display:flex; gap:8px; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
+.pad button{ width:56px; height:56px; border-radius:10px; border:0; font-weight:700; font-size:18px; background:rgba(255,255,255,0.06); color:#e6f6ff; }
+.pad button.active{ background:var(--accent); color:#042b34; transform:translateY(-2px); }
+
+/* Corona message */
+#corona{
+  position:fixed;
+  left:50%;
+  top:14px;
+  transform:translateX(-50%);
+  z-index:3000;
+  background:linear-gradient(90deg,#0be08b,#00c0ff);
   color:#042b34;
-  padding:8px 12px;
+  padding:12px 18px;
   border-radius:10px;
   font-weight:800;
-  text-decoration:none;
-  margin:6px 4px;
-  cursor:pointer;
-}
-
-/* Inicio */
-#centerBox{
-  position:fixed;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  z-index:1001;
-  background:rgba(0,0,0,0.85);
-  padding:18px;
-  border-radius:12px;
-  width:360px;
-  text-align:center;
-}
-
-/* Preguntas */
-#questionModal{
-  position:fixed;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-  z-index:2000;
-  background:rgba(0,0,0,0.95);
-  padding:20px;
-  border-radius:14px;
-  width:360px;
   display:none;
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-#qText{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:12px;
-  color:#ffffff;
+/* Small adjustments for small screens */
+@media(max-width:480px){
+  .controlsUI{ display:none; }
+  .hud{ font-size:13px; padding:8px; }
+  #questionModal{ width:92%; padding:14px; }
+  .pad button{ width:50px; height:50px; }
 }
-
-.optionBtn{
-  display:block;
-  width:100%;
-  text-align:center;
-  padding:12px;
-  margin:8px 0;
-  border-radius:10px;
-  background:#0fa3ff;
-  border:none;
-  color:#001820;
-  font-size:16px;
-  font-weight:800;
-  cursor:pointer;
-}
-.optionBtn:hover{ background:#3bc1ff; }
 </style>
 </head>
 
@@ -118,27 +98,23 @@ canvas{
 <!-- HUD -->
 <div class="hud">
   <div class="line">🚗 Recorrido Ayacucho</div>
-  <div class="line">
-    Combustible: <span id="fuel">100</span>% • Vida: <span id="life">100</span>%
-  </div>
+  <div class="line">Combustible: <span id="fuel">100</span>% • Vida: <span id="life">100</span>%</div>
   <div class="line">Puntos: <span id="score">0</span></div>
 </div>
 
-<!-- Controles -->
-<div class="controlsUI">
-  <div style="font-weight:800">Controles</div>
-  <div style="font-size:13px">WASD / Flechas • SPACE acelerar • Ctrl freno</div>
-  <div>
+<!-- Controls (desktop) -->
+<div class="controlsUI" id="desktopControls">
+  <div style="font-weight:700;margin-bottom:6px">Controles</div>
+  <div style="font-size:13px">WASD / Flechas • SPACE Acelerar • Ctrl Freno</div>
+  <div style="margin-top:8px">
     <a class="btn" id="restartBtn">Reiniciar</a>
-    <a class="btn" href="index.html">Volver</a>
+    <a class="btn" id="backBtn" href="index.html">Volver</a>
   </div>
 </div>
 
-<!-- Inicio -->
+<!-- Start box -->
 <div id="centerBox">
-  <div style="font-size:18px;margin-bottom:10px">
-    Ciudadela Warpa Picchu → Villa Automation SAC
-  </div>
+  <div id="centerText" style="font-size:18px;margin-bottom:8px">Inicio: Ciudadela Warpa Picchu → Meta: Villa Automation SAC</div>
   <a class="btn" id="startBtn">Iniciar</a>
 </div>
 
@@ -146,184 +122,402 @@ canvas{
 <div id="questionModal">
   <div id="qText"></div>
   <div id="qOptions"></div>
-  <div style="text-align:right;margin-top:8px">
+  <div style="margin-top:8px;text-align:right">
     <a class="btn" id="skipBtn">Saltar (-10 vida)</a>
   </div>
 </div>
 
+<!-- Corona message -->
+<div id="corona">🎉 ¡Felicidades! Has completado todas las casillas y ganado bono de descuento de 5s/ en nuestros productos (reclama ya!) 🎉</div>
+
+<!-- Mobile controls -->
+<div class="mobileControls" id="mobileControls" aria-hidden="true">
+  <div class="pad" id="padLeft">
+    <button id="btnLeft">◀</button>
+    <button id="btnUp">▲</button>
+    <button id="btnRight">▶</button>
+  </div>
+  <div class="pad" id="padRight">
+    <button id="btnBrake">⏹</button>
+    <button id="btnAccel">▲</button>
+  </div>
+</div>
+
+<!-- Música -->
+<audio id="musica-fondo" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
 <script>
-/* CANVAS */
-const canvas = document.getElementById("c");
-const ctx = canvas.getContext("2d");
-let W = canvas.width = innerWidth;
-let H = canvas.height = innerHeight;
+// CANVAS y contexto
+const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+let W = canvas.width = window.innerWidth, H = canvas.height = window.innerHeight;
+window.addEventListener('resize', ()=>{ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; puntosEnPixeles(); });
 
-addEventListener("resize",()=>{
-  W = canvas.width = innerWidth;
-  H = canvas.height = innerHeight;
-  puntosEnPixeles();
-});
-
-/* MAPA */
+// Imágenes
 const mapImg = new Image();
-mapImg.src="assets/mapa.png";
-
-/* AUTO */
+mapImg.src = "assets/mapa.png";
 const carImg = new Image();
-carImg.src="assets/carro1.png";
+carImg.src = "assets/carro1.png";
 
-let car={x:0,y:0,angle:0,vx:0,vy:0,w:70,h:38};
+// Auto
+let car = { x:0, y:0, angle:0, vx:0, vy:0, w:70, h:38 };
 
-/* PUNTOS */
-let puntos=[
- {nombre:"Ciudadela Warpa Picchu",x:0.50,y:0.88},
- {nombre:"Parque Miraflores",x:0.49,y:0.72},
- {nombre:"Terminal Sur",x:0.52,y:0.63},
- {nombre:"Hospital Arequipa",x:0.44,y:0.55},
- {nombre:"MiskyFro",x:0.45,y:0.52},
- {nombre:"EMADI",x:0.41,y:0.47},
- {nombre:"Aeropuerto",x:0.57,y:0.33},
- {nombre:"Villa Automation SAC",x:0.47,y:0.37,id:"meta"}
+// Puntos (coordenadas normalizadas)
+let puntos = [
+  { nombre: "Ciudadela Warpa Picchu", x:0.50, y:0.88, id:"warpa" },
+  { nombre: "Parque Miraflores",     x:0.49, y:0.72 },
+  { nombre: "Terminal Sur",          x:0.52, y:0.63 },
+  { nombre: "Hospital Arequipa",     x:0.44, y:0.55 },
+  { nombre: "MiskyFro",              x:0.45, y:0.52 },
+  { nombre: "EMADI",                 x:0.41, y:0.47 },
+  { nombre: "Aeropuerto",            x:0.57, y:0.33 },
+  { nombre: "Villa Automation SAC",  x:0.47, y:0.37, id:"meta" }
 ];
 
+// Convertir a pixeles y ajustar separacion ligera
 function puntosEnPixeles(){
-  puntos.forEach(p=>{
-    p.X=p.x*W;
-    p.Y=p.y*H;
+  puntos.forEach((p,i)=>{
+    p.X = Math.round(p.x * W);
+    p.Y = Math.round(p.y * H);
   });
+
+  // pequeña separación si están muy cerca (sistema simple)
+  for(let i=0;i<puntos.length;i++){
+    for(let j=i+1;j<puntos.length;j++){
+      const dx = puntos[j].X - puntos[i].X;
+      const dy = puntos[j].Y - puntos[i].Y;
+      const dist = Math.hypot(dx,dy);
+      const minDist = 34; // distancia mínima en pixeles
+      if(dist < minDist && dist>0){
+        const overlap = (minDist - dist) / 2;
+        const nx = dx/dist, ny = dy/dist;
+        puntos[j].X += Math.round(nx*overlap);
+        puntos[j].Y += Math.round(ny*overlap);
+        puntos[i].X -= Math.round(nx*overlap);
+        puntos[i].Y -= Math.round(ny*overlap);
+      }
+    }
+  }
 }
 puntosEnPixeles();
 
-/* ESTADO */
-let actual=0,running=false,keys={};
-let fuel=100,life=100,score=0;
+// Estado
+let actual = 0;
+let running = false;
+let keys = {};
+let fuel = 100, life = 100, score = 0;
 
-/* PREGUNTAS */
+// HUD refs
+const fuelEl = document.getElementById('fuel');
+const lifeEl = document.getElementById('life');
+const scoreEl = document.getElementById('score');
+
+// Modal refs
+const modal = document.getElementById('questionModal');
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
+const skipBtn = document.getElementById('skipBtn');
+
+// Música y corona
+const musica = document.getElementById('musica-fondo');
+const corona = document.getElementById('corona');
+
+// ===== Generador de preguntas (variedad: aritmética / razonamiento simple) =====
 function generarPregunta(){
-  let a=Math.floor(Math.random()*30)+5;
-  let b=Math.floor(Math.random()*15)+2;
-  let ans=a+b;
-  let opciones=[ans,ans+4,ans-3,ans+7].sort(()=>Math.random()-0.5);
-  return {q:`¿Cuánto es ${a} + ${b}?`,ans:String(ans),opciones};
+  const tipo = Math.random();
+  if(tipo < 0.5){
+    // Aritmética básica (suma/resta/multiplicación)
+    const a = Math.floor(Math.random()*90)+5;
+    const b = Math.floor(Math.random()*20)+2;
+    const opTipo = Math.random();
+    let q, ans;
+    if(opTipo < 0.6){
+      q = `${a} + ${b}`;
+      ans = a + b;
+    } else if(opTipo < 0.85){
+      q = `${a} - ${b}`;
+      ans = a - b;
+    } else {
+      const c = Math.floor(Math.random()*9)+2;
+      q = `${c} × ${Math.floor(Math.random()*12)+2}`;
+      ans = c * (Math.floor(Math.random()*12)+2);
+    }
+    const opciones = generarOpciones(ans);
+    return { q:`¿Cuánto es ${q}?`, ans:String(ans), opciones };
+  } else {
+    // Razonamiento simple / comparaciones
+    const r = Math.random();
+    if(r < 0.5){
+      // Comparación
+      const a = Math.floor(Math.random()*90)+10;
+      const b = Math.floor(Math.random()*90)+10;
+      const op = (a>b) ? '>' : (a<b) ? '<' : '=';
+      const correct = op;
+      const opciones = ['>','<','='].sort(()=>Math.random()-0.5);
+      return { q:`¿Cuál símbolo hace verdadera la comparación ${a} __ ${b}?`, ans:correct, opciones };
+    } else {
+      // Serie / razonamiento
+      const start = Math.floor(Math.random()*8)+2;
+      const step = Math.floor(Math.random()*5)+2;
+      const missingIndex = Math.floor(Math.random()*3)+1;
+      const seq = [start, start+step, start+2*step, start+3*step];
+      const missingValue = seq[missingIndex];
+      const opciones = generarOpciones(missingValue);
+      return { q:`Completa la serie: ${seq.map((v,i)=> i===missingIndex ? '___' : v).join(', ')}`, ans:String(missingValue), opciones };
+    }
+  }
 }
 
-/* MODAL */
-const modal=qModal=document.getElementById("questionModal");
-const qText=document.getElementById("qText");
-const qOptions=document.getElementById("qOptions");
+// Generar opciones cercanas coherentes
+function generarOpciones(correct){
+  const opts = new Set();
+  opts.add(String(correct));
+  const base = Number(correct);
+  while(opts.size < 4){
+    const delta = Math.ceil(Math.random()*8);
+    const sign = (Math.random() < 0.5) ? 1 : -1;
+    opts.add(String(base + sign*delta));
+  }
+  return Array.from(opts).sort(()=>Math.random()-0.5);
+}
 
-/* DIBUJO */
+// ===== Dibujado =====
 function draw(){
   ctx.clearRect(0,0,W,H);
 
+  // Dibujar mapa ajustado para "ver completo" (fit)
   if(mapImg.complete){
-    const scale=Math.min(W/mapImg.width,H/mapImg.height);
-    const iw=mapImg.width*scale, ih=mapImg.height*scale;
-    ctx.drawImage(mapImg,(W-iw)/2,(H-ih)/2,iw,ih);
+    const scale = Math.min(W/mapImg.width, H/mapImg.height); // fit whole image
+    const iw = mapImg.width*scale;
+    const ih = mapImg.height*scale;
+    const ix = (W - iw)/2, iy = (H - ih)/2;
+    ctx.drawImage(mapImg, ix, iy, iw, ih);
+
+    // Capa de sombreado sobre el mapa para que los puntos resalten
+    ctx.fillStyle = 'rgba(0,0,0,0.35)';
+    ctx.fillRect(ix, iy, iw, ih);
+  } else {
+    // fondo mientras carga
+    ctx.fillStyle = '#071126';
+    ctx.fillRect(0,0,W,H);
   }
 
-  /* sombreado */
-  ctx.fillStyle="rgba(0,0,0,0.45)";
-  ctx.fillRect(0,0,W,H);
-
-  /* puntos */
+  // dibujar puntos
   puntos.forEach((p,i)=>{
+    // si el punto está fuera del area visible por el fit, no importe porque usamos normalizado
     ctx.beginPath();
-    ctx.lineWidth=6;
-    ctx.strokeStyle="rgba(0,0,0,0.7)";
-    ctx.arc(p.X,p.Y,14,0,Math.PI*2);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.fillStyle=i<=actual?"#00ff7b":"#ffffff";
-    ctx.arc(p.X,p.Y,9,0,Math.PI*2);
+    ctx.fillStyle = (i <= actual) ? "#00ff7b" : "#ffd9a6";
+    ctx.shadowColor = "rgba(0,0,0,0.6)";
+    ctx.shadowBlur = 8;
+    ctx.arc(p.X, p.Y, 10, 0, Math.PI*2);
     ctx.fill();
+    ctx.shadowBlur = 0;
 
-    ctx.font="bold 13px Arial";
-    ctx.fillStyle="rgba(0,0,0,0.8)";
-    ctx.fillText(p.nombre,p.X+12,p.Y-12);
-    ctx.fillStyle="#fff";
-    ctx.fillText(p.nombre,p.X+11,p.Y-13);
+    // etiqueta con fondo semitransparente
+    const text = p.nombre;
+    ctx.font = "14px Inter, Arial";
+    const tw = ctx.measureText(text).width;
+    const pad = 8;
+    ctx.fillStyle = "rgba(0,0,0,0.6)";
+    ctx.fillRect(p.X + 14, p.Y - 20, tw + pad, 24);
+    ctx.fillStyle = "#e6f6ff";
+    ctx.fillText(text, p.X + 14 + 6, p.Y - 4);
   });
 
-  /* auto */
-  ctx.save();
-  ctx.translate(car.x,car.y);
-  ctx.rotate(car.angle);
-  ctx.drawImage(carImg,-car.w/2,-car.h/2,car.w,car.h);
-  ctx.restore();
+  // auto (si imagen lista)
+  if(carImg.complete){
+    ctx.save();
+    ctx.translate(car.x, car.y);
+    ctx.rotate(car.angle);
+    ctx.drawImage(carImg, -car.w/2, -car.h/2, car.w, car.h);
+    ctx.restore();
+  }
 }
 
-/* LOOP */
+// ===== Lógica del juego =====
 function loop(){
-  if(!running)return;
+  if(!running) return;
 
-  if(keys.a||keys.ArrowLeft)car.angle-=0.04;
-  if(keys.d||keys.ArrowRight)car.angle+=0.04;
+  // controles (rotacion)
+  if(keys["ArrowLeft"]||keys["a"]) car.angle -= 0.04;
+  if(keys["ArrowRight"]||keys["d"]) car.angle += 0.04;
 
-  if((keys.w||keys.ArrowUp||keys[" "])&&fuel>0){
-    car.vx+=Math.cos(car.angle)*0.4;
-    car.vy+=Math.sin(car.angle)*0.4;
-    fuel-=0.06;
-  } else { car.vx*=0.98; car.vy*=0.98; }
+  // aceleracion
+  if((keys["w"]||keys["ArrowUp"]||keys[" "]) && fuel>0){
+    car.vx += Math.cos(car.angle)*0.42;
+    car.vy += Math.sin(car.angle)*0.42;
+    fuel -= 0.06;
+  } else {
+    car.vx *= 0.985;
+    car.vy *= 0.985;
+  }
 
-  car.x+=car.vx; car.y+=car.vy;
+  // freno
+  if(keys["Control"]||keys["s"]||keys["ArrowDown"]||keys["Brake"]) {
+    car.vx *= 0.85;
+    car.vy *= 0.85;
+  }
 
-  fuelEl.textContent=fuel|0;
-  lifeEl.textContent=life|0;
-  scoreEl.textContent=score|0;
+  car.x += car.vx;
+  car.y += car.vy;
 
-  let p=puntos[actual];
-  if(Math.hypot(car.x-p.X,car.y-p.Y)<35)abrirPregunta();
+  // HUD
+  fuelEl.innerText = Math.max(0, fuel).toFixed(0);
+  lifeEl.innerText = Math.max(0, life).toFixed(0);
+  scoreEl.innerText = score.toFixed(0);
+
+  // proximidad punto
+  const p = puntos[actual];
+  if(p && Math.hypot(car.x - p.X, car.y - p.Y) < 40){
+    abrirPregunta();
+  }
 
   draw();
   requestAnimationFrame(loop);
 }
 
-/* PREGUNTAS */
+// ===== Preguntas / modal =====
 function abrirPregunta(){
-  running=false;
-  let pq=generarPregunta();
-  modal.style.display="block";
-  qText.textContent=pq.q;
-  qOptions.innerHTML="";
+  running = false;
+  const pq = generarPregunta();
+  modal.style.display = "block";
+  qText.innerText = pq.q;
+  qOptions.innerHTML = "";
+
   pq.opciones.forEach(op=>{
-    let b=document.createElement("button");
+    let b = document.createElement("button");
     b.className="optionBtn";
-    b.textContent=op;
-    b.onclick=()=>resolver(op,pq.ans);
+    b.innerText = op;
+    b.onclick = ()=>resolver(op, pq.ans);
     qOptions.appendChild(b);
   });
 }
 
-function resolver(op,ans){
-  if(String(op)===ans){ score+=150; actual++; }
-  else life-=15;
-  modal.style.display="none";
-  running=true;
-  loop();
+// Resolver: si acierta avanza; si falla, reinicia juego (según tu pedido)
+function resolver(op, ans){
+  if(String(op) === String(ans)){
+    score += 150;
+    actual++;
+    modal.style.display="none";
+
+    // meta alcanzada
+    if(puntos[actual] && puntos[actual].id==="meta"){
+      // llegar a meta (victoria)
+      victory();
+      return;
+    }
+
+    // continuar
+    running = true;
+    loop();
+  } else {
+    // Falla: reiniciar el juego (recarga)
+    // Puedes cambiar esto a reducir vida en vez de recargar si prefieres.
+    alert("Respuesta incorrecta. Se reiniciará el juego.");
+    location.reload();
+  }
 }
 
-/* EVENTOS */
-onkeydown=e=>keys[e.key]=true;
-onkeyup=e=>keys[e.key]=false;
-
-/* UI */
-const fuelEl=document.getElementById("fuel");
-const lifeEl=document.getElementById("life");
-const scoreEl=document.getElementById("score");
-
-document.getElementById("startBtn").onclick=()=>{
-  car.x=puntos[0].X;
-  car.y=puntos[0].Y;
-  running=true;
-  document.getElementById("centerBox").style.display="none";
+// Saltar pregunta (-10 vida)
+skipBtn.onclick = ()=>{
+  life -= 10;
+  modal.style.display="none";
+  running = true;
   loop();
 };
 
-document.getElementById("restartBtn").onclick=()=>location.reload();
+// Victory
+function victory(){
+  running = false;
+  // mostrar mensaje corona
+  corona.style.display = "block";
+  // reproducir musica si no lo está
+  musica.play().catch(()=>{/* autoplay bloqueado; se reproducirá tras interacción */});
+  // animar o alert
+  setTimeout(()=>{ alert("🎉 ¡MISIÓN COMPLETADA! Llegaste a Villa Automation SAC"); }, 200);
+}
 
+// ===== Eventos teclado =====
+window.onkeydown = e => {
+  keys[e.key] = true;
+  // permitir con keydown que se inicie musica al primer input si no ha podido autoplay
+  if(!musica.playing && !musica.paused){
+    // nothing
+  }
+};
+window.onkeyup = e => keys[e.key] = false;
+
+// ===== Controles UI =====
+document.getElementById("startBtn").onclick = ()=>{
+  // posicion inicial
+  car.x = puntos[0].X;
+  car.y = puntos[0].Y;
+  car.vx = 0; car.vy = 0; car.angle = -Math.PI/2;
+  running = true;
+  document.getElementById("centerBox").style.display="none";
+
+  // intento reproducir musica (algunos navegadores requieren interacción)
+  musica.play().catch(()=>{/* autoplay bloqueado; ya será reproducida en interacciones */});
+
+  loop();
+};
+
+document.getElementById("restartBtn").onclick = ()=> location.reload();
+
+// ===== Mobile controls (touch) =====
+const mobileControls = document.getElementById('mobileControls');
+function isMobile(){
+  return /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+}
+if(isMobile()){
+  mobileControls.style.display = 'flex';
+  mobileControls.setAttribute('aria-hidden','false');
+} else {
+  mobileControls.style.display = 'none';
+}
+
+// botones
+const btnLeft = document.getElementById('btnLeft');
+const btnRight = document.getElementById('btnRight');
+const btnUp = document.getElementById('btnUp');
+const btnAccel = document.getElementById('btnAccel');
+const btnBrake = document.getElementById('btnBrake');
+
+function bindTouch(btn, keyName){
+  const onStart = (e)=>{ e.preventDefault(); keys[keyName]=true; btn.classList.add('active'); };
+  const onEnd = (e)=>{ e.preventDefault(); keys[keyName]=false; btn.classList.remove('active'); };
+  btn.addEventListener('touchstart', onStart);
+  btn.addEventListener('touchend', onEnd);
+  btn.addEventListener('mousedown', onStart);
+  btn.addEventListener('mouseup', onEnd);
+  btn.addEventListener('mouseleave', onEnd);
+}
+
+bindTouch(btnLeft, 'ArrowLeft');
+bindTouch(btnRight, 'ArrowRight');
+bindTouch(btnUp, ' '); // space -> accelerate
+bindTouch(btnAccel, 'w');
+bindTouch(btnBrake, 'Brake'); // custom key handled as brake
+
+// Si el usuario quiere usar botones de escritorio por click:
+btnLeft.addEventListener('click', ()=>{ keys['ArrowLeft']=true; setTimeout(()=>keys['ArrowLeft']=false,150); });
+btnRight.addEventListener('click', ()=>{ keys['ArrowRight']=true; setTimeout(()=>keys['ArrowRight']=false,150); });
+btnUp.addEventListener('click', ()=>{ keys[' ']=true; setTimeout(()=>keys[' ']=false,200); });
+btnAccel.addEventListener('click', ()=>{ keys['w']=true; setTimeout(()=>keys['w']=false,200); });
+btnBrake.addEventListener('click', ()=>{ keys['Brake']=true; setTimeout(()=>keys['Brake']=false,200); });
+
+// ===== Inicial dibujado =====
 draw();
+
+// For debugging: centers car once images loaded
+mapImg.onload = ()=>{ puntosEnPixeles(); draw(); };
+carImg.onload = ()=> draw();
+
+// Prevent default touch move to keep canvas responsive on mobile
+window.addEventListener('touchmove', function(e){ /* allow default only for multi-touch */ if(e.touches.length==1) e.preventDefault(); }, {passive:false});
+
 </script>
 </body>
 </html>
