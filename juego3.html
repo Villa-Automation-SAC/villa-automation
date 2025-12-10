@@ -4,23 +4,30 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Recorrido Ayacucho — Juego</title>
+
 <style>
 :root{ --accent:#00c0ff; --panel:rgba(0,0,0,0.55); }
 body{ margin:0; font-family:Inter,Arial,sans-serif; background:#071126; color:#e6f6ff; overflow:hidden; }
 canvas{ display:block; width:100vw; height:100vh; }
+
+/* HUD */
 .hud{ position:fixed; left:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
 .hud .line{ font-size:14px; margin:4px 0; }
+
+/* Controls */
 .controlsUI{ position:fixed; right:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
 .btn{ display:inline-block; background:var(--accent); color:#042b34; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none; margin:6px 4px; cursor:pointer; }
+
+/* Center */
 #centerBox{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:1001; background:rgba(0,0,0,0.82); padding:18px; border-radius:12px; text-align:center; width:340px; display:none; color:#e6f6ff; }
-#questionModal{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2000; background:rgba(2,10,20,0.95); padding:18px; border-radius:12px; width:360px; display:none; color:#e6f6ff; box-shadow:0 8px 30px rgba(0,0,0,0.6); }
+
+/* Modal preguntas */
+#questionModal{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2000; background:rgba(2,10,20,0.95); padding:18px; border-radius:12px; width:360px; display:none; color:#e6f6ff; }
 .optionBtn{ display:block; width:100%; text-align:left; padding:10px; margin:8px 0; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); cursor:pointer; }
-#uploadLabel{ font-size:13px; color:#bfeaff; display:block; margin-top:8px; text-decoration:underline; cursor:pointer; }
 .small{ font-size:13px; color:#cfefff; }
-.footer-note{ position:fixed; bottom:12px; left:12px; z-index:999; color:#bfeaff; background:var(--panel); padding:8px 10px; border-radius:8px; }
-@media (max-width:900px){ .controlsUI{ display:none; } #centerBox,#questionModal{ width:92%; } }
 </style>
 </head>
+
 <body>
 <canvas id="c"></canvas>
 
@@ -29,7 +36,6 @@ canvas{ display:block; width:100vw; height:100vh; }
   <div class="line">🚗 Recorrido Ayacucho</div>
   <div class="line">Combustible: <span id="fuel">100</span>% • Vida: <span id="life">100</span>%</div>
   <div class="line">Puntos: <span id="score">0</span></div>
-  <div class="line small">Responde preguntas en las esquinas ➜ gana puntos</div>
 </div>
 
 <!-- Controls -->
@@ -40,367 +46,217 @@ canvas{ display:block; width:100vw; height:100vh; }
     <a class="btn" id="restartBtn">Reiniciar</a>
     <a class="btn" id="backBtn" href="index.html">Volver</a>
   </div>
-  <label id="uploadLabel" for="bgFile">📁 Subir imagen del mapa (opcional)</label>
-  <input type="file" id="bgFile" accept="image/*" style="display:none" />
 </div>
 
-<!-- Center start box -->
+<!-- Start box -->
 <div id="centerBox">
-  <div id="centerText" style="font-size:18px;margin-bottom:8px">¡Bienvenido! Conduce por Ayacucho y responde en cada esquina.</div>
-  <a class="btn" id="startBtn">Iniciar Recorrido</a>
-  <a class="btn" id="resumeBtn" style="display:none">Reanudar</a>
+  <div id="centerText" style="font-size:18px;margin-bottom:8px">Inicio: Ciudadela Warpa Picchu → Meta: Villa Automation SAC</div>
+  <a class="btn" id="startBtn">Iniciar</a>
 </div>
 
-<!-- Question Modal -->
+<!-- Preguntas -->
 <div id="questionModal">
-  <div id="qText" style="font-size:18px;margin-bottom:10px"></div>
+  <div id="qText"></div>
   <div id="qOptions"></div>
   <div style="margin-top:8px;text-align:right">
     <a class="btn" id="skipBtn">Saltar (-10 vida)</a>
   </div>
 </div>
 
-<div class="footer-note">Intersecciones generadas automáticamente • Puedes subir una imagen del mapa.</div>
-
-<!-- Sounds (opcional) -->
-<audio id="horn" src="assets/horn.mp3"></audio>
-<audio id="wrong" src="assets/wrong.mp3"></audio>
-
 <script>
-// --- Setup canvas ---
+// CANVAS
 const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
 let W = canvas.width = window.innerWidth, H = canvas.height = window.innerHeight;
-window.addEventListener('resize', ()=>{ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; layoutIntersections(); });
+window.addEventListener('resize', ()=>{ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; });
 
-// Assets
-const imgCar = new Image(); imgCar.src = "assets/carro1.png"; // fallback drawn if not found
-let mapImg = null; // user uploaded map
+// --- MAPA FIJO (TU IMAGEN) ---
+const mapImg = new Image();
+mapImg.src = "assets/mapa.png";
 
-// game state
-let car, intersections = [], answered = new Set();
-let score = 0, fuel = 100, life = 100, running=false, gameOver=false;
+// --- AUTO ---
+const carImg = new Image();
+carImg.src = "assets/carro1.png";
+
+let car = { x:0, y:0, angle:0, vx:0, vy:0, w:70, h:38 };
+
+// --- PUNTOS REALES TOMADOS DE TU MAPA ---
+let puntos = [
+  { nombre: "Ciudadela Warpa Picchu", x:0.50, y:0.88, id:"warpa" },     // INICIO
+  { nombre: "Parque Miraflores",     x:0.49, y:0.72 },
+  { nombre: "Terminal Sur",          x:0.52, y:0.63 },
+  { nombre: "Hospital Arequipa",     x:0.44, y:0.55 },
+  { nombre: "MiskyFro",              x:0.45, y:0.52 },
+  { nombre: "EMADI",                 x:0.41, y:0.47 },
+  { nombre: "Aeropuerto",            x:0.57, y:0.33 },
+  { nombre: "Villa Automation SAC",  x:0.47, y:0.37, id:"meta" }        // FINAL
+];
+
+// Normalizar a pixeles
+function puntosEnPixeles(){
+  puntos.forEach(p=>{
+    p.X = p.x * W;
+    p.Y = p.y * H;
+  });
+}
+puntosEnPixeles();
+
+// Estado
+let actual = 0; // punto actual (Warpa → meta)
+let running = false;
 let keys = {};
-let last = performance.now();
+let fuel = 100, life = 100, score = 0;
 
-// HUD elements
-const fuelEl = document.getElementById('fuel'), lifeEl = document.getElementById('life'), scoreEl = document.getElementById('score');
-const centerBox = document.getElementById('centerBox'), centerText = document.getElementById('centerText');
-const startBtn = document.getElementById('startBtn'), resumeBtn = document.getElementById('resumeBtn');
-const restartBtn = document.getElementById('restartBtn'), backBtn = document.getElementById('backBtn');
-const questionModal = document.getElementById('questionModal'), qText = document.getElementById('qText'), qOptions = document.getElementById('qOptions');
-const skipBtn = document.getElementById('skipBtn');
+// --- PREGUNTAS ---
+function generarPregunta(){
+  let a = Math.floor(Math.random()*30)+5;
+  let b = Math.floor(Math.random()*15)+2;
+  let ans = a + b;
+  let opciones = [ans, ans+5, ans-3, ans+8].sort(()=>Math.random()-0.5);
 
-// sounds
-const horn = document.getElementById('horn'), wrong = document.getElementById('wrong');
-
-// --- Car creation ---
-function crearCar(){ return { x: W*0.5, y: H*0.75, w:70, h:38, vx:0, vy:0, angle:0, speed:0 } }
-
-// --- Intersections layout (grid-style but random jitter) ---
-function layoutIntersections(){
-  intersections = [];
-  const cols = Math.max(3, Math.round(W/300));
-  const rows = Math.max(3, Math.round(H/220));
-  const margin = 80;
-  for(let i=0;i<cols;i++){
-    for(let j=0;j<rows;j++){
-      const cx = margin + i * ((W-2*margin)/(cols-1));
-      const cy = margin + j * ((H-2*margin)/(rows-1));
-      // add small jitter so corners are not perfect grid
-      intersections.push({ x: cx + (Math.random()-0.5)*40, y: cy + (Math.random()-0.5)*30, id:`i${i}_${j}` });
-    }
-  }
-}
-layoutIntersections();
-
-// --- Questions generator (mixto lógico/matemático) ---
-function generateQuestion(){
-  // Randomly choose type: arithmetic, sequence, parity, logic compare
-  const t = Math.random();
-  if(t < 0.35){
-    // arithmetic: a op b
-    const a = Math.floor(Math.random()*50)+1;
-    const b = Math.floor(Math.random()*20)+1;
-    const ops = ['+','-','×'];
-    const op = ops[Math.floor(Math.random()*ops.length)];
-    let ans;
-    if(op==='+') ans = a+b;
-    if(op==='-') ans = a-b;
-    if(op==='×') ans = a*b;
-    const choices = makeChoices(ans);
-    return { q: `${a} ${op} ${b} = ?`, answer: ans, choices };
-  } else if(t < 0.6){
-    // sequence: next in serie
-    const start = Math.floor(Math.random()*6)+1;
-    const step = Math.floor(Math.random()*5)+1;
-    const len = 4;
-    let seq = [];
-    for(let i=0;i<len;i++) seq.push(start + i*step);
-    const correct = start + len*step;
-    const q = `Completa la serie: ${seq.join(', ')} , ...`;
-    return { q, answer: correct, choices: makeChoices(correct) };
-  } else if(t < 0.8){
-    // parity / logic
-    const n = Math.floor(Math.random()*80)+1;
-    const isOdd = n%2===1;
-    const q = `${n} es:`;
-    const choices = [`Par`, `Impar`, `Primo`, `Compuesto`];
-    const answer = isOdd ? 'Impar' : 'Par';
-    // shuffle choices but ensure answer present
-    return { q, answer, choices: shuffleArray(choices) };
-  } else {
-    // compare
-    const a = Math.floor(Math.random()*90)+10;
-    const b = Math.floor(Math.random()*90)+10;
-    const q = `¿Cuál es mayor? ${a} o ${b}?`;
-    const answer = a>b ? `${a}` : `${b}`;
-    const choices = shuffleArray([`${a}`, `${b}`, `${Math.abs(a-b)}`, `${Math.min(a,b)}`]);
-    return { q, answer, choices };
-  }
+  return {
+    q: `¿Cuánto es ${a} + ${b}?`,
+    ans: String(ans),
+    opciones
+  };
 }
 
-function makeChoices(correct){
-  const choices = new Set();
-  choices.add(String(correct));
-  while(choices.size < 4){
-    const delta = Math.floor((Math.random()*0.4 + 0.5) * (Math.abs(correct)||5)) + Math.floor(Math.random()*7);
-    const sign = Math.random()<0.5 ? 1 : -1;
-    choices.add(String(correct + sign*delta));
-  }
-  return shuffleArray(Array.from(choices));
-}
-function shuffleArray(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a; }
+// HUD
+const fuelEl = document.getElementById('fuel');
+const lifeEl = document.getElementById('life');
+const scoreEl = document.getElementById('score');
 
-// --- UI: show question modal ---
-let currentIntersection = null;
-function promptQuestion(inter){
-  if(answered.has(inter.id)) return;
-  running = false; // pausa el juego
-  currentIntersection = inter;
-  const q = generateQuestion();
-  qText.innerText = q.q;
-  qOptions.innerHTML = '';
-  q.choices.forEach(opt=>{
-    const b = document.createElement('button');
-    b.className = 'optionBtn';
-    b.innerText = opt;
-    b.onclick = ()=> handleAnswer(opt, q.answer, inter);
-    qOptions.appendChild(b);
-  });
-  // allow skip that costs life
-  skipBtn.onclick = ()=>{ life = Math.max(0, life-10); closeQuestion(false); };
-  questionModal.style.display = 'block';
-}
+// MODALES
+const modal = document.getElementById('questionModal');
+const qText = document.getElementById('qText');
+const qOptions = document.getElementById('qOptions');
 
-// --- Handle answer ---
-function handleAnswer(selected, correct, inter){
-  const ok = String(selected) === String(correct);
-  if(ok){
-    score += 150;
-    // mark answered
-    answered.add(inter.id);
-    // play horn if available
-    try{ horn.currentTime = 0; horn.play(); }catch(e){}
-  } else {
-    life = Math.max(0, life - 15);
-    score = Math.max(0, score - 60);
-    try{ wrong.currentTime = 0; wrong.play(); }catch(e){}
-  }
-  closeQuestion(ok);
-}
-function closeQuestion(wasCorrect){
-  questionModal.style.display = 'none';
-  currentIntersection = null;
-  // resume unless life <=0
-  if(life <= 0){ endGame('Has quedado sin vida. Juego terminado'); return; }
-  running = true;
-}
-
-// --- Collision detection with intersections (proximity) ---
-function checkIntersections(){
-  for(const inter of intersections){
-    if(answered.has(inter.id)) continue;
-    const dx = car.x - inter.x, dy = car.y - inter.y;
-    const d = Math.hypot(dx,dy);
-    if(d < 60){
-      // show question only if not already showing
-      if(!currentIntersection) promptQuestion(inter);
-      return;
-    }
-  }
-}
-
-// --- draw functions ---
+// Dibujar mapa + puntos + auto
 function draw(){
-  // background
-  if(mapImg && mapImg.complete){ // scale to cover
-    const img = mapImg;
-    // cover behavior
-    const scale = Math.max(W/img.width, H/img.height);
-    const iw = img.width * scale, ih = img.height * scale;
-    ctx.drawImage(img, (W-iw)/2, (H-ih)/2, iw, ih);
-  } else {
-    // plain gradient city-ish
-    const g = ctx.createLinearGradient(0,0,0,H);
-    g.addColorStop(0,'#071126'); g.addColorStop(1,'#0b2a3a');
-    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+  ctx.clearRect(0,0,W,H);
+
+  if(mapImg.complete){
+    const scale = Math.max(W/mapImg.width, H/mapImg.height);
+    const iw = mapImg.width*scale;
+    const ih = mapImg.height*scale;
+    ctx.drawImage(mapImg, (W - iw)/2, (H - ih)/2, iw, ih);
   }
 
-  // draw intersections
-  intersections.forEach(inter=>{
-    ctx.save();
-    ctx.translate(inter.x, inter.y);
+  // puntos
+  puntos.forEach((p,i)=>{
     ctx.beginPath();
-    ctx.fillStyle = answered.has(inter.id) ? 'rgba(80,160,80,0.85)' : 'rgba(255,255,255,0.9)';
-    ctx.arc(0,0,8,0,Math.PI*2); ctx.fill();
-    ctx.restore();
+    ctx.fillStyle = (i <= actual) ? "#00ff7b" : "white";
+    ctx.arc(p.X, p.Y, 8, 0, Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle="white";
+    ctx.font="12px Arial";
+    ctx.fillText(p.nombre, p.X+10, p.Y-10);
   });
 
-  // draw car
+  // auto
   ctx.save();
   ctx.translate(car.x, car.y);
   ctx.rotate(car.angle);
-  if(imgCar.complete){
-    ctx.drawImage(imgCar, -car.w/2, -car.h/2, car.w, car.h);
-  } else {
-    ctx.fillStyle = '#00c0ff';
-    ctx.fillRect(-car.w/2, -car.h/2, car.w, car.h);
-    ctx.fillStyle='black'; ctx.fillRect(-car.w/2+6, -car.h/2+6, car.w-12, car.h-12);
-  }
+  ctx.drawImage(carImg, -car.w/2, -car.h/2, car.w, car.h);
   ctx.restore();
-
-  // optional HUD overlays (compass)
-  // (we already have HUD elements outside canvas)
 }
 
-// --- physics & game loop ---
-function loop(now){
+// Bucle principal
+function loop(){
   if(!running) return;
-  const t = now || performance.now();
-  let dt = (t - last)/1000; if(dt>0.05) dt=0.05;
-  last = t;
 
-  // controls
-  const accel = keys['ArrowUp'] || keys['w'] || keys['W'] || keys[' '];
-  const left = keys['ArrowLeft'] || keys['a'] || keys['A'];
-  const right = keys['ArrowRight'] || keys['d'] || keys['D'];
-  const brake = keys['Control'];
+  // controles
+  if(keys["ArrowLeft"]||keys["a"]) car.angle -= 0.04;
+  if(keys["ArrowRight"]||keys["d"]) car.angle += 0.04;
 
-  // steering
-  if(left) car.angle -= 2.2 * dt;
-  if(right) car.angle += 2.2 * dt;
-
-  // speed control
-  if(accel && fuel > 0){
-    car.vx += Math.cos(car.angle) * 160 * dt;
-    car.vy += Math.sin(car.angle) * 160 * dt;
-    fuel = Math.max(0, fuel - 6 * dt);
+  if((keys["w"]||keys["ArrowUp"]||keys[" "]) && fuel>0){
+    car.vx += Math.cos(car.angle)*0.4;
+    car.vy += Math.sin(car.angle)*0.4;
+    fuel -= 0.06;
   } else {
-    // natural friction
-    car.vx *= 0.985;
-    car.vy *= 0.985;
-  }
-  if(brake){ car.vx *= 0.9; car.vy *= 0.9; }
-
-  // clamp speed
-  const maxspeed = 420;
-  const sp = Math.hypot(car.vx, car.vy);
-  if(sp > maxspeed){
-    car.vx = (car.vx / sp) * maxspeed;
-    car.vy = (car.vy / sp) * maxspeed;
+    car.vx *= 0.98;
+    car.vy *= 0.98;
   }
 
-  car.x += car.vx * dt;
-  car.y += car.vy * dt;
+  car.x += car.vx;
+  car.y += car.vy;
 
-  // screen wrap / clamp so car stays visible
-  if(car.x < 0) car.x = 0;
-  if(car.x > W) car.x = W;
-  if(car.y < 0) car.y = 0;
-  if(car.y > H) car.y = H;
+  // HUD
+  fuelEl.innerText = fuel.toFixed(0);
+  lifeEl.innerText = life.toFixed(0);
+  scoreEl.innerText = score.toFixed(0);
 
-  // passive score for moving
-  score += Math.floor(Math.hypot(car.vx,car.vy) * 0.003 * dt * 60);
+  // verificar proximidad al punto
+  const p = puntos[actual];
+  const dx = car.x - p.X;
+  const dy = car.y - p.Y;
 
-  // update HUD
-  fuelEl.innerText = Math.max(0, Math.floor(fuel));
-  lifeEl.innerText = Math.max(0, Math.floor(life));
-  scoreEl.innerText = Math.floor(score);
+  if(Math.hypot(dx,dy) < 35){
+    abrirPregunta();
+  }
 
-  // check intersections proximity
-  checkIntersections();
-
-  // check death
-  if(life <= 0 && !gameOver){ endGame('Has perdido todas las vidas'); return; }
-
-  // draw
   draw();
-
   requestAnimationFrame(loop);
 }
 
-// --- End game ---
-function endGame(text){
-  running = false; gameOver = true;
-  centerText.innerText = text + ' • Puntos: ' + Math.floor(score);
-  centerBox.style.display = 'block';
-  resumeBtn.style.display = 'none';
+// Mostrar pregunta
+function abrirPregunta(){
+  running = false;
+  const pq = generarPregunta();
+  modal.style.display = "block";
+  qText.innerText = pq.q;
+  qOptions.innerHTML = "";
+
+  pq.opciones.forEach(op=>{
+    let b = document.createElement("button");
+    b.className="optionBtn";
+    b.innerText = op;
+    b.onclick = ()=>resolver(op, pq.ans);
+    qOptions.appendChild(b);
+  });
 }
 
-// --- Input handlers ---
-window.addEventListener('keydown', e=>{ keys[e.key] = true; if(!running && e.key === 'Enter') startMission(); });
-window.addEventListener('keyup', e=>{ keys[e.key] = false; });
+// Resolver
+function resolver(op, ans){
+  if(String(op)===String(ans)){
+    score+=150;
+    actual++;
 
-// touch-friendly simplified buttons (optional minimal)
-let touchAccel=false;
-document.addEventListener('touchstart', e=>{
-  if(e.touches.length===2) touchAccel=true;
-}, {passive:true});
-document.addEventListener('touchend', e=>{ touchAccel=false; });
+    if(puntos[actual] && puntos[actual].id==="meta"){
+      modal.style.display="none";
+      victory();
+      return;
+    }
+  } else {
+    life-=15;
+  }
 
-// start / restart
-function resetAndStart(){
-  car = crearCar();
-  intersections.forEach(i=>{}); answered.clear();
-  score = 0; fuel = 100; life = 100; gameOver = false;
-  centerBox.style.display = 'block'; centerText.innerText = 'Listo para conducir por Ayacucho';
-  resumeBtn.style.display = 'none'; startBtn.style.display = 'inline-block';
+  modal.style.display="none";
+  running = true;
+  loop();
 }
-function startMission(){
-  if(running) return;
-  centerBox.style.display = 'none';
-  running = true; gameOver = false; last = performance.now();
-  if(!car) car = crearCar();
-  requestAnimationFrame(loop);
+
+// Victoria
+function victory(){
+  running=false;
+  alert("🎉 ¡MISIÓN COMPLETADA! Llegaste a Villa Automation SAC");
 }
-startBtn.addEventListener('click', startMission);
-restartBtn.addEventListener('click', ()=>{ resetAndStart(); });
-resumeBtn.addEventListener('click', ()=>{ running = true; centerBox.style.display='none'; requestAnimationFrame(loop); });
 
-// initial reset
-resetAndStart();
+// Eventos
+window.onkeydown = e => keys[e.key]=true;
+window.onkeyup = e => keys[e.key]=false;
 
-// --- Background upload handling ---
-document.getElementById('bgFile').addEventListener('change', (ev)=>{
-  const f = ev.target.files[0];
-  if(!f) return;
-  const reader = new FileReader();
-  reader.onload = e=>{
-    mapImg = new Image();
-    mapImg.onload = ()=>{ layoutIntersections(); draw(); };
-    mapImg.src = e.target.result;
-  };
-  reader.readAsDataURL(f);
-});
+document.getElementById("startBtn").onclick = ()=>{
+  car.x = puntos[0].X;
+  car.y = puntos[0].Y;
+  running = true;
+  document.getElementById("centerBox").style.display="none";
+  loop();
+};
 
-// label click forwarding
-document.getElementById('uploadLabel').addEventListener('click', ()=> document.getElementById('bgFile').click() );
+document.getElementById("restartBtn").onclick = ()=> location.reload();
 
-// --- Utility: draw one frame on load ---
-imgCar.onerror = ()=>{ /* no problem, fallback rectangle will draw */ };
-mapImg = null;
 draw();
 </script>
 </body>
 </html>
-
