@@ -1,0 +1,405 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Recorrido Ayacucho — Juego</title>
+<style>
+:root{ --accent:#00c0ff; --panel:rgba(0,0,0,0.55); }
+body{ margin:0; font-family:Inter,Arial,sans-serif; background:#071126; color:#e6f6ff; overflow:hidden; }
+canvas{ display:block; width:100vw; height:100vh; }
+.hud{ position:fixed; left:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
+.hud .line{ font-size:14px; margin:4px 0; }
+.controlsUI{ position:fixed; right:12px; top:12px; z-index:999; background:var(--panel); padding:10px 12px; border-radius:10px; color:#bfeaff; box-shadow:0 6px 20px rgba(0,0,0,0.6); }
+.btn{ display:inline-block; background:var(--accent); color:#042b34; padding:8px 12px; border-radius:10px; font-weight:700; text-decoration:none; margin:6px 4px; cursor:pointer; }
+#centerBox{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:1001; background:rgba(0,0,0,0.82); padding:18px; border-radius:12px; text-align:center; width:340px; display:none; color:#e6f6ff; }
+#questionModal{ position:fixed; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2000; background:rgba(2,10,20,0.95); padding:18px; border-radius:12px; width:360px; display:none; color:#e6f6ff; box-shadow:0 8px 30px rgba(0,0,0,0.6); }
+.optionBtn{ display:block; width:100%; text-align:left; padding:10px; margin:8px 0; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.06); cursor:pointer; }
+#uploadLabel{ font-size:13px; color:#bfeaff; display:block; margin-top:8px; text-decoration:underline; cursor:pointer; }
+.small{ font-size:13px; color:#cfefff; }
+.footer-note{ position:fixed; bottom:12px; left:12px; z-index:999; color:#bfeaff; background:var(--panel); padding:8px 10px; border-radius:8px; }
+@media (max-width:900px){ .controlsUI{ display:none; } #centerBox,#questionModal{ width:92%; } }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+
+<!-- HUD -->
+<div class="hud">
+  <div class="line">🚗 Recorrido Ayacucho</div>
+  <div class="line">Combustible: <span id="fuel">100</span>% • Vida: <span id="life">100</span>%</div>
+  <div class="line">Puntos: <span id="score">0</span></div>
+  <div class="line small">Responde preguntas en las esquinas ➜ gana puntos</div>
+</div>
+
+<!-- Controls -->
+<div class="controlsUI">
+  <div style="font-weight:700;margin-bottom:6px">Controles</div>
+  <div style="font-size:13px">WASD / Flechas • SPACE Acelerar • Ctrl Freno</div>
+  <div style="margin-top:8px">
+    <a class="btn" id="restartBtn">Reiniciar</a>
+    <a class="btn" id="backBtn" href="index.html">Volver</a>
+  </div>
+  <label id="uploadLabel" for="bgFile">📁 Subir imagen del mapa (opcional)</label>
+  <input type="file" id="bgFile" accept="image/*" style="display:none" />
+</div>
+
+<!-- Center start box -->
+<div id="centerBox">
+  <div id="centerText" style="font-size:18px;margin-bottom:8px">¡Bienvenido! Conduce por Ayacucho y responde en cada esquina.</div>
+  <a class="btn" id="startBtn">Iniciar Recorrido</a>
+  <a class="btn" id="resumeBtn" style="display:none">Reanudar</a>
+</div>
+
+<!-- Question Modal -->
+<div id="questionModal">
+  <div id="qText" style="font-size:18px;margin-bottom:10px"></div>
+  <div id="qOptions"></div>
+  <div style="margin-top:8px;text-align:right">
+    <a class="btn" id="skipBtn">Saltar (-10 vida)</a>
+  </div>
+</div>
+
+<div class="footer-note">Intersecciones generadas automáticamente • Puedes subir una imagen del mapa.</div>
+
+<!-- Sounds (opcional) -->
+<audio id="horn" src="assets/horn.mp3"></audio>
+<audio id="wrong" src="assets/wrong.mp3"></audio>
+
+<script>
+// --- Setup canvas ---
+const canvas = document.getElementById('c'), ctx = canvas.getContext('2d');
+let W = canvas.width = window.innerWidth, H = canvas.height = window.innerHeight;
+window.addEventListener('resize', ()=>{ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; layoutIntersections(); });
+
+// Assets
+const imgCar = new Image(); imgCar.src = "assets/car.png"; // fallback drawn if not found
+let mapImg = null; // user uploaded map
+
+// game state
+let car, intersections = [], answered = new Set();
+let score = 0, fuel = 100, life = 100, running=false, gameOver=false;
+let keys = {};
+let last = performance.now();
+
+// HUD elements
+const fuelEl = document.getElementById('fuel'), lifeEl = document.getElementById('life'), scoreEl = document.getElementById('score');
+const centerBox = document.getElementById('centerBox'), centerText = document.getElementById('centerText');
+const startBtn = document.getElementById('startBtn'), resumeBtn = document.getElementById('resumeBtn');
+const restartBtn = document.getElementById('restartBtn'), backBtn = document.getElementById('backBtn');
+const questionModal = document.getElementById('questionModal'), qText = document.getElementById('qText'), qOptions = document.getElementById('qOptions');
+const skipBtn = document.getElementById('skipBtn');
+
+// sounds
+const horn = document.getElementById('horn'), wrong = document.getElementById('wrong');
+
+// --- Car creation ---
+function crearCar(){ return { x: W*0.5, y: H*0.75, w:70, h:38, vx:0, vy:0, angle:0, speed:0 } }
+
+// --- Intersections layout (grid-style but random jitter) ---
+function layoutIntersections(){
+  intersections = [];
+  const cols = Math.max(3, Math.round(W/300));
+  const rows = Math.max(3, Math.round(H/220));
+  const margin = 80;
+  for(let i=0;i<cols;i++){
+    for(let j=0;j<rows;j++){
+      const cx = margin + i * ((W-2*margin)/(cols-1));
+      const cy = margin + j * ((H-2*margin)/(rows-1));
+      // add small jitter so corners are not perfect grid
+      intersections.push({ x: cx + (Math.random()-0.5)*40, y: cy + (Math.random()-0.5)*30, id:`i${i}_${j}` });
+    }
+  }
+}
+layoutIntersections();
+
+// --- Questions generator (mixto lógico/matemático) ---
+function generateQuestion(){
+  // Randomly choose type: arithmetic, sequence, parity, logic compare
+  const t = Math.random();
+  if(t < 0.35){
+    // arithmetic: a op b
+    const a = Math.floor(Math.random()*50)+1;
+    const b = Math.floor(Math.random()*20)+1;
+    const ops = ['+','-','×'];
+    const op = ops[Math.floor(Math.random()*ops.length)];
+    let ans;
+    if(op==='+') ans = a+b;
+    if(op==='-') ans = a-b;
+    if(op==='×') ans = a*b;
+    const choices = makeChoices(ans);
+    return { q: `${a} ${op} ${b} = ?`, answer: ans, choices };
+  } else if(t < 0.6){
+    // sequence: next in serie
+    const start = Math.floor(Math.random()*6)+1;
+    const step = Math.floor(Math.random()*5)+1;
+    const len = 4;
+    let seq = [];
+    for(let i=0;i<len;i++) seq.push(start + i*step);
+    const correct = start + len*step;
+    const q = `Completa la serie: ${seq.join(', ')} , ...`;
+    return { q, answer: correct, choices: makeChoices(correct) };
+  } else if(t < 0.8){
+    // parity / logic
+    const n = Math.floor(Math.random()*80)+1;
+    const isOdd = n%2===1;
+    const q = `${n} es:`;
+    const choices = [`Par`, `Impar`, `Primo`, `Compuesto`];
+    const answer = isOdd ? 'Impar' : 'Par';
+    // shuffle choices but ensure answer present
+    return { q, answer, choices: shuffleArray(choices) };
+  } else {
+    // compare
+    const a = Math.floor(Math.random()*90)+10;
+    const b = Math.floor(Math.random()*90)+10;
+    const q = `¿Cuál es mayor? ${a} o ${b}?`;
+    const answer = a>b ? `${a}` : `${b}`;
+    const choices = shuffleArray([`${a}`, `${b}`, `${Math.abs(a-b)}`, `${Math.min(a,b)}`]);
+    return { q, answer, choices };
+  }
+}
+
+function makeChoices(correct){
+  const choices = new Set();
+  choices.add(String(correct));
+  while(choices.size < 4){
+    const delta = Math.floor((Math.random()*0.4 + 0.5) * (Math.abs(correct)||5)) + Math.floor(Math.random()*7);
+    const sign = Math.random()<0.5 ? 1 : -1;
+    choices.add(String(correct + sign*delta));
+  }
+  return shuffleArray(Array.from(choices));
+}
+function shuffleArray(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]] } return a; }
+
+// --- UI: show question modal ---
+let currentIntersection = null;
+function promptQuestion(inter){
+  if(answered.has(inter.id)) return;
+  running = false; // pausa el juego
+  currentIntersection = inter;
+  const q = generateQuestion();
+  qText.innerText = q.q;
+  qOptions.innerHTML = '';
+  q.choices.forEach(opt=>{
+    const b = document.createElement('button');
+    b.className = 'optionBtn';
+    b.innerText = opt;
+    b.onclick = ()=> handleAnswer(opt, q.answer, inter);
+    qOptions.appendChild(b);
+  });
+  // allow skip that costs life
+  skipBtn.onclick = ()=>{ life = Math.max(0, life-10); closeQuestion(false); };
+  questionModal.style.display = 'block';
+}
+
+// --- Handle answer ---
+function handleAnswer(selected, correct, inter){
+  const ok = String(selected) === String(correct);
+  if(ok){
+    score += 150;
+    // mark answered
+    answered.add(inter.id);
+    // play horn if available
+    try{ horn.currentTime = 0; horn.play(); }catch(e){}
+  } else {
+    life = Math.max(0, life - 15);
+    score = Math.max(0, score - 60);
+    try{ wrong.currentTime = 0; wrong.play(); }catch(e){}
+  }
+  closeQuestion(ok);
+}
+function closeQuestion(wasCorrect){
+  questionModal.style.display = 'none';
+  currentIntersection = null;
+  // resume unless life <=0
+  if(life <= 0){ endGame('Has quedado sin vida. Juego terminado'); return; }
+  running = true;
+}
+
+// --- Collision detection with intersections (proximity) ---
+function checkIntersections(){
+  for(const inter of intersections){
+    if(answered.has(inter.id)) continue;
+    const dx = car.x - inter.x, dy = car.y - inter.y;
+    const d = Math.hypot(dx,dy);
+    if(d < 60){
+      // show question only if not already showing
+      if(!currentIntersection) promptQuestion(inter);
+      return;
+    }
+  }
+}
+
+// --- draw functions ---
+function draw(){
+  // background
+  if(mapImg && mapImg.complete){ // scale to cover
+    const img = mapImg;
+    // cover behavior
+    const scale = Math.max(W/img.width, H/img.height);
+    const iw = img.width * scale, ih = img.height * scale;
+    ctx.drawImage(img, (W-iw)/2, (H-ih)/2, iw, ih);
+  } else {
+    // plain gradient city-ish
+    const g = ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,'#071126'); g.addColorStop(1,'#0b2a3a');
+    ctx.fillStyle = g; ctx.fillRect(0,0,W,H);
+  }
+
+  // draw intersections
+  intersections.forEach(inter=>{
+    ctx.save();
+    ctx.translate(inter.x, inter.y);
+    ctx.beginPath();
+    ctx.fillStyle = answered.has(inter.id) ? 'rgba(80,160,80,0.85)' : 'rgba(255,255,255,0.9)';
+    ctx.arc(0,0,8,0,Math.PI*2); ctx.fill();
+    ctx.restore();
+  });
+
+  // draw car
+  ctx.save();
+  ctx.translate(car.x, car.y);
+  ctx.rotate(car.angle);
+  if(imgCar.complete){
+    ctx.drawImage(imgCar, -car.w/2, -car.h/2, car.w, car.h);
+  } else {
+    ctx.fillStyle = '#00c0ff';
+    ctx.fillRect(-car.w/2, -car.h/2, car.w, car.h);
+    ctx.fillStyle='black'; ctx.fillRect(-car.w/2+6, -car.h/2+6, car.w-12, car.h-12);
+  }
+  ctx.restore();
+
+  // optional HUD overlays (compass)
+  // (we already have HUD elements outside canvas)
+}
+
+// --- physics & game loop ---
+function loop(now){
+  if(!running) return;
+  const t = now || performance.now();
+  let dt = (t - last)/1000; if(dt>0.05) dt=0.05;
+  last = t;
+
+  // controls
+  const accel = keys['ArrowUp'] || keys['w'] || keys['W'] || keys[' '];
+  const left = keys['ArrowLeft'] || keys['a'] || keys['A'];
+  const right = keys['ArrowRight'] || keys['d'] || keys['D'];
+  const brake = keys['Control'];
+
+  // steering
+  if(left) car.angle -= 2.2 * dt;
+  if(right) car.angle += 2.2 * dt;
+
+  // speed control
+  if(accel && fuel > 0){
+    car.vx += Math.cos(car.angle) * 160 * dt;
+    car.vy += Math.sin(car.angle) * 160 * dt;
+    fuel = Math.max(0, fuel - 6 * dt);
+  } else {
+    // natural friction
+    car.vx *= 0.985;
+    car.vy *= 0.985;
+  }
+  if(brake){ car.vx *= 0.9; car.vy *= 0.9; }
+
+  // clamp speed
+  const maxspeed = 420;
+  const sp = Math.hypot(car.vx, car.vy);
+  if(sp > maxspeed){
+    car.vx = (car.vx / sp) * maxspeed;
+    car.vy = (car.vy / sp) * maxspeed;
+  }
+
+  car.x += car.vx * dt;
+  car.y += car.vy * dt;
+
+  // screen wrap / clamp so car stays visible
+  if(car.x < 0) car.x = 0;
+  if(car.x > W) car.x = W;
+  if(car.y < 0) car.y = 0;
+  if(car.y > H) car.y = H;
+
+  // passive score for moving
+  score += Math.floor(Math.hypot(car.vx,car.vy) * 0.003 * dt * 60);
+
+  // update HUD
+  fuelEl.innerText = Math.max(0, Math.floor(fuel));
+  lifeEl.innerText = Math.max(0, Math.floor(life));
+  scoreEl.innerText = Math.floor(score);
+
+  // check intersections proximity
+  checkIntersections();
+
+  // check death
+  if(life <= 0 && !gameOver){ endGame('Has perdido todas las vidas'); return; }
+
+  // draw
+  draw();
+
+  requestAnimationFrame(loop);
+}
+
+// --- End game ---
+function endGame(text){
+  running = false; gameOver = true;
+  centerText.innerText = text + ' • Puntos: ' + Math.floor(score);
+  centerBox.style.display = 'block';
+  resumeBtn.style.display = 'none';
+}
+
+// --- Input handlers ---
+window.addEventListener('keydown', e=>{ keys[e.key] = true; if(!running && e.key === 'Enter') startMission(); });
+window.addEventListener('keyup', e=>{ keys[e.key] = false; });
+
+// touch-friendly simplified buttons (optional minimal)
+let touchAccel=false;
+document.addEventListener('touchstart', e=>{
+  if(e.touches.length===2) touchAccel=true;
+}, {passive:true});
+document.addEventListener('touchend', e=>{ touchAccel=false; });
+
+// start / restart
+function resetAndStart(){
+  car = crearCar();
+  intersections.forEach(i=>{}); answered.clear();
+  score = 0; fuel = 100; life = 100; gameOver = false;
+  centerBox.style.display = 'block'; centerText.innerText = 'Listo para conducir por Ayacucho';
+  resumeBtn.style.display = 'none'; startBtn.style.display = 'inline-block';
+}
+function startMission(){
+  if(running) return;
+  centerBox.style.display = 'none';
+  running = true; gameOver = false; last = performance.now();
+  if(!car) car = crearCar();
+  requestAnimationFrame(loop);
+}
+startBtn.addEventListener('click', startMission);
+restartBtn.addEventListener('click', ()=>{ resetAndStart(); });
+resumeBtn.addEventListener('click', ()=>{ running = true; centerBox.style.display='none'; requestAnimationFrame(loop); });
+
+// initial reset
+resetAndStart();
+
+// --- Background upload handling ---
+document.getElementById('bgFile').addEventListener('change', (ev)=>{
+  const f = ev.target.files[0];
+  if(!f) return;
+  const reader = new FileReader();
+  reader.onload = e=>{
+    mapImg = new Image();
+    mapImg.onload = ()=>{ layoutIntersections(); draw(); };
+    mapImg.src = e.target.result;
+  };
+  reader.readAsDataURL(f);
+});
+
+// label click forwarding
+document.getElementById('uploadLabel').addEventListener('click', ()=> document.getElementById('bgFile').click() );
+
+// --- Utility: draw one frame on load ---
+imgCar.onerror = ()=>{ /* no problem, fallback rectangle will draw */ };
+mapImg = null;
+draw();
+</script>
+</body>
+</html>
