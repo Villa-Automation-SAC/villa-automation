@@ -99,6 +99,16 @@ canvas{
 html, body {
   touch-action: manipulation;
 }
+/* Mostrar controles móviles en pantallas pequeñas y medianas */
+@media(max-width:900px){
+  #mobileControls{
+    display:flex !important;
+    pointer-events:auto;
+  }
+  #desktopControls{
+    display:none !important;
+  }
+}
 
 </style>
 </head>
@@ -622,6 +632,7 @@ window.addEventListener('touchmove', function(e){ /* allow default only for mult
 </script>
 </body>
 </html>
+
 
 
 
