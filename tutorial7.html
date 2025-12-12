@@ -1,0 +1,51 @@
+﻿<!-- Card: Simulación en Proteus -->
+<div class="card">
+    <h2>7) Tutorial Proteus — Simular LED con Arduino</h2>
+    <p>En este tutorial aprenderás a simular un circuito básico en Proteus usando Arduino UNO y un LED conectado al pin 3.</p>
+
+    <p><strong>Objetivo:</strong> Simular el código Blink dentro de Proteus para verificar el funcionamiento sin usar hardware real.</p>
+
+    <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/jE3VrYa-Gd0" allowfullscreen></iframe>
+    </div>
+
+    <h3 style="color:var(--accent); margin-top:12px;">Materiales en Proteus</h3>
+    <ul>
+        <li>Arduino UNO (modelo: <em>Arduino UNO R3</em>)</li>
+        <li>LED rojo</li>
+        <li>Resistencia 220 Ω</li>
+        <li>Cables de conexión</li>
+    </ul>
+
+    <h3 style="color:var(--accent); margin-top:12px;">Conexiones</h3>
+    <p>Conecta los elementos así:</p>
+    <ul>
+        <li>Pin digital 3 → resistencia de 220 Ω → LED (ánodo)</li>
+        <li>Cátodo del LED → GND</li>
+        <li>Arduino alimentado automáticamente por Proteus</li>
+    </ul>
+
+    <h3 style="color:var(--accent); margin-top:12px;">Cargar el código en Proteus</h3>
+    <p>Compila tu código en Arduino IDE y genera el archivo <strong>.hex</strong>:</p>
+    <ol>
+        <li>Ve a <em>Sketch → Exportar binarios compilados</em>.</li>
+        <li>Ubica el archivo: <em>carpeta del proyecto → .ino.hex</em>.</li>
+        <li>En Proteus, da doble clic al Arduino y carga el archivo .hex.</li>
+    </ol>
+
+    <h3 style="color:var(--accent); margin-top:12px;">Código usado en Proteus</h3>
+    <pre><code>// Enciende y apaga LED en el pin 3 (para usar en Proteus)
+void setup() {
+  pinMode(3, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(3, HIGH);
+  delay(1000);
+  digitalWrite(3, LOW);
+  delay(1000);
+}
+</code></pre>
+
+    <p>Ahora presiona el botón ▶ RUN en Proteus y observarás el LED parpadear igual que en la placa real.</p>
+</div>
