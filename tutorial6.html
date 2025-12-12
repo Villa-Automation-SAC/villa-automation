@@ -1,76 +1,153 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutorial Arduino</title>
+<title>Tutorial Arduino — Paso a paso</title>
 
 <style>
-    body{
-        font-family: Arial, sans-serif;
-        background: #f4f7fb;
-        margin:0;
-        padding:20px;
-    }
+    :root{ --accent:#0077cc; --bg:#f4f7fb; --card:#ffffff; }
+    body{ font-family: Inter, Arial, Helvetica, sans-serif; background: var(--bg); margin:0; padding:24px; color:#222 }
+    .container{ max-width:1000px; margin: auto; }
+    .grid{ display:grid; grid-template-columns: 1fr; gap:20px; }
+    .card{ background: var(--card); padding:20px; border-radius:14px; box-shadow: 0 6px 18px rgba(18,38,63,0.08); }
+    .card h2{ margin:0 0 8px 0; color:var(--accent); font-size:1.2rem }
+    .card p{ margin:8px 0; line-height:1.5 }
+    .video-wrap{ border-radius:12px; overflow:hidden; margin-top:12px; }
+    iframe{ width:100%; height:315px; border:0; display:block }
+    pre{ background:#0b1220; color:#e6eef8; padding:12px; border-radius:10px; overflow:auto; font-size:0.95rem }
+    code{ font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace }
+    .actions{ text-align:center; margin-top:12px }
+    .btn-back{ display:inline-block; padding:10px 16px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600 }
+    .meta{ font-size:0.9rem; color:#556; }
 
-    .container{
-        max-width: 900px;
-        margin: auto;
-    }
-
-    .card{
-        background: #fff;
-        padding: 20px;
-        margin-bottom: 25px;
-        border-radius: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        text-align: center;
-    }
-
-    .card h2{
-        margin-top: 0;
-        color:#0077cc;
-    }
-
-    iframe{
-        border-radius: 12px;
-        margin-top: 10px;
-        width: 100%;
-    }
-
-    .btn-back{
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 20px;
-        background: #0077cc;
-        color: #fff;
-        text-decoration: none;
-        border-radius: 10px;
-        font-weight: bold;
-    }
-
-    .btn-back:hover{
-        background: #005fa3;
-    }
+    @media(min-width:900px){ .grid{ grid-template-columns: 1fr 1fr; } iframe{ height:220px } }
 </style>
 </head>
-
 <body>
 
 <div class="container">
+    <h1 style="color:var(--accent);">Tutorial de programación Arduino — Paso a paso</h1>
+    <p class="meta">Guía breve con ejemplos listos para copiar y ejecutar. Incluye dos videos incrustados y enlace de retorno a <code>otros.html</code>.</p>
 
-    <div class="card">
-        <h2>Introducción a Arduino</h2>
-        <iframe height="315" src="https://www.youtube.com/embed/SRqYrBgz2C0" allowfullscreen></iframe>
-    </div>
+    <div class="grid">
+        <!-- Card: Introducción + video -->
+        <div class="card">
+            <h2>1) Introducción a Arduino</h2>
+            <p>Arduino es una plataforma de hardware libre que facilita la creación de proyectos electrónicos interactivos. Se compone de una placa (por ejemplo, Uno, Nano, Mega) y el entorno de desarrollo (Arduino IDE).</p>
+            <p>Conceptos clave: <strong>pines digitales</strong>, <strong>pines analógicos</strong>, <strong>GND</strong>, <strong>5V</strong>, y <strong>Serial</strong> para depuración.</p>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/SRqYrBgz2C0" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div class="card">
-        <h2>Curso Completo Arduino</h2>
-        <iframe height="315" src="https://www.youtube.com/embed/fQwpj0aLJ1Q" allowfullscreen></iframe>
-    </div>
+        <!-- Card: Preparar entorno + video -->
+        <div class="card">
+            <h2>2) Preparar el entorno de trabajo</h2>
+            <p>Pasos rápidos:</p>
+            <ol>
+                <li>Descarga e instala <strong>Arduino IDE</strong> (o usa <em>Arduino Web Editor</em>).</li>
+                <li>Conecta la placa vía USB y selecciona la placa en <em>Herramientas &gt; Placa</em> y el puerto correcto en <em>Herramientas &gt; Puerto</em>.</li>
+                <li>Instala drivers (por ejemplo CH340 en clones) si el sistema no detecta la placa.</li>
+            </ol>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/fQwpj0aLJ1Q" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <div style="text-align:center;">
-        <a href="otros.html" class="btn-back">⬅ Regresar</a>
+        <!-- Card: Blink -->
+        <div class="card">
+            <h2>3) Ejemplo básico: BLINK (LED parpadeante)</h2>
+            <p>El programa enciende y apaga el LED conectado al pin 13 cada segundo.</p>
+            <pre><code>// Blink. Enciende y apaga LED en el pin 13
+void setup() {
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(13, HIGH);
+  delay(1000);
+  digitalWrite(13, LOW);
+  delay(1000);
+}
+</code></pre>
+            <p>Pasos: cargar el sketch y observar el LED integrado de la placa o un LED externo con resistencia de 220&nbsp;Ω.</p>
+        </div>
+
+        <!-- Card: Leer sensor -->
+        <div class="card">
+            <h2>4) Leer un sensor (potenciómetro)</h2>
+            <p>Lee un valor analógico desde A0 y lo envía por puerto serial para ver en el Monitor Serial.</p>
+            <pre><code>int valor = 0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  valor = analogRead(A0);
+  Serial.println(valor);
+  delay(200);
+}
+</code></pre>
+            <p>Conexiones: potenciómetro a 5V - A0 - GND. Ajusta el potenciómetro y observa los valores (0–1023).</p>
+        </div>
+
+        <!-- Card: Servo -->
+        <div class="card">
+            <h2>5) Controlar un servo</h2>
+            <p>Ejemplo con la librería <code>Servo.h</code>. Conecta VCC a 5V, GND a GND y la señal al pin 9.</p>
+            <pre><code>#include &lt;Servo.h&gt;
+
+Servo motor;
+
+void setup() {
+  motor.attach(9);
+}
+
+void loop() {
+  motor.write(0);
+  delay(1000);
+  motor.write(90);
+  delay(1000);
+  motor.write(180);
+  delay(1000);
+}
+</code></pre>
+            <p>Nota: si el servo consume mucha corriente, aliméntalo con fuente externa común a la placa Arduino (compartir GND).</p>
+        </div>
+
+        <!-- Card: Proyecto completo -->
+        <div class="card">
+            <h2>6) Proyecto completo: LED con brillo controlado por potenciómetro</h2>
+            <p>Este sketch lee un potenciómetro y controla el brillo de un LED usando PWM (pin 9).</p>
+            <pre><code>int entrada = A0;
+int led = 9;
+
+void setup() { pinMode(led, OUTPUT); }
+
+void loop() {
+  int valor = analogRead(entrada);
+  int brillo = map(valor, 0, 1023, 0, 255);
+  analogWrite(led, brillo);
+}
+</code></pre>
+            <p>Conexiones: potenciómetro a 5V-A0-GND, LED con resistencia a pin 9 y GND.</p>
+        </div>
+
+        <!-- Card: Recursos y retorno -->
+        <div class="card">
+            <h2>Recursos rápidos y retorno</h2>
+            <p>Recursos recomendados:</p>
+            <ul>
+                <li><strong>Arduino</strong> — documentación oficial y ejemplos en el IDE.</li>
+                <li>Canales de YouTube con proyectos prácticos y guías paso a paso.</li>
+            </ul>
+            <div class="actions">
+                <a class="btn-back" href="otros.html">⬅ Regresar</a>
+            </div>
+        </div>
+
     </div>
 
 </div>
