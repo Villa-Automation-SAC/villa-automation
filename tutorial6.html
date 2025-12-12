@@ -72,16 +72,18 @@
         <div class="card">
             <h2>3) Ejemplo básico: BLINK (LED parpadeante)</h2>
             <a href="tienda.html" class="btn-descargar" style="background:#0077cc;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;text-decoration:none;"> > Ir a la Tienda</a>
-            <p>El programa enciende y apaga el LED conectado al pin 13 cada segundo.</p>
-            <pre><code>// Blink. Enciende y apaga LED en el pin 13
+            <p>El programa enciende y apaga el LED conectado al pin 3 cada segundo.</p>
+            <div class="video-wrap">
+<iframe src="https://www.youtube.com/embed/3vNDhwrRZEY" allowfullscreen></iframe>
+            <pre><code>// Enciende y apaga LED en el pin 3
 void setup() {
-  pinMode(13, OUTPUT);
+  pinMode(3, OUTPUT);
 }
 
 void loop() {
-  digitalWrite(13, HIGH);
+  digitalWrite(3, HIGH);
   delay(1000);
-  digitalWrite(13, LOW);
+  digitalWrite(3, LOW);
   delay(1000);
 }
 </code></pre>
@@ -195,6 +197,7 @@ void loop() {
 
 </body>
 </html>
+
 
 
 
