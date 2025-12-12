@@ -1,126 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Investigación-Villa Automation</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body { font-family: Arial; background:#081b2d; color:white; padding:20px; margin:0; }
-img { width:100%; border-radius:12px; margin-bottom:15px; }
-.container { max-width:800px; margin:auto; }
-a { color:lightgreen; text-decoration:none; }
-.back-btn { margin-top:20px; display:inline-block; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investigación y Pericias Criminalísticas</title>
+    <style>
+        body { margin:0; font-family:Arial, sans-serif; background:#f5f5f5; }
+        header {
+            background:#0b1b3b;
+            color:white;
+            padding:15px 40px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+        header nav a {
+            color:white;
+            margin:0 15px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+        .hero {
+            background:url('FONDO.jpg');
+            background-size:cover;
+            background-position:center;
+            color:white;
+            padding:120px 40px;
+            position:relative;
+        }
+        .hero-overlay {
+            position:absolute;
+            top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.55);
+        }
+        .hero-content {
+            position:relative;
+            max-width:600px;
+        }
+        .hero-content h1 { font-size:45px; margin-bottom:10px; }
+        .hero-content p { font-size:18px; margin-bottom:20px; }
+        .btn {
+            background:#f7a600;
+            padding:12px 22px;
+            color:white;
+            border-radius:5px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+        /* TARJETAS */
+        .cards {
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(350px, 1fr));
+            gap:20px;
+            padding:40px;
+        }
+        .card {
+            background:white;
+            border-radius:10px;
+            overflow:hidden;
+            box-shadow:0 2px 8px rgba(0,0,0,0.2);
+        }
+        .card img { width:100%; height:220px; object-fit:cover; }
+        .card-text { padding:20px; }
+        .card-text h3 { margin:0 0 10px; color:#0b1b3b; }
+        .card-text p { margin:0; line-height:1.5; }
+    </style>
 </head>
 <body>
-<div class="container">
-<h1>Investigación Científica y Tecnologíca</h1>
-<p>
-</p>
-<!-- Imagen referenciada -->
-<img src="assets/investigacion1.jpg" alt="investigacion">
+    <header>
+        <div class="logo"><h2>HDC Peritajes SAC</h2></div>
+        <nav>
+            <a href="#">Inicio</a>
+            <a href="#">Servicios</a>
+            <a href="#">Capacitación</a>
+            <a href="#">Publicaciones</a>
+            <a href="#">Profesionales</a>
+        </nav>
+    </header>
 
-<p>
-En Villa Automation EIRL, la investigación científica y tecnológica es el motor que impulsa todas nuestras líneas de desarrollo.
-Nuestra misión es transformar el conocimiento en soluciones reales para la industria, la agricultura, la energía y la defensa, aplicando ciencia, ingeniería e innovación.
-Promovemos la investigación aplicada mediante proyectos interdisciplinarios que integran automatización, robótica, mecatrónica, inteligencia artificial y tecnología aeroespacial.
-</p>
- <div class="grid md:grid-cols-2 gap-8 text-gray-800">
-    <div>
-      <h3 class="text-2xl font-semibold text-purple-600 mb-2">🎯 Objetivos principales</h3>
-      <ul class="list-disc pl-5 space-y-1">
-        <li>Desarrollo de nuevas tecnologías de control y sensorización.</li>
-        <li>Colaboración con universidades y centros de investigación.</li>
-        <li>Implementación de prototipos funcionales con impacto real.</li>
-        <li>Publicación y difusión de resultados científicos.</li>
-        <li>Impulso a la innovación tecnológica sostenible en el Perú.</li>
-      </ul>
-    </div>
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Pericias Criminalísticas Forenses</h1>
+            <p>Integramos conocimientos científicos en los delitos para determinar evidencias, circunstancias y autores.</p>
+            <a class="btn" href="#contacto">Contactar</a>
+        </div>
+    </section>
 
-    <div>
-      <h3 class="text-2xl font-semibold text-purple-600 mb-2">🧠 Líneas de investigación</h3>
-      <ul class="list-disc pl-5 space-y-1">
-        <li>Robótica y automatización inteligente.</li>
-        <li>Energías renovables y eficiencia energética.</li>
-        <li>Ciencia aeroespacial y satelital (misiones JICAAT).</li>
-        <li>Teledetección y monitoreo ambiental.</li>
-        <li>Controladores inteligentes e inteligencia artificial.</li>
-      </ul>
-    </div>
-  </div>
+    <section class="cards">
+        <div class="card">
+            <img src="civiles.jpg" alt="Ingeniería civil">
+            <div class="card-text">
+                <h3>Ingeniería Civil</h3>
+                <p>Determinación de consistencia de estructuras, puentes, colegios, carreteras usando tecnología 3D y drones.</p>
+            </div>
+        </div>
 
-  <div class="mt-8">
-    <h3 class="text-2xl font-semibold text-purple-600 mb-2 text-center">🚀 Proyectos representativos</h3>
-    <ul class="list-disc pl-5 space-y-2 max-w-2xl mx-auto text-gray-800">
-      <li><strong>JICAAT I, II y III:</strong> satélites experimentales para investigación ambiental y aeroespacial.</li>
-      <li><strong>Robot Colaborativo Agrícola:</strong> asistencia inteligente en cultivos y recolección de muestras.</li>
-      <li><strong>Controlador Ambiental Inteligente:</strong> medición de gases, temperatura y aerosoles.</li>
-      <li><strong>Plataforma de simulación:</strong> modelos de cohetes y órbitas en Scilab/Arduino.</li>
-    </ul>
-  </div>
+        <div class="card" style="background:#f7a600; color:white;">
+            <div class="card-text">
+                <h3>Investigaciones Financieras, Económicas y Contables</h3>
+                <p>Estudios de perjuicios, lavado de activos, auditoría forense financiera y económica.</p>
+            </div>
+        </div>
 
-  <div class="text-center mt-8">
-    <h3 class="text-xl font-semibold text-purple-600 mb-2">🤝 Colaboraciones y alianzas</h3>
-    <p class="text-gray-700 max-w-2xl mx-auto">
-      Mantenemos vínculos con universidades, centros de investigación e instituciones tecnológicas
-      para fortalecer la <strong>innovación científica en el Perú</strong> y desarrollar ingeniería con impacto global.
-    </p>
-<p>
- <h1>presentacion de investigaciones en el JICAAT</h1>
- La jornada es organizada por Villa Automation EIRL (también identificada como Villa Automation S.A.C) y se denomina también «Jornadas Internacionales de Ciencias Avanzadas – Astrodinámica y Teledetección (JICAAT)». 
-Se realiza en Perú, y al menos en algunas ediciones ha tenido lugar en la ciudad de Ayacucho. 
-Aborda temáticas de alto nivel como astrodinámica, teledetección, ciencias aeroespaciales, física, matemática aplicada, ingeniería espacial, etc. 
-Ejemplo de convocatoria: “VI Jornada Internacional de Ciencias Avanzadas, Astrodinámica y Teledetección” con fechas indicadas del 18 al 20 (mes no siempre especificado) en publicaciones de las redes de Villa Automation. 
-<h1>Objetivos y alcance</h1>
- Complementar la formación de estudiantes, docentes, investigadores y público en general en áreas de ciencias avanzadas vinculadas al espacio, control, sensores, telemetría, teledetección y aplicaciones de ingeniería espacial. 
-Fomentar una red de colaboración internacional (por ejemplo se menciona alianza Perú-Panamá en una publicación relacionada). 
-Presentar trabajos, proyectos, experiencias de desarrollo de cohetes, satélites, sensores, y aplicaciones de teledetección en el contexto peruano. Por ejemplo, un artículo cita: “La I, II y III Jornada Internacional de Ciencias Avanzadas – Astrodinámica y Teledección (JICAAT) fue celebrada en Ayacucho, Lambayeque…” 
-      <p>
-  <img src="assets/inves1.jpg" alt="investigacion">
-  <p>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/JkW82-xnYFI"
-title="YouTube video player" frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen></iframe>
-   <p>
-      <p>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/ETouDKV2I_g"
-title="YouTube video player" frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen></iframe>
-   <p>
-      <p>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/zVVJtD8z1wA"
-title="YouTube video player" frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen></iframe>
-   <p>
-      <p>
-<iframe width="100%" height="315"
-src="https://www.youtube.com/embed/SQpd1h9TNMU"
-title="YouTube video player" frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-allowfullscreen></iframe>
-   <p>
-  Presupuesto de cohetes experimentales
-  <ul>
-<li>Basico: 2000.0 $ (dolares)</li>
-<li>avanzado: 6000.0 $ (dolares)</li>
-
-</ul> 
-<p>
-<a href="index.html" class="back-btn">? Volver a la página principal</a>
-</div>
+        <div class="card">
+            <img src="contable.jpg" alt="Contabilidad forense">
+            <div class="card-text">
+                <h3>Análisis Contable Forense</h3>
+                <p>Revisión técnica de movimientos y operaciones financieras sospechosas.</p>
+            </div>
+        </div>
+    </section>
 </body>
-
-
 </html>
-
-
-
 
 
 
