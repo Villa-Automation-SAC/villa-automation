@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>JICAAT — Realidad Virtual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- A-Frame -->
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #000;
+}
+.info {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    z-index: 10;
+}
+.return-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #00c0ff;
+    color: #000;
+    padding: 10px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="info">
+    <strong>🚀 JICAAT VR</strong><br>
+    Explora el cohete en Realidad Virtual
+</div>
+
+<a href="index.html" class="return-btn">⟵ Regresar</a>
+
+<a-scene background="color: #000">
+
+    <!-- Cámara -->
+    <a-entity position="0 1.6 4">
+        <a-camera look-controls></a-camera>
+    </a-entity>
+
+    <!-- Luz -->
+    <a-light type="ambient" intensity="0.7"></a-light>
+    <a-light type="directional" position="2 4 3" intensity="1"></a-light>
+
+    <!-- Plataforma -->
+    <a-cylinder 
+        position="0 0 0"
+        radius="2"
+        height="0.2"
+        color="#444">
+    </a-cylinder>
+
+    <!-- Cohete JICAAT (modelo simple) -->
+    <a-cylinder 
+        position="0 1.5 0"
+        radius="0.3"
+        height="3"
+        color="#ffffff"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
+    </a-cylinder>
+
+    <!-- Punta -->
+    <a-cone 
+        position="0 3.3 0"
+        radius-bottom="0.3"
+        height="0.6"
+        color="#ff0000">
+    </a-cone>
+
+    <!-- Texto flotante -->
+    <a-text 
+        value="JICAAT\nVilla Automation EIRL"
+        position="-1.5 4 -1"
+        color="#00c0ff"
+        width="4">
+    </a-text>
+
+</a-scene>
+
+</body>
+</html>
