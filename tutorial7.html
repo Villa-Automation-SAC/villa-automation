@@ -1,41 +1,99 @@
-﻿<!-- Card: Simulación en Proteus -->
-<div class="card">
-    <h2>7) Tutorial Proteus — Simular LED con Arduino</h2>
-    <p>En este tutorial aprenderás a simular un circuito básico en Proteus usando Arduino UNO y un LED conectado al pin 3.</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tutorial Proteus — Simulación básica</title>
 
-    <p><strong>Objetivo:</strong> Simular el código Blink dentro de Proteus para verificar el funcionamiento sin usar hardware real.</p>
+<style>
+    :root{ --accent:#0077cc; --bg:#f4f7fb; --card:#ffffff; }
+    body{ font-family: Inter, Arial, Helvetica, sans-serif; background: var(--bg); margin:0; padding:24px; color:#222 }
+    .container{ max-width:1000px; margin: auto; }
+    .grid{ display:grid; grid-template-columns: 1fr; gap:20px; }
+    .card{ background: var(--card); padding:20px; border-radius:14px; box-shadow: 0 6px 18px rgba(18,38,63,0.08); }
+    .card h2{ margin:0 0 8px 0; color:var(--accent); font-size:1.2rem }
+    .card p{ margin:8px 0; line-height:1.5 }
+    .video-wrap{ border-radius:12px; overflow:hidden; margin-top:12px; }
+    iframe{ width:100%; height:315px; border:0; display:block }
+    pre{ background:#0b1220; color:#e6eef8; padding:12px; border-radius:10px; overflow:auto; font-size:0.95rem }
+    code{ font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace }
+    .actions{ text-align:center; margin-top:12px }
+    .btn-back{ display:inline-block; padding:10px 16px; border-radius:10px; background:var(--accent); color:#fff; text-decoration:none; font-weight:600 }
+    .meta{ font-size:0.9rem; color:#556; }
 
-    <div class="video-wrap">
-        <iframe src="https://www.youtube.com/embed/Q3aKxeOWQow" allowfullscreen></iframe>
+    @media(min-width:900px){ .grid{ grid-template-columns: 1fr 1fr; } iframe{ height:220px } }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1 style="color:var(--accent);">Tutorial de Proteus — Simulación de Arduino y Electrónica</h1>
+
+    <!-- BOTÓN DE DONACIONES -->
+    <div style="text-align:center; margin: 20px 0;">
+      <a href="assets/qr.jpeg" target="_blank" class="boton-donacion-elegante" 
+         style="display:inline-flex; align-items:center; gap:10px; padding:10px 18px; 
+                background:#ffffff; color:#000; border-radius:10px; text-decoration:none; 
+                box-shadow:0 4px 10px rgba(0,0,0,0.2); font-weight:bold;">
+
+          <img src="assets/images.jpg" class="icono-donacion" alt=""
+               style="width:55px; height:auto; border-radius:8px;">
+               
+          Donaciones Aquí
+      </a>
     </div>
 
-    <h3 style="color:var(--accent); margin-top:12px;">Materiales en Proteus</h3>
-    <ul>
-        <li>Arduino UNO (modelo: <em>Arduino UNO R3</em>)</li>
-        <li>LED rojo</li>
-        <li>Resistencia 220 Ω</li>
-        <li>Cables de conexión</li>
-    </ul>
+    <div class="grid">
 
-    <h3 style="color:var(--accent); margin-top:12px;">Conexiones</h3>
-    <p>Conecta los elementos así:</p>
-    <ul>
-        <li>Pin digital 3 → resistencia de 220 Ω → LED (ánodo)</li>
-        <li>Cátodo del LED → GND</li>
-        <li>Arduino alimentado automáticamente por Proteus</li>
-    </ul>
+        <!-- INTRODUCCIÓN -->
+        <div class="card">
+            <h2>1) ¿Qué es Proteus?</h2>
+            <p>Proteus es un software que permite simular circuitos electrónicos y ejecutar código de Arduino sin necesidad de tener el hardware físico.</p>
+            <p>Es ideal para pruebas rápidas, aprender electrónica y validar proyectos antes de implementarlos.</p>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/Q3aKxeOWQow" allowfullscreen></iframe>
+            </div>
+        </div>
 
-    <h3 style="color:var(--accent); margin-top:12px;">Cargar el código en Proteus</h3>
-    <p>Compila tu código en Arduino IDE y genera el archivo <strong>.hex</strong>:</p>
-    <ol>
-        <li>Ve a <em>Sketch → Exportar binarios compilados</em>.</li>
-        <li>Ubica el archivo: <em>carpeta del proyecto → .ino.hex</em>.</li>
-        <li>En Proteus, da doble clic al Arduino y carga el archivo .hex.</li>
-    </ol>
+        <!-- INSTALACIÓN -->
+        <div class="card">
+            <h2>2) Descargar e instalar Proteus</h2>
+            <p>Aquí puedes descargar el instalador o usar tu versión actual.</p>
 
-    <h3 style="color:var(--accent); margin-top:12px;">Código usado en Proteus</h3>
-    <pre><code>// Enciende y apaga LED en el pin 3 (para usar en Proteus)
-void setup() {
+            <div class="descarga-contenedor" style="margin:10px 0;">
+                <a href="https://drive.google.com/file/d/1DPF8dOL7gYPdRZ0w-8d8FsUICn8ciGaE/view?usp=drive_link"
+                   class="btn-descargar"
+                   style="background:#0077cc;color:#fff;padding:8px 14px;border-radius:8px;display:inline-block;
+                          text-decoration:none;">
+                ⬇ Descargar Proteus
+                </a>
+            </div>
+
+            <p>Luego de instalar, abre Proteus y selecciona:</p>
+            <p><strong>New Project → Schematic Capture</strong></p>
+
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/4pZQ8xPj3P8" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- SIMULACIÓN LED -->
+        <div class="card">
+            <h2>3) Simular un LED en Proteus</h2>
+            <p>Componentes necesarios:</p>
+            <ul>
+                <li>Arduino UNO</li>
+                <li>LED rojo</li>
+                <li>Resistencia 220Ω</li>
+                <li>Cables de conexión</li>
+            </ul>
+
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/QqGJMj5RK-o" allowfullscreen></iframe>
+            </div>
+
+            <p>Usa el siguiente código en tu Arduino:</p>
+            <pre><code>void setup() {
   pinMode(3, OUTPUT);
 }
 
@@ -44,9 +102,82 @@ void loop() {
   delay(1000);
   digitalWrite(3, LOW);
   delay(1000);
-}
-</code></pre>
+}</code></pre>
+        </div>
 
-    <p>Ahora presiona el botón ▶ RUN en Proteus y observarás el LED parpadear igual que en la placa real.</p>
+        <!-- AÑADIR HEX -->
+        <div class="card">
+            <h2>4) Cargar archivo HEX de Arduino en Proteus</h2>
+            <p>En Arduino IDE haz:</p>
+            <ol>
+                <li><strong>Sketch → Exportar compilado binario</strong></li>
+                <li>Ve a la carpeta del proyecto y ubica el archivo <code>.hex</code></li>
+            </ol>
+
+            <p>En Proteus:</p>
+            <ul>
+                <li>Doble clic en la placa Arduino</li>
+                <li>En Program File → selecciona tu archivo .hex</li>
+            </ul>
+
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/uz0e57w2KCI" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- SIMULACIÓN COMPLETA -->
+        <div class="card">
+            <h2>5) Proyecto completo en Proteus</h2>
+            <p>Control de brillo de LED con potenciómetro.</p>
+
+            <pre><code>int entrada = A0;
+int led = 9;
+
+void setup() { pinMode(led, OUTPUT); }
+
+void loop() {
+  int valor = analogRead(entrada);
+  int brillo = map(valor, 0, 1023, 0, 255);
+  analogWrite(led, brillo);
+}</code></pre>
+
+            <p>Simula moviendo el potenciómetro y verás el brillo variar.</p>
+        </div>
+
+        <!-- RECURSOS -->
+        <div class="card">
+            <h2>Más recursos</h2>
+            <ul>
+                <li>Simulación de sensores</li>
+                <li>Simulación de motores</li>
+                <li>Simulación de robots</li>
+                <li>Simulación de comunicación serial</li>
+            </ul>
+            <div class="actions">
+                <a class="btn-back" href="otros.html">⬅ Regresar a página principal</a>
+            </div>
+        </div>
+
+        <!-- BIBLIOTECA -->
+        <div class="card">
+            <h2>Biblioteca y artículos</h2>
+            <p>Accede a libros, PDF y documentación técnica.</p>
+            <div class="actions">
+                <a class="btn-back" href="revistas.html">⬅ Ir a Biblioteca</a>
+            </div>
+        </div>
+
+        <!-- CATÁLOGO -->
+        <div class="card">
+            <h2>Catálogo de Proyectos</h2>
+            <p>Equipos terminados y en venta.</p>
+            <div class="actions">
+                <a class="btn-back" href="catalogo.html">⬅ Ver Catálogo</a>
+            </div>
+        </div>
+
+    </div>
 </div>
 
+</body>
+</html>
