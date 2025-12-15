@@ -64,6 +64,78 @@
         .card-text { padding:20px; }
         .card-text h3 { margin:0 0 10px; color:#0b1b3b; }
         .card-text p { margin:0; line-height:1.5; }
+
+        .hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+/* Video de fondo */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Sombra / Oscurecimiento */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.65),
+        rgba(0, 0, 0, 0.85)
+    );
+    z-index: 2;
+}
+
+/* Contenido */
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    padding: 40px;
+    text-align: center;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.9);
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* Botón */
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #0077cc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 119, 204, 0.6);
+}
+
     </style>
 </head>
 <body>
@@ -77,22 +149,34 @@
             <a href="#">Profesionales</a>
         </nav>
     </header>
+<section class="hero">
+    <!-- Video de fondo -->
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="assets/fondo.mp4" type="video/mp4">
+    </video>
 
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1>Investigaciones Cientificas y Pericias Criminalísticas Forenses</h1>
-            <p>Integramos conocimientos científicos Avanzados en diferentes campos de la ciencia y en peritaje para determinar evidencias, circunstancias y autores. Basado en 
-            Planteamiento del problema, Hipótesis técnica, Modelo matemático, Simulación o cálculo, Análisis de incertidumbre, Validación física, Conclusiones periciales</p>
-            <a class="btn" href="#contacto">Contactar</a>
-        </div>
-    </section>
+    <!-- Sombra / Overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Contenido -->
+    <div class="hero-content">
+        <h1>Investigaciones Científicas y Pericias Criminalísticas Forenses</h1>
+        <p>
+            Integramos conocimientos científicos avanzados en diferentes campos de la ciencia y el peritaje
+            para determinar evidencias, circunstancias y autores. Basado en:
+            Planteamiento del problema, hipótesis técnica, modelo matemático, simulación o cálculo,
+            análisis de incertidumbre, validación física y conclusiones periciales.
+        </p>
+        <a class="btn" href="#contacto">Contactar</a>
+    </div>
+</section>
+
 
     <section class="cards">
         <div class="card">
-            <img src="civiles.jpg" alt="Ingeniería civil">
+            <img src="perito1.jpg" alt="Ingeniería civil">
             <div class="card-text">
-                <h3>Peritaje físico – matemático</h3>
+    <h3>Peritaje físico – matemático</h3>
 <ul>
   <li><strong>🔹 Física Forense</strong>
     <ul>
@@ -125,7 +209,7 @@
 
     <section class="cards">
         <div class="card">
-            <img src="civiles.jpg" alt="Ingeniería civil">
+            <img src="perito2.jpg" alt="Ingeniería civil">
             <div class="card-text">
                 <h3>Peritaje Inginieria</h3>
                 <ul>
@@ -173,7 +257,7 @@
         </div>
 
         <div class="card">
-            <img src="contable.jpg" alt="Contabilidad forense">
+            <img src="perito3.jpg" alt="Contabilidad forense">
             <div class="card-text">
                 <h3>Peritaje informático y digital</h3>
                <ul>
@@ -205,7 +289,7 @@
             </div>
         </div>
          <div class="card">
-            <img src="contable.jpg" alt="Contabilidad forense">
+            <img src="perito0.jpg" alt="Contabilidad forense">
             <div class="card-text">
                 <h3>Peritaje químico y ambiental</h3>
                <ul>
@@ -238,7 +322,7 @@
         </div>
 
       <div class="card">
-            <img src="contable.jpg" alt="Contabilidad forense">
+            <img src="perito5.jpg" alt="Contabilidad forense">
             <div class="card-text">
                 <h3>Peritaje económico y financiero</h3>
               <ul>
@@ -263,7 +347,7 @@
         </div>
 
           <div class="card">
-            <img src="contable.jpg" alt="Contabilidad forense">
+            <img src="perito6.jpg" alt="Contabilidad forense">
             <div class="card-text">
                 <h3>Peritaje especializado y moderno</h3>
                <ul>
@@ -305,6 +389,7 @@
     </section>
 </body>
 </html>
+
 
 
 
