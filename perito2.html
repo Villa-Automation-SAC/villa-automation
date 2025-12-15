@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peritaje en Ingeniería</title>
+
+    <style>
+        :root{
+            --primary:#0b1b2b;
+            --accent:#0077cc;
+            --bg:#f4f6f9;
+            --card:#ffffff;
+        }
+
+        body{
+            margin:0;
+            font-family:Arial, Helvetica, sans-serif;
+            background:var(--bg);
+            color:#333;
+        }
+
+        header{
+            background:linear-gradient(135deg, var(--primary), #142f4c);
+            color:#fff;
+            padding:60px 20px;
+            text-align:center;
+        }
+
+        header h1{
+            margin:0;
+            font-size:2.4rem;
+        }
+
+        header p{
+            max-width:900px;
+            margin:15px auto 0;
+            font-size:1.1rem;
+            line-height:1.6;
+            opacity:0.95;
+        }
+
+        .container{
+            max-width:1200px;
+            margin:auto;
+            padding:40px 20px;
+        }
+
+        .intro{
+            text-align:center;
+            margin-bottom:40px;
+        }
+
+        .intro p{
+            max-width:900px;
+            margin:auto;
+            font-size:1.05rem;
+            line-height:1.7;
+        }
+
+        .grid{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            gap:25px;
+        }
+
+        .card{
+            background:var(--card);
+            border-radius:12px;
+            padding:25px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+            transition:transform .3s ease, box-shadow .3s ease;
+        }
+
+        .card:hover{
+            transform:translateY(-6px);
+            box-shadow:0 16px 35px rgba(0,0,0,0.12);
+        }
+
+        .card h3{
+            margin-top:0;
+            color:var(--accent);
+        }
+
+        .card ul{
+            padding-left:20px;
+            margin:0;
+        }
+
+        .card ul li{
+            margin:8px 0;
+        }
+
+        .methodology{
+            background:#fff;
+            margin-top:60px;
+            padding:40px 30px;
+            border-radius:12px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        .methodology h2{
+            text-align:center;
+            color:var(--primary);
+        }
+
+        .methodology ul{
+            max-width:900px;
+            margin:20px auto 0;
+            line-height:1.7;
+        }
+
+        footer{
+            background:var(--primary);
+            color:#fff;
+            text-align:center;
+            padding:25px 15px;
+            margin-top:60px;
+            font-size:0.95rem;
+        }
+
+        .return-btn{
+            display:inline-block;
+            margin-top:20px;
+            background:var(--accent);
+            color:#fff;
+            padding:10px 22px;
+            border-radius:25px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .return-btn:hover{
+            background:#005fa3;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Peritaje en Ingeniería</h1>
+    <p>
+        Análisis técnico, científico y objetivo de fallas, accidentes y eventos críticos
+        en sistemas de ingeniería, basado en normas técnicas, modelos físicos,
+        simulaciones y evidencia verificable.
+    </p>
+</header>
+
+<div class="container">
+
+    <section class="intro">
+        <p>
+            El peritaje en ingeniería permite determinar causas, responsabilidades
+            y mecanismos de falla en infraestructuras, máquinas, sistemas eléctricos,
+            electrónicos y aeroespaciales, apoyando procesos judiciales, investigaciones
+            técnicas y toma de decisiones estratégicas.
+        </p>
+    </section>
+
+    <section class="grid">
+
+        <div class="card">
+            <h3>🔹 Ingeniería Civil</h3>
+            <ul>
+                <li>Colapso de estructuras</li>
+                <li>Fallas constructivas</li>
+                <li>Accidentes estructurales</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔹 Ingeniería Mecánica</h3>
+            <ul>
+                <li>Fallas de máquinas</li>
+                <li>Explosiones</li>
+                <li>Accidentes industriales</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔹 Ingeniería Eléctrica</h3>
+            <ul>
+                <li>Electrocuciones</li>
+                <li>Incendios eléctricos</li>
+                <li>Cortocircuitos</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔹 Ingeniería Electrónica</h3>
+            <ul>
+                <li>Dispositivos electrónicos</li>
+                <li>Sistemas de control</li>
+                <li>Fallas de automatización</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔹 Ingeniería Aeroespacial</h3>
+            <ul>
+                <li>Accidentes aéreos</li>
+                <li>Cohetes y drones</li>
+                <li>Fallas de estabilidad y control</li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="methodology">
+        <h2>Metodología de Peritaje</h2>
+        <ul>
+            <li>Inspección técnica y levantamiento de evidencia</li>
+            <li>Análisis normativo y comparación con estándares</li>
+            <li>Modelado físico y matemático del evento</li>
+            <li>Simulación computacional y validación</li>
+            <li>Análisis de incertidumbre y errores</li>
+            <li>Conclusiones técnicas objetivas y reproducibles</li>
+        </ul>
+    </section>
+
+    <div style="text-align:center;">
+        <a href="index.html" class="return-btn">⟵ Regresar</a>
+    </div>
+
+</div>
+
+<footer>
+    © 2025 — Peritaje en Ingeniería | Análisis Científico y Técnico
+</footer>
+
+</body>
+</html>
