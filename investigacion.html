@@ -411,8 +411,76 @@
         </div>
         
     </section>
+
+
+    <div id="lib-btn">📘</div>
+
+<div id="lib-box">
+  <div id="lib-header">Bibliotecario del Futuro</div>
+  <div id="lib-content">
+    <p><b>Sistema:</b> Archivo de conocimiento activado.</p>
+  </div>
+  <input type="text" id="lib-input" placeholder="Formule su consulta...">
+</div>
+
+<style>
+#lib-btn{
+  position:fixed; bottom:20px; right:20px;
+  background:#0b1b2b; color:#0ff;
+  padding:15px; border-radius:50%;
+  cursor:pointer;
+}
+#lib-box{
+  display:none;
+  position:fixed; bottom:80px; right:20px;
+  width:320px; background:#050d14;
+  color:#0ff; font-family:monospace;
+  border:1px solid #0ff;
+}
+#lib-header{
+  padding:10px; background:#0b1b2b;
+  text-align:center;
+}
+#lib-content{
+  padding:10px; height:220px;
+  overflow-y:auto;
+}
+#lib-input{
+  width:100%; padding:10px;
+  background:black; color:#0ff;
+  border:none;
+}
+</style>
+
+<script>
+const btn = document.getElementById("lib-btn");
+const box = document.getElementById("lib-box");
+btn.onclick = () => box.style.display = box.style.display === "block" ? "none" : "block";
+
+document.getElementById("lib-input").addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    const q = this.value.toLowerCase();
+    let r = "Consulta registrada. Se requiere análisis especializado.";
+
+    if(q.includes("peritaje")){
+      r = "Los peritajes se clasifican en físicos, digitales, ingeniería y científicos.";
+    }
+    if(q.includes("fisica")){
+      r = "La física forense analiza trayectorias, energía, impactos y fuerzas.";
+    }
+    if(q.includes("ingenieria")){
+      r = "La ingeniería forense estudia fallas, colapsos y accidentes técnicos.";
+    }
+
+    lib-content.innerHTML += `<p>> ${q}</p><p><b>Bibliotecario:</b> ${r}</p>`;
+    this.value="";
+  }
+});
+</script>
+
 </body>
 </html>
+
 
 
 
