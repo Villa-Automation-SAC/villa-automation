@@ -449,15 +449,17 @@
 #lib-box{
   display:none;
   position:fixed;
-  bottom:80px;
+  bottom:110px; /* 🔹 más espacio sobre el avatar */
   right:20px;
   width:320px;
   background:#050d14;
   color:#0ff;
   font-family:monospace;
   border:1px solid #0ff;
-  z-index:9999; /* 🔴 CLAVE */
+  z-index:9999;
+  border-radius:10px;
 }
+
 
 #lib-header{
   padding:10px; background:#0b1b2b;
@@ -468,10 +470,15 @@
   overflow-y:auto;
 }
 #lib-input{
-  width:100%; padding:10px;
-  background:black; color:#0ff;
+  width:100%;
+  padding:12px;
+  background:black;
+  color:#0ff;
   border:none;
+  border-top:1px solid #0ff;
+  box-sizing:border-box;
 }
+
 </style>
 
 <script>
@@ -532,6 +539,7 @@ window.addEventListener("load", () => {
 
 </body>
 </html>
+
 
 
 
