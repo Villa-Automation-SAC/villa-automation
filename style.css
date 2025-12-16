@@ -562,3 +562,16 @@ nav a:hover {
   0%   { opacity: 0.85; }
   100% { opacity: 1; }
 }
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.service.card {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.video-gallery {
+  overflow-x: hidden;
+}
