@@ -1071,6 +1071,129 @@ fetch(url)
   });
 </script>
 
+    
+
+ <div id="lib-btn">
+  <img src="assets/asistente1.png" alt="Bibliotecario">
+</div>
+
+<div id="lib-box">
+  <div id="lib-header">Bibliotecario del Futuro</div>
+  <div id="lib-content">
+    <p><b>Sistema:</b> Archivo de conocimiento activado.</p>
+  </div>
+  <input type="text" id="lib-input" placeholder="Formule su consulta...">
+</div>
+
+<style>
+#lib-btn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:70px;
+  height:70px;
+  border-radius:50%;
+  overflow:hidden;
+  cursor:pointer;
+  z-index:9999;
+  box-shadow:0 0 15px rgba(0,255,255,0.6);
+  background:#0b1b2b;
+}
+
+#lib-btn img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+#lib-box{
+  display:none;
+  position:fixed;
+  bottom:110px; /* 🔹 más espacio sobre el avatar */
+  right:20px;
+  width:320px;
+  background:#050d14;
+  color:#0ff;
+  font-family:monospace;
+  border:1px solid #0ff;
+  z-index:9999;
+  border-radius:10px;
+}
+
+
+#lib-header{
+  padding:10px; background:#0b1b2b;
+  text-align:center;
+}
+#lib-content{
+  padding:10px; height:220px;
+  overflow-y:auto;
+}
+#lib-input{
+  width:100%;
+  padding:12px;
+  background:black;
+  color:#0ff;
+  border:none;
+  border-top:1px solid #0ff;
+  box-sizing:border-box;
+}
+
+</style>
+
+<script>
+const btn = document.getElementById("lib-btn");
+const box = document.getElementById("lib-box");
+const content = document.getElementById("lib-content");
+const input = document.getElementById("lib-input");
+
+btn.addEventListener("click", () => {
+  box.style.display = box.style.display === "block" ? "none" : "block";
+});
+
+function escribir(mensaje, autor="Bibliotecario"){
+  content.innerHTML += `<p><b>${autor}:</b> ${mensaje}</p>`;
+  content.scrollTop = content.scrollHeight;
+}
+
+escribir("Archivo de conocimiento en línea. ¿En qué le puedo ayudar?");
+
+input.addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    const q = this.value.toLowerCase();
+    escribir(q, "Usted");
+
+    let r = "Consulta registrada. ¿Desea información sobre peritaje, física, ingeniería o análisis especializado?";
+
+    if(q.includes("hola") || q.includes("buenas")){
+      r = "Saludos. ¿En qué disciplina desea asistencia?";
+    }
+    else if(q.includes("peritaje")){
+      r = "Indique el tipo de peritaje: físico-matemático, ingeniería, digital, químico o económico.";
+    }
+    else if(q.includes("fisica")){
+      r = "La física forense analiza trayectorias, impactos, energía y fuerzas. ¿Qué fenómeno desea analizar?";
+    }
+    else if(q.includes("ingenieria")){
+      r = "La ingeniería forense evalúa fallas técnicas y accidentes. ¿Qué especialidad le interesa?";
+    }
+    else if(q.includes("costo") || q.includes("precio")){
+      r = "Para costos y cotizaciones, se requiere información del caso. ¿Desea contacto con un especialista?";
+    }
+    else if(q.includes("contacto")){
+      r = "Puede contactarnos mediante el formulario web o WhatsApp institucional.";
+    }
+
+    escribir(r);
+    this.value = "";
+  }
+});
+    // Abrir automáticamente al cargar la página
+window.addEventListener("load", () => {
+  box.style.display = "block";
+});
+
+</script>
 
 </body>
 </html>
