@@ -1151,27 +1151,41 @@ input.addEventListener("keypress", function(e){
     const q = this.value.toLowerCase();
     escribir(q, "Usted");
 
-    let r = "Consulta registrada. ¿Desea información sobre peritaje, física, ingeniería o análisis especializado?";
+    let r = "Consulta registrada. ¿Desea información sobre catalogos, Controladores, Robotica, Automatización, Investigación o Aeroespacial?";
 
     if(q.includes("hola") || q.includes("buenas")){
       r = "Saludos. ¿En qué disciplina desea asistencia?";
     }
-    else if(q.includes("peritaje")){
-      r = "Indique el tipo de peritaje: físico-matemático, ingeniería, digital, químico o económico.";
+    else if(q.includes("catalogos")){
+      r = "Indique el tipo de proyecto seleccionado.";
     }
     else if(q.includes("fisica")){
-      r = "La física forense analiza trayectorias, impactos, energía y fuerzas. ¿Qué fenómeno desea analizar?";
+      r = "Enviar mensaje al 965281663 adjuntando el baucher";
     }
-    else if(q.includes("ingenieria")){
-      r = "La ingeniería forense evalúa fallas técnicas y accidentes. ¿Qué especialidad le interesa?";
+    else if(q.includes("Robotica")){
+      r = "robots agricola, robot militar, robot pintor, robot soldador, robot tallador y robotica educativa. ¿Qué especialidad le interesa?";
     }
-    else if(q.includes("costo") || q.includes("precio")){
-      r = "Para costos y cotizaciones, se requiere información del caso. ¿Desea contacto con un especialista?";
+    else if(q.includes("Robot agricola") || q.includes("precio")){
+      r = "Enviar mensaje al 965281663 adjuntando el baucher";
     }
-    else if(q.includes("contacto")){
-      r = "Puede contactarnos mediante el formulario web o WhatsApp institucional.";
+      else if(q.includes("Robot soldador") || q.includes("precio")){
+      r = "Enviar mensaje al 965281663 adjuntando el baucher";
     }
-
+      else if(q.includes("Robot militar") || q.includes("precio")){
+      r = "Enviar mensaje al 965281663 adjuntando el baucher";
+    }
+    else if(q.includes("Aeroespacial")){
+      r = "coheteria, astronomia, satelites, motores de propulsión y sistema de control y guiamiento. ¿Qué especialidad le interesa?.";
+    }
+   else if(q.includes("Asesoria")){
+      r = "Enviar mensaje al 965281663 adjuntando el baucher.";
+    }
+    else if(q.includes("coheteria")){
+      r = "Enviar mensaje al 965281663 adjuntando el baucher.";
+    }
+    else if(q.includes("otros")){
+      r = "Enviar mensaje al 965281663, muchas gracias.";
+    }
     escribir(r);
     this.value = "";
   }
