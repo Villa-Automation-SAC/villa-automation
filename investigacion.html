@@ -474,31 +474,50 @@ btn.addEventListener("click", () => {
   box.style.display = box.style.display === "block" ? "none" : "block";
 });
 
+function escribir(mensaje, autor="Bibliotecario"){
+  content.innerHTML += `<p><b>${autor}:</b> ${mensaje}</p>`;
+  content.scrollTop = content.scrollHeight;
+}
+
+escribir("Archivo de conocimiento en línea. ¿En qué le puedo ayudar?");
+
 input.addEventListener("keypress", function(e){
   if(e.key === "Enter"){
     const q = this.value.toLowerCase();
-    let r = "Consulta registrada. Se requiere análisis especializado.";
+    escribir(q, "Usted");
 
-    if(q.includes("peritaje")){
-      r = "Archivo consultado: Peritaje científico, físico, digital e ingeniería.";
+    let r = "Consulta registrada. ¿Desea información sobre peritaje, física, ingeniería o análisis especializado?";
+
+    if(q.includes("hola") || q.includes("buenas")){
+      r = "Saludos. ¿En qué disciplina desea asistencia?";
     }
-    if(q.includes("fisica")){
-      r = "Registro: Física forense aplicada a trayectorias, energía e impactos.";
+    else if(q.includes("peritaje")){
+      r = "Indique el tipo de peritaje: físico-matemático, ingeniería, digital, químico o económico.";
     }
-    if(q.includes("ingenieria")){
-      r = "Archivo técnico: Ingeniería forense y análisis de fallas.";
+    else if(q.includes("fisica")){
+      r = "La física forense analiza trayectorias, impactos, energía y fuerzas. ¿Qué fenómeno desea analizar?";
+    }
+    else if(q.includes("ingenieria")){
+      r = "La ingeniería forense evalúa fallas técnicas y accidentes. ¿Qué especialidad le interesa?";
+    }
+    else if(q.includes("costo") || q.includes("precio")){
+      r = "Para costos y cotizaciones, se requiere información del caso. ¿Desea contacto con un especialista?";
+    }
+    else if(q.includes("contacto")){
+      r = "Puede contactarnos mediante el formulario web o WhatsApp institucional.";
     }
 
-    content.innerHTML += `<p>> ${q}</p><p><b>Bibliotecario:</b> ${r}</p>`;
-    content.scrollTop = content.scrollHeight;
+    escribir(r);
     this.value = "";
   }
 });
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
