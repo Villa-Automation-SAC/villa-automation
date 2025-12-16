@@ -1071,5 +1071,76 @@ fetch(url)
   });
 </script>
 
+    <!-- Botón flotante -->
+<div id="chat-btn">💬</div>
+
+<!-- Ventana del chat -->
+<div id="chat-box">
+  <div id="chat-header">Asistente Virtual</div>
+  <div id="chat-content"></div>
+  <input type="text" id="chat-input" placeholder="Escriba su consulta...">
+</div>
+
+<style>
+#chat-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #0b1b2b;
+  color: #fff;
+  padding: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#chat-box {
+  display: none;
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+#chat-header {
+  background: #0b1b2b;
+  color: white;
+  padding: 10px;
+}
+#chat-content {
+  padding: 10px;
+  height: 200px;
+  overflow-y: auto;
+}
+#chat-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+}
+</style>
+
+<script>
+const btn = document.getElementById("chat-btn");
+const box = document.getElementById("chat-box");
+btn.onclick = () => box.style.display = box.style.display === "block" ? "none" : "block";
+
+document.getElementById("chat-input").addEventListener("keypress", function(e){
+  if(e.key === "Enter"){
+    const msg = this.value.toLowerCase();
+    let response = "Un asesor se comunicará con usted.";
+
+    if(msg.includes("peritaje")){
+      response = "Ofrecemos peritaje físico, digital, ingeniería y más.";
+    }
+    if(msg.includes("contacto")){
+      response = "Puede contactarnos por WhatsApp o correo.";
+    }
+
+    document.getElementById("chat-content").innerHTML += `<p><b>Usted:</b> ${msg}</p><p><b>Asistente:</b> ${response}</p>`;
+    this.value = "";
+  }
+});
+</script>
+
 </body>
 </html>
