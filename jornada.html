@@ -4,7 +4,35 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Conferences & Events · Villa Automation</title>
+<style>
+/* BOTÓN INSCRIPCIÓN */
+.btn-inscripcion-container{
+  text-align:center;
+  margin:40px 0;
+}
 
+.btn-inscripcion{
+  display:inline-block;
+  padding:16px 36px;
+  font-size:18px;
+  font-weight:600;
+  color:#ffffff;
+  text-decoration:none;
+  border-radius:50px;
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+  box-shadow:0 10px 30px rgba(0,114,255,0.35);
+  transition:all 0.3s ease;
+  letter-spacing:0.5px;
+  font-family:Arial, sans-serif;
+}
+
+.btn-inscripcion:hover{
+  transform:translateY(-3px) scale(1.03);
+  box-shadow:0 16px 40px rgba(0,114,255,0.5);
+  background:linear-gradient(135deg,#0072ff,#00c6ff);
+}
+</style>
+  
   <!-- Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -37,6 +65,15 @@
       <p class="text-slate-200 leading-relaxed">
         En Jornada Internacional de Ciencias Avanzadas Astrodinamica y Teledección JICAAT-Impulsamos conferencias científicas y tecnológicas de alto nivel,
         conectando investigación, industria e innovación a nivel global.
+        <div class="btn-inscripcion-container">
+  <a 
+    href="https://docs.google.com/forms/d/e/1FAIpQLScOdyPQzxin_JG3VpF_tlKSAWVTMyDKZyNDLydvbEcpELop-Q/viewform"
+    target="_blank"
+    class="btn-inscripcion"
+  >
+    📝 Inscribirse al evento Ahora
+  </a>
+</div>
       </p>
     </div>
   </div>
@@ -164,4 +201,5 @@
 
 </body>
 </html>
+
 
