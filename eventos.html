@@ -154,8 +154,88 @@
     transform:translateY(-2px);
     box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
+/* CONTENEDOR GENERAL */
+.eventos-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* TARJETA */
+.evento-card {
+    background: #102538;
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+/* TITULO */
+.evento-card h3 {
+    color: #00eaff;
+    margin-bottom: 10px;
+}
+
+/* TEXTO */
+.evento-card p {
+    line-height: 1.6;
+}
+
+/* IMÁGENES DENTRO DE TARJETA */
+.evento-imagenes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.evento-imagenes img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* VIDEOS */
+.video-container {
+    max-width: 900px;
+    margin: 40px auto;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 400px;
+    border-radius: 12px;
+}
+        .btn-evento {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding: 12px 26px;
+    background: linear-gradient(135deg, #00bfff, #0077cc);
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 18px rgba(0, 191, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.btn-evento:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.6);
+    background: linear-gradient(135deg, #00eaff, #005fa3);
+}
+
+.btn-evento::after {
+    content: "→";
+    font-size: 16px;
+}
 
     </style>
+    
 </head>
 <body>
     <header>
@@ -198,17 +278,46 @@ A continuación, detallamos los principales eventos donde hemos tenido presencia
     <div style="max-width:1100px; margin:auto;">
 
          <!-- tarjeta -->
-        <div style="background:#102538; padding:20px; border-radius:15px; margin-bottom:25px; box-shadow:0 0 10px #000;">
-            <h3 style="color:#00eaff;">JORNADA INTERNACIONAL CIENCIAS AVANZADAS ASTRODINAMICA Y TELETECCIÓN- JICAAT</h3>
-            <p style="line-height:1.6;">
-                En octubre de 2025, Villa Automation presentó su proyecto de robótica y automatización avanzada en la 
-                Universidad Nacional Autónoma de Huanta, mostrando robots colaborativos y sistemas aplicados a agricultura, 
-                industria y defensa. La actividad incluyó talleres prácticos y demostraciones directas con estudiantes.
-            </p>
-          <img src="assets/feria5.jpg" alt="eventos">
-       <img src="assets/feria6.jpg" alt="eventos">
-<p>
-        </div>
+<div class="evento-card">
+   <h2>JORNADA INTERNACIONAL CIENCIAS AVANZADAS</h2>
+    <h3>JICAAT</h3>
+
+    <p class="jicaat-desc">
+      La <strong>Jornada Internacional de Ciencias Avanzadas (JICAAT)</strong>
+      es un evento académico–científico de alcance internacional orientado a la
+      difusión del conocimiento científico avanzado, la innovación tecnológica
+      y la investigación aplicada.
+    </p>
+
+    <p class="jicaat-desc">
+      Reúne a investigadores, profesionales, docentes y estudiantes con el
+      objetivo de impulsar el desarrollo científico y tecnológico mediante
+      ponencias especializadas, proyectos de investigación y desarrollos
+      multidisciplinarios.
+    </p>
+
+    <ul class="jicaat-list">
+      <li>Ingeniería y tecnologías avanzadas</li>
+      <li>Robótica, automatización e inteligencia artificial</li>
+      <li>Ciencias aeroespaciales y simulación científica</li>
+      <li>Investigación aplicada y desarrollo experimental</li>
+    </ul>
+
+    <div class="jicaat-footer">
+      <span>🌐 Evento Académico Internacional</span>
+      <span>🎓 Ciencia · Tecnología · Innovación</span>
+    </div>
+
+    <div class="evento-imagenes">
+        <img src="assets/jornada1.jpg" alt="">
+    </div>
+
+    <a href="jornada.html" class="btn-evento">
+        Ver jornada completa
+    </a>
+</div>
+
+
         
         <!-- tarjeta -->
         <div style="background:#102538; padding:20px; border-radius:15px; margin-bottom:25px; box-shadow:0 0 10px #000;">
@@ -344,6 +453,7 @@ allowfullscreen></iframe>
 
 
 </html>
+
 
 
 
