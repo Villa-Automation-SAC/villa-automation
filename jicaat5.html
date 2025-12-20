@@ -1,9 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kick Stage – Sistema Orbital</title>
+<title>JICAAT V – Sistema Orbital</title>
 
 <style>
 /* =========================
@@ -47,7 +47,7 @@ header {
 ========================= */
 .section {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* TEXTO | IMAGEN */
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   min-height: 100vh;
   padding: 40px 80px;
@@ -55,7 +55,7 @@ header {
   position: relative;
 }
 
-/* Línea roja vertical */
+/* Línea roja central */
 .section::before {
   content: "";
   position: absolute;
@@ -69,22 +69,8 @@ header {
 /* =========================
    COLUMNA TEXTO
 ========================= */
-
-/* TEXTO */
 .text-box {
-  max-width: 600px;
-}
-
-/* IMAGEN DERECHA */
-.image-box {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.image-box img {
-  max-width: 90%;
-  height: auto;
+  max-width: 620px;
 }
 
 .text-box h1 {
@@ -97,27 +83,35 @@ header {
   font-size: 16px;
   line-height: 1.6;
   color: #ccc;
-  max-width: 500px;
+  margin-bottom: 30px;
 }
 
-.features {
-  margin-top: 30px;
-  list-style: none;
-  padding: 0;
+/* =========================
+   OBJETIVOS
+========================= */
+.text-box h2 {
+  margin-bottom: 20px;
 }
 
-.features li {
-  margin-bottom: 14px;
-  font-size: 15px;
-  display: flex;
-  align-items: center;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.features li::before {
-  content: "›";
-  color: #e10600;
-  font-size: 22px;
-  margin-right: 10px;
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-left: 3px solid #e10600;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card ul {
+  padding-left: 18px;
+  font-size: 14px;
 }
 
 /* =========================
@@ -125,21 +119,25 @@ header {
 ========================= */
 .image-box {
   display: flex;
-  justify-content: flex-end; /* 👉 MUEVE LA IMAGEN A LA DERECHA */
+  justify-content: flex-end;
   align-items: center;
 }
 
 .image-box img {
   max-width: 85%;
   height: auto;
-  margin-left: auto; /* 👉 GARANTIZA POSICIÓN DERECHA */
-  filter: drop-shadow(0 0 30px rgba(255,255,255,0.2));
+  filter: drop-shadow(0 0 30px rgba(255,255,255,0.25));
 }
-
 
 /* =========================
    RESPONSIVE
 ========================= */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 900px) {
   .section {
     grid-template-columns: 1fr;
@@ -150,81 +148,78 @@ header {
     display: none;
   }
 
+  .image-box {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
   .text-box h1 {
     font-size: 40px;
   }
 }
-@media (max-width: 900px) {
-  .section {
-    grid-template-columns: 1fr;
-  }
-
-  .section::before {
-    display: none;
-  }
-
-  .image-box {
-    justify-content: center;
-    margin-top: 30px;
-  }
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="logo">LYNX SPACE&nbsp;& VILLA AUTOMATION</div>
+  <div class="logo">LYNX SPACE &nbsp;|&nbsp; VILLA AUTOMATION</div>
   <div class="menu">☰</div>
 </header>
 
 <section class="section">
 
-  <!-- TEXTO -->
+  <!-- COLUMNA IZQUIERDA -->
   <div class="text-box">
     <h1>JICAAT V</h1>
+
     <p>
-El JICAAT V es un vehículo lanzador experimental de dos etapas, desarrollado por Villa Automation S.A.C., 
-       como parte de una iniciativa nacional de investigación aplicada en ingeniería aeroespacial, propulsión, guiado y sistemas autónomos.
-Este proyecto representa la quinta iteración del programa JICAAT, incorporando mejoras significativas en propulsión sólida, estabilidad 
-       aerodinámica, sistemas de Guiamiento, Navegación y Control (GNC), así como en instrumentación y telemetría a bordo.
-El objetivo principal del JICAAT V es validar tecnologías críticas de vuelo suborbital, generar datos reales de dinámica de vuelo 
-       y demostrar la capacidad de diseño, integración y operación de vehículos aeroespaciales desarrollados en el Perú.
+      El JICAAT V es un vehículo lanzador experimental de dos etapas,
+      desarrollado por Villa Automation S.A.C. como parte de una
+      iniciativa nacional de investigación aplicada en ingeniería
+      aeroespacial, propulsión, guiado y sistemas autónomos.
+      Esta versión representa la quinta iteración del programa JICAAT,
+      incorporando mejoras en propulsión sólida, estabilidad aerodinámica,
+      sistemas de Guiamiento, Navegación y Control (GNC), instrumentación
+      y telemetría a bordo.
     </p>
 
-<section>
-  <h2>Objetivos del Proyecto</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>🎯 Técnicos</h3>
-      <ul>
-        <li>Validar estabilidad aerodinámica y estructural.</li>
-        <li>Evaluar desempeño del sistema GNC.</li>
-        <li>Analizar trayectoria y dinámica de vuelo.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>🔬 Científicos</h3>
-      <ul>
-        <li>Obtención de datos reales de vuelo.</li>
-        <li>Monitoreo ambiental (CO₂, aerosoles, humedad).</li>
-        <li>Validación de modelos CFD.</li>
-      </ul>
-    </div>
-    <div class="card">
-      <h3>🛰️ Tecnológicos</h3>
-      <ul>
-        <li>Prueba del CubeSat VA-I.</li>
-        <li>Telemetría en tiempo real.</li>
-        <li>Ensayo de subsistemas electrónicos.</li>
-      </ul>
+    <h2>Objetivos del Proyecto</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>🎯 Técnicos</h3>
+        <ul>
+          <li>Validar estabilidad aerodinámica y estructural</li>
+          <li>Evaluar desempeño del sistema GNC</li>
+          <li>Analizar trayectoria y dinámica de vuelo</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🔬 Científicos</h3>
+        <ul>
+          <li>Obtención de datos reales de vuelo</li>
+          <li>Monitoreo ambiental (CO₂, aerosoles, humedad)</li>
+          <li>Validación de modelos CFD</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🛰️ Tecnológicos</h3>
+        <ul>
+          <li>Prueba del CubeSat VA-I</li>
+          <li>Telemetría en tiempo real</li>
+          <li>Ensayo de subsistemas electrónicos</li>
+        </ul>
+      </div>
+
     </div>
   </div>
-</section>
 
-  <!-- IMAGEN -->
-<div class="image-box">
+  <!-- COLUMNA DERECHA -->
+  <div class="image-box">
     <img src="assets/jicaat5.png" alt="JICAAT V">
   </div>
 
@@ -232,6 +227,3 @@ El objetivo principal del JICAAT V es validar tecnologías críticas de vuelo su
 
 </body>
 </html>
-
-
-
