@@ -69,6 +69,24 @@ header {
 /* =========================
    COLUMNA TEXTO
 ========================= */
+
+/* TEXTO */
+.text-box {
+  max-width: 600px;
+}
+
+/* IMAGEN DERECHA */
+.image-box {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.image-box img {
+  max-width: 90%;
+  height: auto;
+}
+
 .text-box h1 {
   font-size: 52px;
   letter-spacing: 6px;
@@ -136,6 +154,21 @@ header {
     font-size: 40px;
   }
 }
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+  }
+
+  .section::before {
+    display: none;
+  }
+
+  .image-box {
+    justify-content: center;
+    margin-top: 30px;
+  }
+}
+
 </style>
 </head>
 
@@ -191,13 +224,14 @@ El objetivo principal del JICAAT V es validar tecnologías críticas de vuelo su
 </section>
 
   <!-- IMAGEN -->
-  <div class="image-box">
-    <img src="assets/jicaat5.png" alt="Kick Stage">
+<div class="image-box">
+    <img src="assets/jicaat5.png" alt="JICAAT V">
   </div>
 
 </section>
 
 </body>
 </html>
+
 
 
