@@ -119,13 +119,15 @@ header {
 ========================= */
 .image-box {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 }
 
 .image-box img {
-  max-width: 85%;
-  height: auto;
+  max-height: 80vh;        /* altura vertical */
+  width: auto;
+  transform: rotate(-90deg); /* 🔴 COHETE PARADO */
+  transform-origin: center;
   filter: drop-shadow(0 0 30px rgba(255,255,255,0.25));
 }
 
@@ -294,4 +296,5 @@ header {
 
 </body>
 </html>
+
 
