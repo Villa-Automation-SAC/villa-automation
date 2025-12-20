@@ -126,20 +126,32 @@ header {
 .image-box img {
   max-height: 80vh;
   width: auto;
-  transform: rotate(-180deg); /* COHETE PARADO Y HACIA ARRIBA */
   transform-origin: center;
   filter: drop-shadow(0 0 30px rgba(255,255,255,0.25));
 }
+.rotate-up {
+  transform: rotate(90deg);
+}
+
+.rotate-right {
+  transform: rotate(-90deg);
+}
+
+.rotate-none {
+  transform: rotate(0deg);
+}
+
 
 /* =========================
    RESPONSIVE
 ========================= */
 @media (max-width: 900px) {
-  .image-box img {
-    max-height: 60vh;
+  .rotate-up {
     transform: rotate(90deg);
+    max-height: 60vh;
   }
 }
+
 
 @media (max-width: 900px) {
   .section {
@@ -242,7 +254,7 @@ header {
 
   <!-- COLUMNA DERECHA -->
   <div class="image-box">
-    <img src="assets/jicaat5.png" alt="JICAAT V">
+    <img src="assets/jicaat5.png" alt="JICAAT V" class="rotate-up">
   </div>
 
 </section>
@@ -296,12 +308,13 @@ header {
 
   <!-- COLUMNA DERECHA -->
   <div class="image-box">
-    <img src="assets/jicaat50.png" alt="JICAAT V">
+    <img src="assets/jicaat50.png" alt="JICAAT V" class="rotate-none">
   </div>
 
 </section>
 </body>
 </html>
+
 
 
 
