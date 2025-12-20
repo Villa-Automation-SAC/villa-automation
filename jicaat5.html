@@ -190,6 +190,19 @@ header {
     max-height: 60vh;
   }
 }
+.cohete-principal {
+  height: 75vh;        /* ALTURA FIJA */
+  width: auto;
+  max-width: none;
+  transform: rotate(90deg);
+}
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: visible;   /* IMPORTANTE */
+}
 
 </style>
 </head>
@@ -273,7 +286,9 @@ header {
 
   <!-- COLUMNA DERECHA -->
   <div class="image-box">
-    <img src="assets/jicaat5.png" alt="JICAAT V" class="rotate-up">
+    <img src="assets/jicaat5.png"
+     alt="JICAAT V"
+     class="cohete-principal">
   </div>
 
 </section>
@@ -333,6 +348,7 @@ header {
 </section>
 </body>
 </html>
+
 
 
 
