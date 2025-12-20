@@ -69,13 +69,14 @@
 </style>
   <style>
   /* Ajuste global para imágenes largas */
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-    border-radius: 10px;
-  }
+ img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  object-fit: contain; /* 👈 clave */
+}
 
   /* Para evitar imágenes excesivamente altas */
   img {
@@ -772,6 +773,7 @@ allowfullscreen></iframe>
 
 
 </html>
+
 
 
 
