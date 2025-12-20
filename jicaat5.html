@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kick Stage – Sistema Orbital</title>
+
+<style>
+/* =========================
+   ESTILOS GENERALES
+========================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.menu {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* =========================
+   SECCIÓN PRINCIPAL
+========================= */
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  padding: 40px 80px;
+  gap: 40px;
+  position: relative;
+}
+
+/* Línea roja vertical */
+.section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 80%;
+  width: 2px;
+  background: #e10600;
+}
+
+/* =========================
+   COLUMNA TEXTO
+========================= */
+.text-box h1 {
+  font-size: 52px;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+.text-box p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  max-width: 500px;
+}
+
+.features {
+  margin-top: 30px;
+  list-style: none;
+  padding: 0;
+}
+
+.features li {
+  margin-bottom: 14px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+
+.features li::before {
+  content: "›";
+  color: #e10600;
+  font-size: 22px;
+  margin-right: 10px;
+}
+
+/* =========================
+   COLUMNA IMAGEN
+========================= */
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-box img {
+  max-width: 90%;
+  filter: drop-shadow(0 0 30px rgba(255,255,255,0.15));
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .section::before {
+    display: none;
+  }
+
+  .text-box h1 {
+    font-size: 40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">VILLA&nbsp;AUTOMATION</div>
+  <div class="menu">☰</div>
+</header>
+
+<section class="section">
+
+  <!-- TEXTO -->
+  <div class="text-box">
+    <h1>KICK STAGE</h1>
+    <p>
+      Nuestro sistema orbital avanzado está diseñado para desplegar
+      satélites pequeños en órbitas precisas y personalizadas,
+      tanto en misiones dedicadas como compartidas.
+    </p>
+
+    <ul class="features">
+      <li>Despliegue en múltiples planos e inclinaciones</li>
+      <li>Inserción orbital a mayor altitud</li>
+      <li>Soporte para cargas útiles alojadas</li>
+      <li>Cambios de trayectoria múltiples</li>
+      <li>Órbitas sostenidas de baja altitud</li>
+      <li>Desorbitado controlado para mitigación de desechos espaciales</li>
+    </ul>
+  </div>
+
+  <!-- IMAGEN -->
+  <div class="image-box">
+    <img src="https://i.imgur.com/8YpPp9N.png" alt="Kick Stage">
+  </div>
+
+</section>
+
+</body>
+</html>
