@@ -97,6 +97,43 @@ body {
 
 </a-scene>
 
+    <script>
+const rig = document.getElementById('rig');
+
+let velocity = 0;
+const maxSpeed = 0.02;   // movimiento MUY lento
+const damping = 0.95;   // suavizado
+const threshold = 0.15; // ruido del sensor
+
+window.addEventListener('devicemotion', (e) => {
+  if (!e.accelerationIncludingGravity) return;
+
+  // eje Z del teléfono (adelante/atrás)
+  let az = e.accelerationIncludingGravity.z / 9.8;
+
+  if (Math.abs(az) > threshold) {
+    velocity += az * 0.002;
+  }
+});
+
+function animate() {
+  velocity *= damping;
+  velocity = Math.max(-maxSpeed, Math.min(maxSpeed, velocity));
+
+  rig.object3D.translateZ(velocity);
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+<script>
+if (typeof DeviceMotionEvent !== 'undefined' &&
+    typeof DeviceMotionEvent.requestPermission === 'function') {
+  DeviceMotionEvent.requestPermission();
+}
+</script>
 </body>
 </html>
+
 
