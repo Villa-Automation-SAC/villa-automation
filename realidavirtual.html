@@ -50,9 +50,13 @@ body {
 <a-scene background="color: #000">
 
     <!-- Cámara -->
-    <a-entity position="0 1.6 4">
-        <a-camera look-controls></a-camera>
-    </a-entity>
+<a-entity id="rig" position="0 1.6 4">
+    <a-camera
+        look-controls
+        wasd-controls="acceleration: 15">
+    </a-camera>
+</a-entity>
+
 
     <!-- Luz -->
     <a-light type="ambient" intensity="0.7"></a-light>
@@ -95,3 +99,4 @@ body {
 
 </body>
 </html>
+
