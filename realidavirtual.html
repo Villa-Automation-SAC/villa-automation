@@ -99,7 +99,7 @@ body {
 <a-scene>
 
   <!-- CIELO -->
- <a-assets>
+<a-assets>
   <video
     id="skyVideo"
     src="assets/cielo.mp4"
@@ -107,11 +107,18 @@ body {
     loop
     muted
     playsinline
+    webkit-playsinline
     crossorigin="anonymous">
   </video>
 </a-assets>
+  
+<a-sky
+  src="#skyVideo"
+  radius="500"
+  rotation="0 -90 0"
+  material="shader: flat; side: back">
+</a-sky>
 
-<a-sky src="#skyVideo"></a-sky>
 
 
   <!-- RIG -->
@@ -135,11 +142,13 @@ body {
 
 <a-plane
   rotation="-90 0 0"
-  width="60"
-  height="60"
-  material="src: #groundTex; repeat: 1 1; roughness: 0.9"
+  width="40"
+  height="40"
+  position="0 0 0"
+  material="src: #groundTex; roughness: 0.9"
   shadow="receive: true">
 </a-plane>
+
 
   
 
@@ -278,17 +287,19 @@ function moveRight() {
 }
 </script>
 
-  <script>
+<script>
 document.addEventListener('click', () => {
   const video = document.querySelector('#skyVideo');
-  if (video.paused) {
+  if (video && video.paused) {
     video.play();
   }
 });
 </script>
 
+
 </body>
 </html>
+
 
 
 
