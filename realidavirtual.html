@@ -78,7 +78,12 @@ Explora el cohete
 
   <!-- LUCES -->
   <a-light type="ambient" intensity="0.6"></a-light>
-<a-light type="directional" position="10 20 10" intensity="1.4"></a-light>
+<a-light
+  type="directional"
+  position="10 20 10"
+  intensity="1.4"
+  castShadow="true">
+</a-light>
 <a-light type="point" position="0 5 0" intensity="0.6"></a-light>
 
 
@@ -89,8 +94,11 @@ Explora el cohete
   rotation="-90 0 0"
   width="60"
   height="60"
-  material="src: #groundTex; repeat: 20 20; roughness: 0.9">
+  material="src: #groundTex; repeat: 1 1; roughness: 0.9"
+  shadow="receive: true">
 </a-plane>
+
+  
 
 
   <!-- TORRE SIMPLIFICADA -->
@@ -103,13 +111,13 @@ Explora el cohete
   <a-asset-item id="rocketMTL" src="assets/jicaat51.mtl"></a-asset-item>
 </a-assets>
 
- <a-entity
+<a-entity
   id="rocket"
-  obj-model="obj: #rocketOBJ"
+  obj-model="obj: #rocketOBJ; mtl: #rocketMTL"
   position="0 0.15 0"
   scale="0.1 0.1 0.1"
   rotation="-90 0 0"
-  material="color: #ffffff; metalness: 0.2; roughness: 0.5">
+  shadow="cast: true; receive: false">
 </a-entity>
 
   <!-- TEXTO -->
@@ -137,6 +145,7 @@ function moveBack() {
 
 </body>
 </html>
+
 
 
 
