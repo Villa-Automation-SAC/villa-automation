@@ -60,8 +60,15 @@ Explora el cohete
 
 <div class="controls">
   <button ontouchstart="moveForward()" onclick="moveForward()">▲</button>
+
+  <div style="display:flex; gap:12px;">
+    <button ontouchstart="moveLeft()" onclick="moveLeft()">◀</button>
+    <button ontouchstart="moveRight()" onclick="moveRight()">▶</button>
+  </div>
+
   <button ontouchstart="moveBack()" onclick="moveBack()">▼</button>
 </div>
+
 
 <a-scene>
 
@@ -99,7 +106,6 @@ Explora el cohete
 </a-plane>
 
   
-
 
   <!-- TORRE SIMPLIFICADA -->
   <a-box position="1.2 2 0" width="0.3" height="4" depth="0.3" color="#888"></a-box>
@@ -141,10 +147,19 @@ function moveForward() {
 function moveBack() {
   rig.object3D.translateZ(speed);
 }
+  /* NUEVAS FUNCIONES */
+function moveLeft() {
+  rig.object3D.translateX(-speed);
+}
+
+function moveRight() {
+  rig.object3D.translateX(speed);
+}
 </script>
 
 </body>
 </html>
+
 
 
 
