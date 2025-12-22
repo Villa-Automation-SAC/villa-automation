@@ -1,0 +1,398 @@
+newmtl mat_1_Nose Cone
+illum 2
+Ns 705.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 0.0 0.0
+Ks 0.25 0.25 0.25
+newmtl mat_2_Payload Bay
+illum 2
+Ns 225.00002
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.25 0.25 0.25
+newmtl mat_3_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_4_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_5_Aletas trapezoidales
+illum 2
+Ns 225.00002
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 0.0 0.0
+Ks 0.25 0.25 0.25
+newmtl mat_6_Sustainer Forward Airframe
+illum 2
+Ns 645.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\Frame 48095895.png
+newmtl mat_7_Sustainer Main
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\chute.jpg
+newmtl mat_8_Sustainer Switch Band
+illum 2
+Ns 225.00002
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.25 0.25 0.25
+newmtl mat_9_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_10_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_11_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_12_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_13_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_14_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_15_Rail Button
+illum 2
+Ns 225.00002
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 0.72267246
+Ks 0.25 0.25 0.25
+newmtl mat_16_Sustainer Aft Airframe
+illum 2
+Ns 607.5
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.25 0.25 0.25
+map_Kd -o -0.3 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\1000121749-removebg-preview.png
+newmtl mat_17_Sustainer Drogue
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\chute.jpg
+newmtl mat_18_Cuerpo
+illum 2
+Ns 225.00002
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.5054325 0.5054325 0.5054325
+Ks 0.25 0.25 0.25
+map_Kd -o -0.42857146 0.0 0.0 -s 1.4285715 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\pumaspace.jpeg
+newmtl mat_19_Sustainer Fin Section
+illum 2
+Ns 540.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.25 0.25 0.25
+map_Kd -o -0.1 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\descarga (2).png
+newmtl mat_20_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_21_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_22_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_23_Inner Tube
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_24_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_25_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_26_Sustainer Motor Mount
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_26_Sustainer Motor Mount_H148R
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\aerotech.png
+newmtl mat_27_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_28_Interstage
+illum 2
+Ns 592.5
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 0.0 0.0
+Ks 0.25 0.25 0.25
+newmtl mat_29_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_30_Inner Tube
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_31_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_32_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_33_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_34_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_35_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_36_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_37_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_38_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_39_Rail Button
+illum 2
+Ns 225.00002
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 0.72267246
+Ks 0.25 0.25 0.25
+newmtl mat_40_Booster airframe
+illum 2
+Ns 457.5
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 1.0 1.0
+Ks 0.25 0.25 0.25
+map_Kd -o 0.1 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\1000121749-removebg-preview.png
+newmtl mat_41_Booster Chute
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\chute.jpg
+newmtl mat_42_Cuerpo
+illum 2
+Ns 750.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 1.0 0.028991187 0.0
+Ks 0.25 0.25 0.25
+newmtl mat_43_Booster fin section
+illum 2
+Ns 750.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.25 0.25 0.25
+newmtl mat_44_Tube Coupler
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_45_Bulkhead
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_46_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_47_Booster motor mount
+illum 2
+Ns 75.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.39929333 0.29321617 0.17677432
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\spiral-wound-alpha.png
+newmtl mat_47_Booster motor mount_H148R
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\aerotech.png
+newmtl mat_48_Centering Ring
+illum 2
+Ns 0.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 5.0770527E-6 5.0770527E-6 5.0770527E-6
+Ks 0.25 0.25 0.25
+map_Kd -o 0.0 0.0 0.0 -s 1.0 1.0 1.0 -clamp off E:\MI EMPRESA\pagina_villaautomation\villa_automation_modern\assets\ralidad_virtual\original1\jicaat51_img\wood.jpg
+newmtl mat_49_Trapezoidal Fin Set
+illum 2
+Ns 525.0
+d 1.0
+Ka 0.0 0.0 0.0
+Kd 0.0 0.0 0.0
+Ks 0.25 0.25 0.25
