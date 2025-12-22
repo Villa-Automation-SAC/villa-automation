@@ -118,14 +118,30 @@ Explora el cohete
   shadow="cast: true">
 </a-box>
 
-<!-- BRAZO SUPERIOR -->
-<a-box
-  position="1.2 7.1 0"
-  width="1.6"
-  height="0.15"
-  depth="0.6"
-  color="#999">
-</a-box>
+<!-- BRAZO SUPERIOR CON TEXTO INTEGRADO -->
+<a-entity position="1.2 7.1 0">
+
+  <!-- BRAZO -->
+  <a-box
+    width="1.6"
+    height="0.15"
+    depth="0.6"
+    color="#999">
+  </a-box>
+
+  <!-- TEXTO EN EL BRAZO (FRENTE) -->
+  <a-text
+    value="JICAAT V\nVilla Automation"
+    position="0 0.25 -0.35"
+    align="center"
+    color="#00c0ff"
+    width="2.6"
+    side="double"
+    look-at="#rig">
+  </a-text>
+
+</a-entity>
+
 
 <!-- TEXTO EN LA TORRE -->
 <!-- TEXTO EN LA TORRE (SIEMPRE AL FRENTE) -->
@@ -239,6 +255,7 @@ function moveRight() {
 
 </body>
 </html>
+
 
 
 
