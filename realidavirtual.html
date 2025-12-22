@@ -15,19 +15,19 @@ body {
   overflow: hidden;
 }
 
-/* INFO */
 .info {
   position: fixed;
   top: 12px;
   left: 12px;
   background: rgba(0,0,0,0.65);
   color: #fff;
-  padding: 8px 10px;        /* ↓ menos padding */
-  border-radius: 10px;     /* ↓ más compacto */
-  z-index: 100000;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  z-index: 999999;   /* 🔥 clave */
   pointer-events: auto;
-  font-size: 13px;         /* ↓ texto más pequeño */
 }
+
 
 
 
@@ -52,12 +52,18 @@ body {
   border: none;
   cursor: pointer;
 }
+  a-scene {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
 </style>
 </head>
 
 <body>
   
-<div class="info-box" style="text-align:center;">
+<div class="info" style="text-align:center;">
 
     <strong>🚀 JICAAT</strong><br>
     Apoya el desarrollo del proyecto<br><br>
@@ -293,6 +299,7 @@ document.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
