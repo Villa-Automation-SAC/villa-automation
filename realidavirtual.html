@@ -110,6 +110,32 @@ Explora el cohete
   <!-- TORRE SIMPLIFICADA -->
   <a-box position="1.2 2 0" width="0.3" height="4" depth="0.3" color="#888"></a-box>
   <a-box position="1.2 4 0" width="1" height="0.1" depth="0.3" color="#999"></a-box>
+<!-- TEXTO EN LA TORRE -->
+<a-text
+  value="JICAAT V\nVilla Automation"
+  position="1.2 4.8 0.35"
+  rotation="0 180 0"
+  align="center"
+  color="#00c0ff"
+  width="2">
+</a-text>
+<!-- TANQUE DE COMBUSTIBLE -->
+<a-cylinder
+  position="2.2 1.2 0"
+  radius="0.4"
+  height="2.4"
+  color="#555"
+  metalness="0.8"
+  roughness="0.3"
+  shadow="cast: true">
+</a-cylinder>
+
+<!-- TAPA SUPERIOR -->
+<a-sphere
+  position="2.2 2.5 0"
+  radius="0.42"
+  color="#666">
+</a-sphere>
 
   <!-- COHETE -->
   <a-assets>
@@ -125,14 +151,6 @@ Explora el cohete
   rotation="-90 0 0"
   shadow="cast: true; receive: false">
 </a-entity>
-
-  <!-- TEXTO -->
-  <a-text
-    value="JICAAT\nVilla Automation"
-    position="-2 4 -2"
-    color="#00c0ff"
-    width="5">
-  </a-text>
 
 </a-scene>
 
@@ -159,6 +177,7 @@ function moveRight() {
 
 </body>
 </html>
+
 
 
 
