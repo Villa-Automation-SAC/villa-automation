@@ -111,14 +111,17 @@ Explora el cohete
   <a-box position="1.2 2 0" width="0.3" height="4" depth="0.3" color="#888"></a-box>
   <a-box position="1.2 4 0" width="1" height="0.1" depth="0.3" color="#999"></a-box>
 <!-- TEXTO EN LA TORRE -->
+<!-- TEXTO EN LA TORRE (VISIBLE AL FRENTE) -->
 <a-text
   value="JICAAT V\nVilla Automation"
-  position="1.2 4.8 0.35"
-  rotation="0 180 0"
+  position="1.2 4.8 -0.35"
+  rotation="0 0 0"
   align="center"
   color="#00c0ff"
-  width="2">
+  width="2"
+  side="double">
 </a-text>
+
 <!-- TANQUE DE COMBUSTIBLE -->
 <a-cylinder
   position="2.2 1.2 0"
@@ -136,6 +139,48 @@ Explora el cohete
   radius="0.42"
   color="#666">
 </a-sphere>
+
+  <!-- TANQUE 2 -->
+<a-cylinder
+  position="3.1 1.2 0"
+  radius="0.35"
+  height="2"
+  color="#444"
+  metalness="0.7"
+  roughness="0.4">
+</a-cylinder>
+
+<a-sphere
+  position="3.1 2.3 0"
+  radius="0.36"
+  color="#555">
+</a-sphere>
+
+<!-- TANQUE 3 (MÁS PEQUEÑO) -->
+<a-cylinder
+  position="2.2 0.9 1"
+  radius="0.25"
+  height="1.6"
+  color="#333">
+</a-cylinder>
+
+  <!-- MANGUERA 1: TANQUE → COHETE -->
+<a-cylinder
+  position="1.3 1.1 0"
+  radius="0.04"
+  height="1.8"
+  rotation="0 0 90"
+  color="#111">
+</a-cylinder>
+
+<!-- MANGUERA 2: TANQUE SECUNDARIO -->
+<a-cylinder
+  position="2.3 1 0.4"
+  radius="0.03"
+  height="1.4"
+  rotation="0 45 90"
+  color="#222">
+</a-cylinder>
 
   <!-- COHETE -->
   <a-assets>
@@ -177,6 +222,7 @@ function moveRight() {
 
 </body>
 </html>
+
 
 
 
