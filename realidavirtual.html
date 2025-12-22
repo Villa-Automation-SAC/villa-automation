@@ -18,15 +18,17 @@ body {
 /* INFO */
 .info {
   position: fixed;
-  top: 15px;
-  left: 15px;
+  top: 12px;
+  left: 12px;
   background: rgba(0,0,0,0.65);
   color: #fff;
-  padding: 12px 15px;
-  border-radius: 12px;
-  z-index: 100000;   /* MUY IMPORTANTE */
+  padding: 8px 10px;        /* ↓ menos padding */
+  border-radius: 10px;     /* ↓ más compacto */
+  z-index: 100000;
   pointer-events: auto;
+  font-size: 13px;         /* ↓ texto más pequeño */
 }
+
 
 
 /* CONTROLES */
@@ -61,25 +63,23 @@ body {
     Apoya el desarrollo del proyecto<br><br>
 
     <a href="assets/qr.jpeg"
-       style="
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          gap:6px;
-          background:#ffffff;
-          padding:8px;
-          border-radius:8px;
-          text-decoration:none;
-          color:#000;
-          font-weight:bold;
-          font-size:13px;
-          box-shadow:0px 3px 8px rgba(0,0,0,0.25);
-       ">
+   style="
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:6px;             /* ↓ menos espacio */
+      background:#ffffff;
+      padding:8px;         /* ↓ menos padding */
+      border-radius:8px;
+      font-size:12px;      /* ↓ texto más pequeño */
+      text-decoration:none;
+      color:#000;
+      font-weight:bold;
+      box-shadow:0px 3px 8px rgba(0,0,0,0.25);
+   ">
 
         <img src="assets/images.jpg"
-             class="icono-donacion"
-             alt="Donaciones"
-             style="width:40px; height:auto; border-radius:6px;">
+     style="width:40px; height:auto; border-radius:6px;">
 
         Donaciones Aquí
     </a>
@@ -293,6 +293,7 @@ document.addEventListener('click', () => {
 
 </body>
 </html>
+
 
 
 
