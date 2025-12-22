@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -10,33 +10,25 @@
 
 <style>
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #000;
+  margin: 0;
+  background: #000;
+  overflow: hidden;
 }
+
+/* INFO */
 .info {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    background: rgba(0,0,0,0.6);
-    color: #fff;
-    padding: 10px 15px;
-    border-radius: 10px;
-    z-index: 10;
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+  z-index: 10;
 }
-.return-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background: #00c0ff;
-    color: #000;
-    padding: 10px 18px;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-}
-    <style>
-.controls{
+
+/* CONTROLES TÁCTILES */
+.controls {
   position: fixed;
   right: 20px;
   bottom: 20px;
@@ -45,110 +37,88 @@ body {
   gap: 10px;
   z-index: 20;
 }
-.controls button{
+
+.controls button {
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   background: #00c0ff;
   border: none;
+  cursor: pointer;
 }
-</style>
-
 </style>
 </head>
 
 <body>
 
 <div class="info">
-    <strong>🚀 JICAAT VR</strong><br>
-    Explora el cohete en Realidad Virtual
+<strong>🚀 JICAAT VR</strong><br>
+Explora el cohete
 </div>
 
-
-<!-- 👉 AQUÍ VAN LOS CONTROLES -->
+<!-- BOTONES -->
 <div class="controls">
-  <button onclick="moveForward()">▲</button>
-  <button onclick="moveBack()">▼</button>
+  <button ontouchstart="moveForward()" onclick="moveForward()">▲</button>
+  <button ontouchstart="moveBack()" onclick="moveBack()">▼</button>
 </div>
 
-<!-- ESCENA VR -->
+<!-- ESCENA -->
 <a-scene background="color: #000">
 
-    
-<a-scene background="color: #000">
-
-    <!-- Cámara -->
-<a-entity id="rig" position="0 1.6 4">
+  <!-- RIG -->
+  <a-entity id="rig" position="0 1.6 6">
     <a-camera
-        look-controls
-        wasd-controls="acceleration: 15">
+      look-controls
+      wasd-controls="enabled: false">
     </a-camera>
-</a-entity>
+  </a-entity>
 
+  <!-- LUCES -->
+  <a-light type="ambient" intensity="0.7"></a-light>
+  <a-light type="directional" position="2 4 3" intensity="1"></a-light>
 
-    <!-- Luz -->
-    <a-light type="ambient" intensity="0.7"></a-light>
-    <a-light type="directional" position="2 4 3" intensity="1"></a-light>
+  <!-- PLATAFORMA -->
+  <a-cylinder position="0 0 0" radius="2" height="0.2" color="#444"></a-cylinder>
 
-    <!-- Plataforma -->
-    <a-cylinder 
-        position="0 0 0"
-        radius="2"
-        height="0.2"
-        color="#444">
-    </a-cylinder>
+  <!-- COHETE -->
+  <a-cylinder
+    position="0 1.5 0"
+    radius="0.3"
+    height="3"
+    color="#fff">
+  </a-cylinder>
 
-    <!-- Cohete JICAAT (modelo simple) -->
-    <a-cylinder 
-        position="0 1.5 0"
-        radius="0.3"
-        height="3"
-        color="#ffffff"
-        animation="property: rotation; to: 0 360 0; loop: true; dur: 10000">
-    </a-cylinder>
+  <a-cone
+    position="0 3.3 0"
+    radius-bottom="0.3"
+    height="0.6"
+    color="#ff0000">
+  </a-cone>
 
-    <!-- Punta -->
-    <a-cone 
-        position="0 3.3 0"
-        radius-bottom="0.3"
-        height="0.6"
-        color="#ff0000">
-    </a-cone>
-
-    <!-- Texto flotante -->
-    <a-text 
-        value="JICAAT\nVilla Automation EIRL"
-        position="-1.5 4 -1"
-        color="#00c0ff"
-        width="4">
-    </a-text>
+  <!-- TEXTO -->
+  <a-text
+    value="JICAAT\nVilla Automation"
+    position="-1.5 4 -1"
+    color="#00c0ff"
+    width="4">
+  </a-text>
 
 </a-scene>
 
-    <script>
+<script>
 const rig = document.querySelector('#rig');
-let speed = 0.2;
+const speed = 0.3;
 
-function moveForward(){
+function moveForward() {
   rig.object3D.translateZ(-speed);
 }
-function moveBack(){
+
+function moveBack() {
   rig.object3D.translateZ(speed);
 }
 </script>
-    
-<a-camera
-  look-controls
-  wasd-controls-enabled="false"
-  cursor="rayOrigin: mouse">
-</a-camera>
-
 
 </body>
 </html>
-
-
-
-
