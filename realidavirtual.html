@@ -66,7 +66,10 @@ Explora el cohete
 <a-scene>
 
   <!-- CIELO -->
-  <a-sky color="#87CEEB"></a-sky>
+  <a-assets>
+  <img id="sky360" src="assets/cielo.png">
+</a-assets>
+  <a-sky src="#sky360"></a-sky>
 
   <!-- RIG -->
   <a-entity id="rig" position="0 1.6 6">
@@ -74,45 +77,37 @@ Explora el cohete
   </a-entity>
 
   <!-- LUCES -->
-  <a-light type="ambient" intensity="0.8"></a-light>
-  <a-light type="directional" position="5 10 5" intensity="1.2"></a-light>
+  <a-light type="ambient" intensity="0.6"></a-light>
+<a-light type="directional" position="10 20 10" intensity="1.4"></a-light>
+<a-light type="point" position="0 5 0" intensity="0.6"></a-light>
+
 
   <!-- SUELO / PLATAFORMA GRANDE -->
-  <a-plane
-    rotation="-90 0 0"
-    width="50"
-    height="50"
-    color="#6b6b6b">
-  </a-plane>
+  <img id="groundTex" src="assets/plataforma.jpg">
+
+<a-plane
+  rotation="-90 0 0"
+  width="60"
+  height="60"
+  material="src: #groundTex; repeat: 20 20; roughness: 0.9">
+</a-plane>
+
 
   <!-- TORRE SIMPLIFICADA -->
   <a-box position="1.2 2 0" width="0.3" height="4" depth="0.3" color="#888"></a-box>
   <a-box position="1.2 4 0" width="1" height="0.1" depth="0.3" color="#999"></a-box>
 
-  <!-- BASE COHETE -->
-  <a-cylinder position="0 0.1 0" radius="2" height="0.2" color="#444"></a-cylinder>
-
   <!-- COHETE -->
-  <a-entity id="rocket" position="0 1.5 0">
+  <a-asset-item id="rocketOBJ" src="assets/jicaat5.obj"></a-asset-item>
 
-    <!-- CUERPO -->
-    <a-cylinder radius="0.3" height="3" color="#ffffff"></a-cylinder>
-
-    <!-- CONO -->
-    <a-cone
-      position="0 1.8 0"
-      radius-bottom="0.3"
-      height="0.6"
-      color="#ff0000">
-    </a-cone>
-
-    <!-- ALETAS -->
-    <a-box position="0.45 -1 0" width="0.05" height="0.6" depth="0.3" color="#ff0000"></a-box>
-    <a-box position="-0.45 -1 0" width="0.05" height="0.6" depth="0.3" color="#ff0000"></a-box>
-    <a-box position="0 -1 0.45" width="0.3" height="0.6" depth="0.05" color="#ff0000"></a-box>
-    <a-box position="0 -1 -0.45" width="0.3" height="0.6" depth="0.05" color="#ff0000"></a-box>
-
-  </a-entity>
+ <a-entity
+  id="rocket"
+  obj-model="obj: #rocketOBJ"
+  position="0 0.15 0"
+  scale="0.1 0.1 0.1"
+  rotation="-90 0 0"
+  material="color: #ffffff; metalness: 0.2; roughness: 0.5">
+</a-entity>
 
   <!-- TEXTO -->
   <a-text
@@ -139,3 +134,4 @@ function moveBack() {
 
 </body>
 </html>
+
