@@ -108,17 +108,34 @@ Explora el cohete
   
 
   <!-- TORRE SIMPLIFICADA -->
-  <a-box position="1.2 2 0" width="0.3" height="4" depth="0.3" color="#888"></a-box>
-  <a-box position="1.2 4 0" width="1" height="0.1" depth="0.3" color="#999"></a-box>
+<!-- TORRE PRINCIPAL (MÁS GRUESA Y ALTA) -->
+<a-box
+  position="1.2 3.5 0"
+  width="0.6"
+  height="7"
+  depth="0.6"
+  color="#888"
+  shadow="cast: true">
+</a-box>
+
+<!-- BRAZO SUPERIOR -->
+<a-box
+  position="1.2 7.1 0"
+  width="1.6"
+  height="0.15"
+  depth="0.6"
+  color="#999">
+</a-box>
+
 <!-- TEXTO EN LA TORRE -->
-<!-- TEXTO EN LA TORRE (VISIBLE AL FRENTE) -->
+<!-- TEXTO EN LA TORRE (ALTO Y CENTRADO) -->
 <a-text
   value="JICAAT V\nVilla Automation"
-  position="1.2 4.8 -0.35"
+  position="1.2 6.2 -0.35"
   rotation="0 0 0"
   align="center"
   color="#00c0ff"
-  width="2"
+  width="2.4"
   side="double">
 </a-text>
 
@@ -222,6 +239,7 @@ function moveRight() {
 
 </body>
 </html>
+
 
 
 
