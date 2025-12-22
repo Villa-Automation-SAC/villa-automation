@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Estudio de Transmisión en Vivo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #0b1623;
+  color: #fff;
+}
+
+header {
+  background: #081b2d;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
+}
+
+.panel {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+video {
+  width: 100%;
+  background: black;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+.controls {
+  background: #10263f;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.controls h3 {
+  margin-top: 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: none;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.btn-camera { background: #1abc9c; }
+.btn-screen { background: #3498db; }
+.btn-start  { background: #e74c3c; }
+.btn-stop   { background: #7f8c8d; }
+
+.status {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #00ff9c;
+}
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>🎥 Estudio de Transmisión en Vivo</h1>
+  <p>Software de transmisión web</p>
+</header>
+
+<div class="container">
+
+  <div class="panel">
+
+    <!-- PREVIEW -->
+    <div>
+      <video id="preview" autoplay muted playsinline></video>
+    </div>
+
+    <!-- CONTROLES -->
+    <div class="controls">
+      <h3>🔴 Controles</h3>
+
+      <input id="streamKey" placeholder="Pega la clave de transmisión">
+
+      <button class="btn-camera" onclick="startCamera()">📷 Activar Cámara</button>
+      <button class="btn-screen" onclick="shareScreen()">🖥 Compartir Pantalla</button>
+      <button class="btn-start" onclick="startStream()">🔴 Iniciar Transmisión</button>
+      <button class="btn-stop" onclick="stopStream()">⛔ Detener</button>
+
+      <div class="status" id="status">Estado: detenido</div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer>
+  © 2025 — Plataforma de Transmisión Web
+</footer>
+
+<script>
+let stream;
+let pc;
+
+async function startCamera() {
+  stream = await navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true
+  });
+  document.getElementById("preview").srcObject = stream;
+  setStatus("Cámara activa");
+}
+
+async function shareScreen() {
+  stream = await navigator.mediaDevices.getDisplayMedia({
+    video: true,
+    audio: true
+  });
+  document.getElementById("preview").srcObject = stream;
+  setStatus("Compartiendo pantalla");
+}
+
+async function startStream() {
+  const key = document.getElementById("streamKey").value;
+  if (!key) {
+    alert("Pega la clave de transmisión");
+    return;
+  }
+
+  pc = new RTCPeerConnection();
+
+  stream.getTracks().forEach(track => {
+    pc.addTrack(track, stream);
+  });
+
+  const offer = await pc.createOffer();
+  await pc.setLocalDescription(offer);
+
+  /* ===== ENVÍO AL SERVIDOR =====
+     Cambia esta URL por tu servidor WHIP */
+  await fetch("https://TU_SERVIDOR/whip", {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer " + key,
+      "Content-Type": "application/sdp"
+    },
+    body: offer.sdp
+  });
+
+  setStatus("🔴 Transmitiendo en vivo");
+}
+
+function stopStream() {
+  if (pc) pc.close();
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  document.getElementById("preview").srcObject = null;
+  setStatus("Transmisión detenida");
+}
+
+function setStatus(text) {
+  document.getElementById("status").innerText = "Estado: " + text;
+}
+</script>
+
+</body>
+</html>
