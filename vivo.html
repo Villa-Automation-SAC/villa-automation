@@ -105,17 +105,28 @@ async function shareScreen() {
 
 async function startStream() {
   if (!stream) {
-    alert("Primero activa la cámara o pantalla");
+    alert("Activa cámara o pantalla primero");
     return;
   }
 
   pc = new RTCPeerConnection();
+
+  pc.onicecandidate = e => {
+    if (e.candidate === null) {
+      fetch("http://localhost:8889/live/whep", {
+        method: "POST",
+        headers: { "Content-Type": "application/sdp" },
+        body: pc.localDescription.sdp
+      });
+    }
+  };
+
   stream.getTracks().forEach(track => pc.addTrack(track, stream));
 
   const offer = await pc.createOffer();
   await pc.setLocalDescription(offer);
 
-  setStatus("Transmisión iniciada (WebRTC)");
+  setStatus("📡 Enviando a MediaMTX");
 }
 
 function stopStream() {
@@ -128,3 +139,4 @@ function stopStream() {
 
 </body>
 </html>
+
