@@ -1,0 +1,502 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Villa Games – Juegos Online</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #4ef2ff, #00c3ff);
+        -webkit-font-smoothing:antialiased;
+    }
+
+    h1 {
+        text-align: center;
+        color: white;
+        margin-top: 25px;
+        font-size: 42px;
+        text-shadow: 0 3px 8px rgba(0,0,0,0.4);
+    }
+
+    .grid-games {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 30px auto;
+    }
+
+    .game-card {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+        transition: transform .25s, box-shadow .25s;
+        cursor: pointer;
+        display:flex;
+        flex-direction:column;
+        justify-content:space-between;
+    }
+
+    .game-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 15px 25px rgba(0,0,0,0.3);
+    }
+
+    .game-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        display:block;
+    }
+
+    .game-info {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .game-info h3 {
+        margin: 0;
+        font-size: 22px;
+        color: #333;
+    }
+
+    .play-btn {
+        display: inline-block;
+        margin: 12px auto;
+        padding: 10px 18px;
+        background: #00c3ff;
+        color: #fff;
+        border-radius: 12px;
+        text-decoration: none;
+        font-size: 18px;
+        transition: background .2s;
+    }
+
+    .play-btn:hover {
+        background: #0099cc;
+    }
+
+    footer {
+        text-align:center;
+        color:rgba(255,255,255,0.95);
+        margin: 40px 0 60px;
+    }
+
+    /* ESTILO PARA EL CONTADOR */
+    #contador-jugadores {
+        font-size: 26px;
+        color: #ffffff;
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 0px 3px 6px rgba(0,0,0,0.35);
+        font-weight: bold;
+    }
+
+    /* BOTÓN ELEGANTE DE RETORNO */
+.return-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(7px);
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    transition: 0.25s;
+    z-index: 9999;
+}
+
+.return-btn:hover {
+    background: rgba(255, 255, 255, 0.45);
+    transform: scale(1.05);
+}
+
+.descarga-contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+/* Botón elegante */
+.btn-descargar {
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #007bff, #00aaff);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 40px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    transition: 0.3s ease;
+    display: inline-block;
+}
+
+.btn-descargar:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.btn-descargar:active {
+    transform: translateY(-2px);
+}
+
+</style>
+
+</head>
+<body>
+
+<h1>🎮 VILLA AUTOMATION GAMES</h1>
+<div style="text-align:center; margin: 20px 0;">
+  <a href="assets/qr.jpeg" target="_blank" class="boton-donacion-elegante" 
+     style="display:inline-flex; align-items:center; gap:10px; padding:10px 18px; 
+            background:#ffffff; color:#000; border-radius:10px; text-decoration:none; 
+            box-shadow:0 4px 10px rgba(0,0,0,0.2); font-weight:bold;">
+
+      <img src="assets/images.jpg" class="icono-donacion" alt=""
+           style="width:55px; height:auto; border-radius:8px;">
+           
+      Donaciones Aquí
+  </a>
+</div>
+
+
+<div class="grid-games">
+
+    <!-- JUEGO 1 -->
+    <div class="game-card" onclick="location.href='juego1.html'">
+        <img src="assets/cohete.jpg" alt="Juego 1">
+        <div class="game-info">
+            <h3>Juego Mission: Viaje a Marte</h3>
+            <a href="juego1.html" class="play-btn">Crear / Jugar</a>
+        </div>
+    </div>
+
+    <!-- JUEGO 2 -->
+    <div class="game-card" onclick="location.href='juego2.html'">
+        <img src="assets/biblia.png" alt="Juego 2">
+        <div class="game-info">
+            <h3>Juego Cristiano: Camino a la Corona</h3>
+            <a href="juego2.html" class="play-btn">Crear / Jugar</a>
+        </div>
+    </div>
+
+      <!-- JUEGO 3 -->
+    <div class="game-card" onclick="location.href='juego3.html'">
+        <img src="assets/ayacucho1.jpg" alt="Juego 3">
+        <div class="game-info">
+            <h3>Juego Inteligente:Camino a Ayacucho</h3>
+            <a href="juego3.html" class="play-btn">Crear / Jugar</a>
+        </div>
+    </div>
+    
+</div>
+
+<h1>¡Activa tu diversión!</h1>
+<p style="text-align:center; max-width:900px; margin:0 auto;">
+    Hemos habilitado la opción de juegos virtuales: al completar misiones y retos, podrás ganar bonos y descuentos en nuestros productos.
+    ¡Participa, diviértete y aprovecha los beneficios exclusivos de Villa Automation!
+</p>
+
+<footer>Hecho con ❤️ — Villa Automation Games</footer>
+
+
+
+
+
+<!-- ============================================= -->
+<!--   SECCIÓN DE TUTORIALES DE ROBÓTICA Y ARDUINO -->
+<!-- ============================================= -->
+<section id="tutoriales-robotica" style="padding:40px 10px; margin-top:40px;">
+    <h1 style="text-align:center; color:white; text-shadow:0 2px 6px rgba(0,0,0,0.4);">
+        🤖 TUTORIALES DE ROBÓTICA Y ARDUINO
+    </h1>
+
+    <!-- ESTILOS AISLADOS PARA NO AFECTAR TU PÁGINA -->
+    <style>
+        .robotica-filtros {
+            display:flex;
+            justify-content:center;
+            gap:12px;
+            margin:25px 0;
+        }
+        .robotica-pill {
+            padding:10px 18px;
+            border-radius:30px;
+            border:none;
+            cursor:pointer;
+            font-size:16px;
+            background:white;
+            color:#007bff;
+            font-weight:bold;
+            transition:.25s;
+        }
+        .robotica-pill.active {
+            background:#00aaff;
+            color:white;
+            box-shadow:0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .robotica-grid {
+            max-width:1200px;
+            margin:auto;
+            display:grid;
+            gap:20px;
+            grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .robotica-card {
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 6px 16px rgba(0,0,0,0.2);
+            transition:.25s;
+            display:flex;
+            flex-direction:column;
+        }
+        .robotica-card:hover {
+            transform:scale(1.05);
+            box-shadow:0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        .robotica-card img {
+            width:100%;
+            height:180px;
+            object-fit:cover;
+        }
+        .robotica-card .content {
+            padding:15px;
+        }
+        .robotica-card h3 {
+            margin:0;
+            color:#333;
+            font-size:20px;
+        }
+        .robotica-card p {
+            font-size:14px;
+            color:#666;
+        }
+        .robotica-link {
+            display:inline-block;
+            margin-top:10px;
+            background:#007bff;
+            color:white;
+            padding:10px 18px;
+            border-radius:12px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+        .robotica-link:hover { background:#005fcc; }
+        .return-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #ff0077; /* Color llamativo */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 0, 119, 0.4);
+  transition: 0.3s;
+}
+
+.return-btn:hover {
+  background: #ff3399;
+  box-shadow: 0 6px 14px rgba(255, 0, 119, 0.6);
+  transform: translateY(-2px);
+}
+
+    </style>
+
+    <!-- FILTROS -->
+    <div class="robotica-filtros">
+        <button class="robotica-pill active" data-filter="all">Todos</button>
+        <button class="robotica-pill" data-filter="arduino">Arduino</button>
+        <button class="robotica-pill" data-filter="robotica">Robótica</button>
+        <button class="robotica-pill" data-filter="firebase">Firebase</button>
+    </div>
+
+    <!-- GRID -->
+    <div class="robotica-grid">
+
+        <!-- CARD 1 -->
+        <div class="robotica-card" data-category="robotica">
+            <img src="assets/robotica1.jpg" alt="Robot móvil">
+            <div class="content">
+                <h3>Robot móvil con Bluetooth</h3>
+                <p>Construye y controla un robot móvil usando Arduino + un módulo HC-05.</p>
+                <a class="robotica-link" href="tutorial1.html">Ver Tutorial</a>
+            </div>
+        </div>
+
+        <!-- CARD 2 -->
+        <div class="robotica-card" data-category="arduino">
+            <img src="assets/robotica2.jpg" alt="Robot1 móvil">
+            <div class="content">
+                <h3>Agrobot Humidificador automático</h3>
+                <p>Construir un sistema que mantenga la humedad relativa o humedad del sustrato en un rango definido mediante un humidificador (atomizador ultrasónico o bomba de niebla).</p>
+                <a class="robotica-link" href="tutorial2.html">Ver Tutorial</a>
+            </div>
+        </div>
+
+        <!-- CARD 3 -->
+        <div class="robotica-card" data-category="arduino">
+            <img src="assets/robot3.png" alt="Robot2 móvil">
+            <div class="content">
+                <h3>robot Wall-E con Arduino</h3>
+                <p>Guía completa para construir un robot Wall-E usando Arduino.</p>
+                <a class="robotica-link" href="tutorial3.html">Ver Tutorial</a>
+            </div>
+        </div>
+
+        <!-- CARD 4 -->
+        <div class="robotica-card" data-category="robotica">
+            <img src="assets/robotica4.jpg" alt="Robot móvil">
+            <div class="content">
+                <h3>Riego Automatico con Arduino</h3>
+                <p>Sistema de riego automatico con arduino y sensores basico.</p>
+                <a class="robotica-link" href="tutorial4.html">Ver Tutorial</a>
+            </div>
+        </div>
+
+        <!-- CARD 5 -->
+        <div class="robotica-card" data-category="firebase">
+             <img src="assets/semaforo.jpg" alt="Robot móvil">
+            <div class="content">
+                <h3>Semáforo Inteligente con Arduino</h3>
+                <p>Implementa semáforo para intersección con prioridad peatonal.</p>
+                <a class="robotica-link" href="tutorial5.html">Ver Tutorial</a>
+            </div>
+        </div>
+
+          <!-- CARD 5 -->
+        <div class="robotica-card" data-category="firebase">
+             <img src="assets/arduino.jpg" alt="arduino">
+            <div class="content">
+                <h3>Tutotial Programación Arduino desde Cero</h3>
+                <p>Aprende a programar en el Arduino IDE desde Cero con Villa Automation.</p>
+                <a class="robotica-link" href="tutorial6.html">Ver Tutorial</a>
+            </div>
+        </div>
+
+                  <!-- CARD 6 -->
+        <div class="robotica-card" data-category="firebase">
+             <img src="assets/proteus.png" alt="proteus">
+            <div class="content">
+                <h3>Tutotial Proteus desde Cero</h3>
+                <p>Aprende desarrollar circutios en Proteus desde Cero con Villa Automation.</p>
+                <a class="robotica-link" href="tutorial7.html">Ver Tutorial</a>
+            </div>
+        </div>
+        
+    </div>
+
+    <!-- SCRIPT DE FILTRO -->
+    <script>
+        const rPills = document.querySelectorAll(".robotica-pill");
+        const rCards = document.querySelectorAll(".robotica-card");
+
+        rPills.forEach(btn => {
+            btn.addEventListener("click", () => {
+                // activar botón
+                rPills.forEach(p => p.classList.remove("active"));
+                btn.classList.add("active");
+
+                const filtro = btn.dataset.filter;
+
+                rCards.forEach(card => {
+                    const cat = card.dataset.category;
+                    card.style.display =
+                        filtro === "all" || filtro === cat
+                            ? "block"
+                            : "none";
+                });
+            });
+        });
+    </script>
+</section>
+
+    <h1>INSTALADORES Y CODIGOS DE PROYECTOS  ARDUINO GRATUITO </h1>
+
+<footer>PROYECTO DE SISTEMA DE PRESION, TEM Y HUMEDAD CON PANTALLA OLED </footer>
+
+<div class="descarga-contenedor">
+    <a href="assets/proyecto_OLED.ino" download class="btn-descargar">⬇ Descargar Archivo</a>
+</div>
+
+<footer>INSTALADOR DE ARDUINO IDE 1.8.15 RECOMENDADO POR VILLA AUTOMATION</footer>
+
+<div class="descarga-contenedor">
+    <a href="https://drive.google.com/file/d/1kA7g2F05zLsJ4zPba7g689esWg6dLSgH/view?usp=drive_link" class="btn-descargar">⬇ Descargar Archivo</a>
+</div>
+ 
+<footer>INSTALADOR DE OPEN ROCKET 24.12 RECOMENDADO POR VILLA AUTOMATION</footer>
+
+<div class="descarga-contenedor">
+    <a href="https://drive.google.com/file/d/1wO1sLR1wY5neJoa8oI2GA8QVDgErz0Ul/view?usp=drive_link" class="btn-descargar">⬇ Descargar Archivo</a>
+</div>
+
+    <footer>INSTALADOR DE SCILAB 6.1 RECOMENDADO POR VILLA AUTOMATION</footer>
+
+<div class="descarga-contenedor">
+    <a href="https://drive.google.com/file/d/1667SaeJ9Tzt977ApTC4LbJJ7C09wzsNQ/view?usp=drive_link" class="btn-descargar">⬇ Descargar Archivo</a>
+</div>
+
+    
+<a href="index.html" class="return-btn">⟵ Regresar</a>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
