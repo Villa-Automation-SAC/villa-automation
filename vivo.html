@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -12,80 +12,46 @@ body {
   background: #0b1623;
   color: #fff;
 }
-
 header {
   background: #081b2d;
   padding: 20px;
   text-align: center;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 24px;
-}
-
 .container {
   max-width: 1100px;
   margin: auto;
   padding: 20px;
 }
-
 .panel {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 20px;
 }
-
 video {
   width: 100%;
   background: black;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
 }
-
 .controls {
   background: #10263f;
   padding: 20px;
   border-radius: 12px;
 }
-
-.controls h3 {
-  margin-top: 0;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: none;
-}
-
 button {
   width: 100%;
   padding: 12px;
   margin-bottom: 10px;
-  border: none;
   border-radius: 6px;
-  font-size: 15px;
+  border: none;
   cursor: pointer;
 }
-
 .btn-camera { background: #1abc9c; }
 .btn-screen { background: #3498db; }
 .btn-start  { background: #e74c3c; }
 .btn-stop   { background: #7f8c8d; }
-
 .status {
   margin-top: 10px;
-  font-size: 14px;
   color: #00ff9c;
-}
-footer {
-  text-align: center;
-  padding: 15px;
-  font-size: 13px;
-  opacity: 0.6;
 }
 </style>
 </head>
@@ -98,61 +64,32 @@ footer {
 </header>
 
 <div class="container">
-
   <div class="panel">
 
-    <!-- PREVIEW -->
-    <div>
-      <video id="preview" autoplay muted playsinline></video>
-    </div>
+    <video id="preview" autoplay muted playsinline></video>
 
-    <!-- CONTROLES -->
     <div class="controls">
-      <h3>🔴 Controles</h3>
-
       <input id="streamKey" placeholder="Pega la clave de transmisión">
-
       <button class="btn-camera" onclick="startCamera()">📷 Activar Cámara</button>
       <button class="btn-screen" onclick="shareScreen()">🖥 Compartir Pantalla</button>
       <button class="btn-start" onclick="startStream()">🔴 Iniciar Transmisión</button>
       <button class="btn-stop" onclick="stopStream()">⛔ Detener</button>
-
       <div class="status" id="status">Estado: detenido</div>
     </div>
 
   </div>
-
 </div>
 
-<footer>
-  © 2025 — Plataforma de Transmisión Web
-</footer>
-
 <script>
-let stream;
-let pc;
+let stream = null;
+let pc = null;
 
-async function startCamera() {
-  stream = await navigator.mediaDevices.getUserMedia({
-    video: true,
-    audio: true
-  });
-  document.getElementById("preview").srcObject = stream;
-  setStatus("Cámara activa");
+const preview = document.getElementById("preview");
+const statusEl = document.getElementById("status");
+
+function setStatus(text) {
+  statusEl.innerText = "Estado: " + text;
 }
-
-async function shareScreen() {
-  stream = await navigator.mediaDevices.getDisplayMedia({
-    video: true,
-    audio: true
-  });
-  document.getElementById("preview").srcObject = stream;
-  setStatus("Compartiendo pantalla");
-}
-
-<script>
-let stream;
-let pc;
 
 async function startCamera() {
   stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
@@ -160,40 +97,34 @@ async function startCamera() {
   setStatus("Cámara activa");
 }
 
+async function shareScreen() {
+  stream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+  preview.srcObject = stream;
+  setStatus("Pantalla compartida");
+}
+
 async function startStream() {
+  if (!stream) {
+    alert("Primero activa la cámara o pantalla");
+    return;
+  }
+
   pc = new RTCPeerConnection();
-
-  pc.onicecandidate = e => {
-    if (e.candidate === null) {
-      fetch("http://localhost:8889/live/whep", {
-        method: "POST",
-        headers: { "Content-Type": "application/sdp" },
-        body: pc.localDescription.sdp
-      });
-    }
-  };
-
   stream.getTracks().forEach(track => pc.addTrack(track, stream));
 
   const offer = await pc.createOffer();
   await pc.setLocalDescription(offer);
 
-  setStatus("🔴 Enviando señal a YouTube...");
+  setStatus("Transmisión iniciada (WebRTC)");
 }
 
 function stopStream() {
   if (pc) pc.close();
   if (stream) stream.getTracks().forEach(t => t.stop());
   preview.srcObject = null;
-  setStatus("Transmisión detenida");
-}
-
-function setStatus(text) {
-  document.getElementById("status").innerText = "Estado: " + text;
+  setStatus("Detenido");
 }
 </script>
 
-
 </body>
 </html>
-
