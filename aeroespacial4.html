@@ -1,0 +1,515 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JICAAT V – Sistema Orbital</title>
+
+<style>
+/* =========================
+   ESTILOS GENERALES
+========================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.menu {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* =========================
+   SECCIÓN PRINCIPAL
+========================= */
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 80px;
+  gap: 60px;
+  position: relative;
+}
+
+/* Línea roja central */
+.section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 80%;
+  width: 2px;
+  background: #e10600;
+}
+
+/* =========================
+   COLUMNA TEXTO
+========================= */
+.text-box {
+  max-width: 620px;
+}
+
+.text-box h1 {
+  font-size: 52px;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+.text-box p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   OBJETIVOS
+========================= */
+.text-box h2 {
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-left: 3px solid #e10600;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card ul {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+/* =========================
+   COLUMNA IMAGEN
+========================= */
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 90vh;
+  overflow: hidden;   /* CLAVE */
+}
+
+
+.image-box img {
+  max-height: 90vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* CLAVE para infografías */
+  transform-origin: center;
+  filter: drop-shadow(0 0 30px rgba(255,255,255,0.25));
+}
+
+   
+.rotate-up {
+  transform: rotate(90deg);
+}
+
+.rotate-right {
+  transform: rotate(90deg);
+}
+
+.rotate-none {
+  transform: rotate(0deg);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .rotate-up {
+    transform: rotate(90deg);
+    max-height: 60vh;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .section::before {
+    display: none;
+  }
+
+  .image-box {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .text-box h1 {
+    font-size: 40px;
+  }
+}
+.infografia {
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .infografia {
+    max-height: 60vh;
+  }
+}
+.cohete-principal {
+  height: 90vh;        /* ALTURA FIJA */
+  width: auto;
+  max-width: none;
+  transform: rotate(90deg);
+}
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: visible;   /* IMPORTANTE */
+}
+.text-box ul {
+  padding-left: 18px;
+}
+
+.text-box li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.cohete-principal {
+  max-width: 100%;
+  border: 1px solid #ccc;
+}
+.image-box {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.cohete-principal {
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">LYNX SPACE &nbsp;|&nbsp; VILLA AUTOMATION</div>
+  <div class="menu">☰</div>
+</header>
+
+<section class="section">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="text-box">
+    <h1>JICAAT V</h1>
+
+    <p>
+      El JICAAT V es un vehículo lanzador experimental de dos etapas,
+      desarrollado por LYNX SPACE. como parte de una
+      iniciativa nacional de investigación aplicada en ingeniería
+      aeroespacial, propulsión, guiado y sistemas autónomos.
+      Esta versión representa la quinta iteración del programa JICAAT,
+      incorporando mejoras en propulsión sólida, estabilidad aerodinámica,
+      sistemas de Guiamiento, Navegación y Control (GNC), instrumentación
+      y telemetría a bordo.
+    </p>
+
+    <h2>Objetivos del Proyecto</h2>
+
+    <div class="grid">
+
+      <div class="card">
+        <h3>🎯 Técnicos</h3>
+        <ul>
+          <li>Validar estabilidad aerodinámica y estructural</li>
+          <li>Evaluar desempeño del sistema GNC</li>
+          <li>Analizar trayectoria y dinámica de vuelo</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🔬 Científicos</h3>
+        <ul>
+          <li>Obtención de datos reales de vuelo</li>
+          <li>Monitoreo ambiental (CO₂, aerosoles, humedad)</li>
+          <li>Validación de modelos CFD</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🛰️ Tecnológicos</h3>
+        <ul>
+          <li>Prueba del CubeSat VA-I</li>
+          <li>Telemetría en tiempo real</li>
+          <li>Ensayo de subsistemas electrónicos</li>
+        </ul>
+      </div>
+
+    <div class="card">
+      <h3>🔥 Configuración</h3>
+      <ul>
+        <li>Propulsión sólida experimental.</li>
+        <li>Dos etapas.</li>
+        <li>Empuje nominal: 400 N por etapa.</li>
+      </ul>
+    </div>
+       
+    <div class="card">
+      <h3>📐 Modelado</h3>
+      <p>
+        El diseño del motor y la tobera se apoya en simulaciones CFD
+        basadas en las ecuaciones de Navier–Stokes compresibles
+        promediadas por Favre, optimizando rendimiento y seguridad.
+      </p>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <!-- COLUMNA DERECHA -->
+  <div class="image-box">
+    <img src="assets/jicaat5.png"
+     alt="JICAAT V"
+     class="cohete-principal">
+  </div>
+
+</section>
+
+   <section class="section">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="text-box">
+     
+ <h2>Guiamiento, Navegación y Control (GNC)</h2>
+<p>
+  El sistema de Guiamiento, Navegación y Control (GNC) del cohete JICAAT V es el
+  encargado de estimar, supervisar y corregir la orientación, posición y
+  trayectoria del vehículo durante todas las fases del vuelo: despegue,
+  ascenso, vuelo balístico y recuperación.
+</p>
+
+<p>
+  Para la estimación de actitud y navegación, el sistema integra sensores
+  inerciales (IMU con acelerómetros y giróscopos), receptor GPS y sensores
+  ambientales, combinados mediante algoritmos de fusión de sensores que
+  permiten obtener datos confiables de posición, velocidad y orientación en
+  tiempo real.
+</p>
+
+<p>
+  El subsistema de control implementa algoritmos de control experimental,
+  incluyendo control PID y esquemas predictivos simplificados, los cuales
+  actúan sobre las superficies de control y/o sistemas de estabilización para
+  minimizar perturbaciones aerodinámicas, vibraciones estructurales y errores
+  de trayectoria.
+</p>
+
+<p>
+  El GNC del JICAAT V ha sido diseñado como una plataforma modular y escalable,
+  permitiendo la validación de nuevas estrategias de control, pruebas de
+  software en vuelo y la futura incorporación de algoritmos avanzados de
+  control autónomo y navegación de alta precisión.
+</p>
+  </div>
+  <!-- COLUMNA DERECHA -->
+  <div class="image-box">
+    <img src="assets/jicaat50.png" alt="JICAAT V" class="rotate-none infografia">
+  </div>
+</section>
+
+   <section class="section">
+  <div class="text-box">
+    <h2>Características del Vehículo</h2>
+
+    <p>
+      El vehículo <strong>JICAAT</strong> presenta una configuración longitudinal modular,
+      optimizada para estabilidad aerodinámica y correcta distribución de masas.
+      En la figura se distinguen claramente los siguientes subsistemas:
+    </p>
+
+    <ul>
+      <li>
+        <strong>Cono de nariz:</strong>
+        Elemento aerodinámico frontal diseñado para minimizar la resistencia
+        y proteger la electrónica sensible durante la fase de ascenso.
+      </li>
+
+      <li>
+        <strong>Compartimiento de aviónica:</strong>
+        Ubicado inmediatamente detrás del cono, alberga sensores inerciales,
+        computadora de vuelo, telemetría y sistema de adquisición de datos.
+      </li>
+
+      <li>
+        <strong>Sección de carga útil:</strong>
+        Módulo central destinado a experimentos, instrumentación o cargas científicas,
+        con sujeción estructural interna.
+      </li>
+
+      <li>
+        <strong>Sistema de recuperación:</strong>
+        Zona intermedia donde se alojan paracaídas, líneas de eyección
+        y mecanismos pirotécnicos de separación.
+      </li>
+
+      <li>
+        <strong>Tanque y estructura trasera:</strong>
+        Incluye el alojamiento del sistema de propulsión y refuerzos estructurales
+        para soportar cargas axiales y vibraciones.
+      </li>
+    </ul>
+  </div>
+
+  <div class="image-box">
+    <img src="assets/jicaat5_2.png" class="cohete-principal">
+  </div>
+</section>
+
+   
+<section class="section">
+  <div class="text-box">
+
+    <h2>Vista Alternativa</h2>
+      <p>
+      Esta vista muestra la disposición interna y externa del vehículo,
+      destacando la integración entre estructura, aerodinámica y propulsión.
+    </p>
+
+    <ul>
+      <li>
+        <strong>Estructura cilíndrica:</strong>
+        Cuerpo principal de diámetro constante que garantiza estabilidad
+        y facilita el ensamblaje modular.
+      </li>
+
+      <li>
+        <strong>Aletas estabilizadoras:</strong>
+        Ubicadas en la sección trasera, proporcionan estabilidad pasiva
+        durante el vuelo supersónico y subsónico.
+      </li>
+
+      <li>
+        <strong>Motor cohete:</strong>
+        Instalado en la sección final, alineado con el eje longitudinal
+        para una correcta transmisión del empuje.
+      </li>
+
+      <li>
+        <strong>Centro de masa y centro de presión:</strong>
+        La configuración asegura que el centro de masa permanezca
+        por delante del centro de presión, mejorando la estabilidad.
+      </li>
+    </ul>
+     
+    <p>Configuración estructural y aerodinámica del vehículo.</p>
+
+    <h2>Características específicas del Vehículo</h2>
+
+    <div class="grid">
+      <div class="card">
+        <ul>
+          <li>Altura total: ~5 m</li>
+          <li>Configuración: Dos etapas</li>
+          <li>Aletas aerodinámicas tipo delta</li>
+          <li>Estructura modular</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <ul>
+          <li>Sistemas de telemetría a bordo</li>
+          <li>Carga útil científica integrada</li>
+          <li>Modelado 3D interior y exterior</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Lanzamiento</h2>
+    <p>
+      <strong>📍 Lugar:</strong> Ayacucho – Perú<br>
+      <strong>📅 Fecha estimada:</strong> Febrero 2026
+    </p>
+
+    <h2>Impacto Estratégico</h2>
+    <p>
+      El proyecto <strong>JICAAT V</strong> fortalece la soberanía tecnológica nacional,
+      impulsa la formación de talento en ingeniería aeroespacial y posiciona
+      al Perú como un actor emergente en el desarrollo de tecnología espacial.
+    </p>
+
+  </div>
+
+  <div class="image-box">
+    <img src="assets/jicaat5_4.png" class="cohete-principal">
+  </div>
+</section>
+
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
