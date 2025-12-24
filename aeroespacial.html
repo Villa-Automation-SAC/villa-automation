@@ -32,12 +32,12 @@
   }
 
   /* GRID TIPO TARJETAS COMO ABB */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-  }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
+  align-items: stretch;
+}
 
   .card {
     background: white;
@@ -66,8 +66,7 @@
     border-radius: 8px;
     text-decoration: none;
   }
-</style>
-  <style>
+  
   /* Ajuste global para imágenes largas */
  img {
   max-width: 100%;
@@ -438,7 +437,8 @@ setInterval(() => {
 <header>
   <h1>Tecnología Aeroespacial & LynxSpace</h1>
   <p>LYNX Space es la nueva marca de Villa Automation dedicada exclusivamente al sector aeroespacial. 
-    Surge con la misión de desarrollar soluciones tecnológicas avanzadas que impulsen la exploración, operación y automatización en entornos espaciales.– Innovación para exploración, defensa y aplicaciones científicas.</p>
+    Surge con la misión de desarrollar soluciones tecnológicas avanzadas que impulsen la exploración, operación y automatización en entornos espaciales.– 
+    Innovación para exploración, defensa y aplicaciones científicas.</p>
   <a href="index.html" class="back-btn"> Volver a la página principal ?</a>
   
 </header>
@@ -541,15 +541,12 @@ setInterval(() => {
   <div class="card">
   <img src="assets/astrodinamica.png" alt="JICAAT" />
   <h3>Astrofisica y Astrodinámica</h3>
-  <p>
-Astrofísica:
+  <p>Astrofísica:
 Estudia los fenómenos físicos del universo —incluyendo estrellas, planetas, galaxias y la interacción entre ellos— usando física, matemáticas y observaciones astronómicas.
   Se aplica también en misiones espaciales para interpretar datos científicos obtenidos desde satélites o instrumentos espaciales.
 Astrodinámica:
 Es la rama de la mecánica que se encarga del movimiento de los cuerpos en
-el espacio bajo la influencia de fuerzas gravitatorias y no gravitatorias (como propulsión, perturbaciones, resistencia atmosférica, etc.)
-
-  </p>
+el espacio bajo la influencia de fuerzas gravitatorias y no gravitatorias (como propulsión, perturbaciones, resistencia atmosférica, etc.)</p>
 
   <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
     📝 Cotizar
@@ -563,12 +560,10 @@ el espacio bajo la influencia de fuerzas gravitatorias y no gravitatorias (como 
   <div class="card">
   <img src="assets/basura.png" alt="JICAAT" />
   <h3>Proyecto de Mineria y Basura Espacial</h3>
-  <p>
-El grupo de investigación Aerospace-Villa Automation ha propuesto un programa nacional de actividades espaciales dentro del marco del proyecto JICAAT (Jornadas Internacionales de Ciencias Avanzadas de Astrodinámica y Teledetección).
+  <p>El grupo de investigación Aerospace-Villa Automation ha propuesto un programa nacional de actividades espaciales dentro del marco del proyecto JICAAT (Jornadas Internacionales de Ciencias Avanzadas de Astrodinámica y Teledetección).
 Este programa contempla:
 desarrollar tecnologías y prototipos aeroespaciales, incluyendo satélites JICAAT, lanzadores y nano robots,
-impulsar investigación sobre estudios ambientales y mitigación de basura espacial como uno de los temas de interés general para la comunidad científica. presupuesto aprox: S/.3000 a S/.500,000).
-  </p>
+impulsar investigación sobre estudios ambientales y mitigación de basura espacial como uno de los temas de interés general para la comunidad científica. presupuesto aprox: S/.3000 a S/.500,000).</p>
 
   <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
     📝 Cotizar
@@ -582,15 +577,13 @@ impulsar investigación sobre estudios ambientales y mitigación de basura espac
   <div class="card">
   <img src="assets/cubsat.jpg" alt="JICAAT" />
   <h3>Fabricación de Cubsat</h3>
-  <p>
-    Villa Automation llegara a iniciar un proyecto de CubeSat (lo cual es plausible según su marco de investigación), las etapas típicas serían:
+  <p>Villa Automation llegara a iniciar un proyecto de CubeSat (lo cual es plausible según su marco de investigación), las etapas típicas serían:
 Definición de la misión (objetivos científicos, educativos o tecnológicos).
 Diseño de la plataforma y subsistemas (estructura, energía, comunicaciones, control de actitud).
 Integración y pruebas de subsistemas (ensayos ambientales, eléctricos, vibración).
 Integración final y pruebas finales.
 Gestión de lanzamiento (cohete o dispenser CubeSat).
-Operación y telemetría en órbita. (presupuesto aprox: S/.3000 a S/.500,000).
-  </p>
+Operación y telemetría en órbita. (presupuesto aprox: S/.3000 a S/.500,000).</p>
 
   <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
     📝 Cotizar
@@ -914,6 +907,7 @@ allowfullscreen></iframe>
 
 
 </html>
+
 
 
 
