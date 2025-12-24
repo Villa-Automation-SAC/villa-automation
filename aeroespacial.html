@@ -748,70 +748,6 @@ Villa Automation se encuentra en una etapa experimental y de prototipado, con pr
     <video src="assets/lanzamiento.mp4" controls></video>
   </div>
 
-  <div class="video-info">
-    <h3>JICAAT II</h3>
-    <p>Pruebas del campo del cohete experimental JICAAT II.</p>
-  </div>
-</div>
-
-  En el presente proyecto de investigación y desarrollo se permitió demostrar la viabilidad de un sistema de guiado y control para luego ser aprobado en los lanzadores JICAAT o algún vehículo comercial desarrollado en la región de Ayacucho, aportando conocimiento, tecnología propia y capacidades estratégicas para el desarrollo aeroespacial y la defensa de nuestro país. 
-  Los resultados obtenidos en la simulación demuestran que el controlador diseñado logra un seguimiento preciso de la referencia angular, con estabilidad, bajo error estacionario y respuesta eficiente, condiciones indispensables para la operación confiable de vehículos de lanzamiento o plataformas aéreas no tripuladas. Este proyecto aporta conocimiento directamente aplicable en el fortalecimiento de los sistemas de defensa, vigilancia y control del espacio aéreo, así como en el desarrollo de tecnologías duales con fines científicos, educativos y de seguridad nacional. Asimismo, fomenta la formación de capital humano especializado y la transferencia tecnológica hacia sectores productivos e instituciones de investigación, consolidando a la región como un polo emergente en ingeniería aeroespacial.
-  <ul>
-<li>Diseño aerodinámico optimizado con modelado CFD.</li>
-<li>Control de trayectoria basado en sensores inerciales y algoritmos PID/MPC.</li>
-<li>Sistemas de telemetría en tiempo real y registro de datos en vuelo.</li>
-<li>Ensayos de estabilidad, análisis post-lanzamiento y reconstrucción de trayectoria.</li>
-<li>Desarrollo incremental de versiones de 1, 2 y 3 etapas para pruebas suborbitales.</li>
-</ul>
-<p>
- <img src="assets/cohete31.jpeg" alt="Aeroespacial">
-  <p>
-  En el Perú, el desarrollo de tecnologías aeroespaciales y de defensa ha tenido un crecimiento sostenido en los últimos años, impulsado por instituciones públicas, 
-  universidades y empresas privadas que buscan fortalecer la soberanía tecnológica nacional. La Comisión Nacional de Investigación y Desarrollo Aeroespacial (CONIDA) y el ejercito del Perú ha sido la principal entidades interesadas en  la gestión de nuestrosa proyectos aeroespaciales. Asimismo, nuestros programas académicos como el JICAAT (Jornadas de Ingeniería Científica Aeroespacial y Astronáutica del Perú), impulsado por Villa Automation SAC, han desarrollado cohetes experimentales de prueba, tales como el JICAAT III, 
-  con el objetivo de fortalecer la formación en guiado, propulsión y simulación de vuelo (Huayanay, 2024).
-  <p>
-  <img src="assets/cohete33.jpeg" alt="Aeroespacial">
-<p>
-En el contexto actual de la defensa nacional peruana, la capacidad tecnológica para el desarrollo de sistemas autónomos de guiado, navegación control en vehículos lanzadores es muy limitada y depende en gran medida de equipos y software extranjeros. Esta dependencia tecnológica restringe la operativa y limita el avance en proyectos estratégicos de investigación y desarrollo vinculados a la industria aeroespacial y de defensa del país.
-La empresa Villa Automation SAC mediante LinxSapce , en su línea de innovación tecnológica, ha emprendido el desarrollo de un sistema de guiado y control de vehículo lanzador, con el propósito de fortalecer las capacidades nacionales en el diseño, modelamiento, simulación y operación de cohetes experimentales y sistemas de lanzamiento controlado. Sin embargo, se identifican diversas problemáticas técnicas y operativas que obstaculizan la implementación eficiente de este sistema.
-Entre las principales dificultades se encuentran la falta de algoritmos de control robustos y adaptativos capaces de estabilizar el vehículo ante perturbaciones atmosféricas y variaciones dinámicas; la limitada integración entre los sensores de navegación (IMU, GPS, giroscopios) y los actuadores de control; así como la ausencia de un modelo matemático validado que permita simular con precisión la trayectoria y desempeño del vehículo durante las fases de ascenso, guiado y corrección. Muy pocas empresas o Universidades nacionales vienen trabajando en este sector, que es grande necesidad para el avance científico en sistemas de defensa, excepto de algunas instituciones como la CONIDA, FFAA o la Fuerza área del Perú (FAP) que vienen incentivando este tipo de proyectos ver Fig. 1.1.
-Además, la infraestructura experimental disponible para realizar pruebas de validación de los sistemas de guiado y control es aún incipiente, lo cual incrementa la incertidumbre en el comportamiento dinámico del lanzador y dificulta la optimización del regulador diseñado.
-Frente a esta situación, surge la necesidad de desarrollar un sistema de guiado y control integrado, que permita modelar, simular y validar el comportamiento del vehículo lanzador bajo diferentes condiciones de operación, utilizando métodos matemáticos avanzados, controladores óptimos y tecnologías de instrumentación nacional. 
-  Este esfuerzo busca contribuir al desarrollo de la autonomía tecnológica y al fortalecimiento de la capacidad científica del país peruano en materia de defensa y exploración aeroespacial. 
-<p>
-  <img src="assets/cohete7.jpg" alt="Aeroespacial">
-<p>
-
- <h1>Fundamento físico y Matemáticos del Sistema de Guiado, Navegación y Control Autónomo (GNC)</h1>
-<p>
-  El Sistema de Guiado, Navegación y Control (GNC) constituye el núcleo funcional de un vehículo lanzador, responsable de determinar su posición, orientación, trayectoria y maniobras correctivas durante las fases de ascenso, vuelo y estabilización. El objetivo principal es garantizar que el vehículo siga una trayectoria óptima hacia su destino, compensando perturbaciones externas y variaciones dinámicas en tiempo real.
-El sistema GNC se estructura en tres subsistemas interconectados: guiado (Guidance), navegación (Navigation) y control (Control), cada uno con fundamentos físicos y matemáticos específicos.
-<p>
-<img src="assets/cohete34.png" alt="Aeroespacial">
-<p>
-  <p>
-<img src="assets/cohete37.jpg" alt="Aeroespacial">
-<p>
-  <h1>Descripción Sistema de Guiado y Control para Vehículo Lanzador</h1>
-  <p>
-El Sistema de Guiado y Control (SGC) de un vehículo lanzador desarrollado por Villa Automation SAC constituye el conjunto de subsistemas encargados de determinar, supervisar y corregir la trayectoria y orientación del cohete durante las distintas fases de vuelo. Su función principal es garantizar que el vehículo siga la trayectoria óptima predeterminada, manteniendo la estabilidad dinámica y la precisión direccional frente a perturbaciones externas, tales como el viento, variaciones de masa y errores de medición. 
-  El prototipo tiene medidas entre 8 a 10 cm de lago y 5 a 6 cm de diámetro aproximadamente, ver figura 2.3.
-  <p>
-  <p>
-<img src="assets/cohete35.jpg" alt="Aeroespacial">
-<p>
-<h1>Funcionalidad Sistema de Guiado y Control para Vehículo Lanzador</h1>
-En el caso del vehículo lanzador JICAAT, el sistema desarrollado por Villa Automation SAC cumple las siguientes funciones específicas:
-•	Determinación autónoma de trayectoria mediante simulación en Scilab/Xcos.
-•	Estimación inercial mediante sensores IMU-GPS integrados.
-•	Ejecución de control PID/LQR sobre actuadores de empuje vectorial.
-•	Transmisión de telemetría a estación base por radiofrecuencia.
-Registro de parámetros de vuelo (altitud, orientación, aceleración) en memoria SD para análisis post-lanzamiento. 
-  Estas funcionalidades permiten validar los algoritmos de guiado y control desarrollados, así como demostrar la capacidad nacional de implementar sistemas autónomos de precisión aplicables a la 
-  defensa y la investigación aeroespacial, como se muestra la figura.
-  <p>
-<img src="assets/cohete38.jpg" alt="Aeroespacial">
-<p>
 
 <h1>Implementación y pruebas de campo</h1>
 A partir de esta configuración, se puede analizar cómo y dónde implementar el sistema de guiado y control (SGC) desarrollado por la empresa Villa Automation SAC.
@@ -938,6 +874,7 @@ allowfullscreen></iframe>
 
 
 </html>
+
 
 
 
