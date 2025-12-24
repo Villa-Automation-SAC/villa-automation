@@ -401,6 +401,27 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
+.botones-card {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.btn-info {
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #003cff, #00c6ff);
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-info:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 198, 255, 0.7);
+}
 
 </style>
 
@@ -429,12 +450,25 @@ setInterval(() => {
   <div class="grid">
 
     <div class="card">
-      <img src="assets/cohetex23.jpg" alt="asesoria" />
-      <h3>Asesoria en Tecnología Aeroespacial</h3>
-      <p>Asesoria especializada en plataformas desarrolladas para investigación científica y defensa (presupuesto aprox: S/.200 a s/.50,000).</p>
-    <button class="btn-cotizar" onclick="abrirFormulario('Asesoria en Tecnología Aeroespacial')">
-    📝 Cotizar
-</button>
+  <img src="assets/cohetex23.jpg" alt="asesoria" />
+  <h3>Asesoria en Tecnología Aeroespacial</h3>
+  <p>
+    Asesoria especializada en plataformas desarrolladas para investigación científica
+    y defensa (presupuesto aprox: S/.200 a S/.50,000).
+  </p>
+
+  <div class="botones-card">
+    <button class="btn-cotizar"
+      onclick="abrirFormulario('Asesoria en Tecnología Aeroespacial')">
+      📝 Cotizar
+    </button>
+
+    <a href="aeroespacial1.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
+</div>
+
       
     </div>
 
@@ -445,7 +479,11 @@ setInterval(() => {
       <button class="btn-cotizar" onclick="abrirFormulario('Cohetes JICAAT')">
     📝 Cotizar
 </button>
-
+      
+ <a href="aeroespacial2.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
     </div>
 
     <div class="card">
@@ -455,7 +493,11 @@ setInterval(() => {
       <button class="btn-cotizar" onclick="abrirFormulario('Aviónica y Control')">
     📝 Cotizar
 </button>
-
+      
+ <a href="aeroespacial3.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
     </div>
 
     <div class="card">
@@ -465,7 +507,11 @@ setInterval(() => {
       <button class="btn-cotizar" onclick="abrirFormulario('Pruebas de Campo')">
     📝 Cotizar
 </button>
-
+      
+ <a href="aeroespacial4.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
     </div>
 
     <div class="card">
@@ -476,11 +522,15 @@ setInterval(() => {
     📝 Cotizar
 </button>
 
+       <a href="aeroespacial5.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
     </div>
 
 <div class="card">
   <img src="assets/jicaat.jpg" alt="JICAAT" />
-  <h3>Diseño y Construcción</h3>
+  <h3>Diseño y Fabricación</h3>
   <p>
     Desde modelamiento, diseño y construcción, así como validación para
     transporte de cargas útiles o CubeSats para monitoreo ambiental y
@@ -490,8 +540,78 @@ setInterval(() => {
   <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
     📝 Cotizar
   </button>
-</div>  <!-- 🔴 ESTE CIERRE FALTABA -->
+  
+   <a href="aeroespacial6.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
+</div> 
 
+  <div class="card">
+  <img src="assets/astrodinamica.png" alt="JICAAT" />
+  <h3>Astrofisica y Astrodinámica</h3>
+  <p>
+Astrofísica:
+Estudia los fenómenos físicos del universo —incluyendo estrellas, planetas, galaxias y la interacción entre ellos— usando física, matemáticas y observaciones astronómicas.
+  Se aplica también en misiones espaciales para interpretar datos científicos obtenidos desde satélites o instrumentos espaciales.
+Astrodinámica:
+Es la rama de la mecánica que se encarga del movimiento de los cuerpos en
+el espacio bajo la influencia de fuerzas gravitatorias y no gravitatorias (como propulsión, perturbaciones, resistencia atmosférica, etc.)
+
+  </p>
+
+  <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
+    📝 Cotizar
+  </button>
+  
+   <a href="aeroespacial7.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
+</div>
+
+  <div class="card">
+  <img src="assets/basura.png" alt="JICAAT" />
+  <h3>Proyecto de Mineria y Basura Espacial</h3>
+  <p>
+El grupo de investigación Aerospace-Villa Automation ha propuesto un programa nacional de actividades espaciales dentro del marco del proyecto JICAAT (Jornadas Internacionales de Ciencias Avanzadas de Astrodinámica y Teledetección).
+Este programa contempla:
+desarrollar tecnologías y prototipos aeroespaciales, incluyendo satélites JICAAT, lanzadores y nano robots,
+impulsar investigación sobre estudios ambientales y mitigación de basura espacial como uno de los temas de interés general para la comunidad científica. presupuesto aprox: S/.3000 a S/.500,000).
+  </p>
+
+  <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
+    📝 Cotizar
+  </button>
+  
+   <a href="aeroespacial8.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
+</div>
+
+  <div class="card">
+  <img src="assets/cubsat.jpg" alt="JICAAT" />
+  <h3>Fabricación de Cubsat</h3>
+  <p>
+    Villa Automation llegara a iniciar un proyecto de CubeSat (lo cual es plausible según su marco de investigación), las etapas típicas serían:
+Definición de la misión (objetivos científicos, educativos o tecnológicos).
+Diseño de la plataforma y subsistemas (estructura, energía, comunicaciones, control de actitud).
+Integración y pruebas de subsistemas (ensayos ambientales, eléctricos, vibración).
+Integración final y pruebas finales.
+Gestión de lanzamiento (cohete o dispenser CubeSat).
+Operación y telemetría en órbita. (presupuesto aprox: S/.3000 a S/.500,000).
+  </p>
+
+  <button class="btn-cotizar" onclick="abrirFormulario('Diseño y Construcción')">
+    📝 Cotizar
+  </button>
+  
+   <a href="aeroespacial9.html" class="btn-info">
+      🚀 Más información
+    </a>
+  </div>
+</div>
 
 <div class="card">
   <img src="assets/noticias1.png" alt="Transmisiones Aeroespaciales JICAAT" />
@@ -807,6 +927,7 @@ allowfullscreen></iframe>
 
 
 </html>
+
 
 
 
