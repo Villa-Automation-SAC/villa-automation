@@ -399,9 +399,28 @@ button:hover{
 </div>
 
      <div class="card" onclick="abrirFormulario(
-        'JICAAT VA-III',
+        'Robot soldador',
         'S/ 4500',
         'assets/catalogo06.png'
+    )">
+
+       <img src="assets/deinfeccion.png">
+    <h3>Robot colaborativo de Desinfección y Fumigación</h3>
+    <p>S/ 3000</p>
+
+    <!-- Botón de más información -->
+    <a 
+        href="robotsoldador.html"
+        class="btn-info"
+        onclick="event.stopPropagation();">
+        Más información
+    </a>
+</div>
+
+     <div class="card" onclick="abrirFormulario(
+        'Robot fumigador',
+        'S/ 3000',
+        'assets/deinfeccion.png'
     )">
     
     <img src="assets/catalogo06.png">
@@ -659,6 +678,7 @@ button:hover{
 <script src="script.js"></script>
 </body>
 </html>
+
 
 
 
