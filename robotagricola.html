@@ -729,28 +729,6 @@ La Unidad de Cosecha es el módulo especializado del robot colaborativo agrícol
 <li>Cosecha automatizada.</li>
 </ul>
 
-<img src="assets/robotagricola8.jpeg">
-
-<!-- -------------------- VIDEOS -------------------- -->
-<h1 id="videos">Demostraciones en Video</h1>
-
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/HKXMj2b_gEA" allowfullscreen></iframe>
-
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/z8NVXm7lHJ0" allowfullscreen></iframe>
-
-<iframe width="100%" height="315" src="https://www.youtube.com/embed/I690H0TMttk" allowfullscreen></iframe>
-
-<!-- -------------------- PRECIOS -------------------- -->
-<h1 id="precios">Presupuesto de Venta</h1>
-<ul>
-<li>Básico: <b>1000 USD</b></li>
-<li>Avanzado: <b>4000 USD</b></li>
-</ul>
-
-<br><br>
-
-  
-<a href="index.html" class="back-btn">← Volver a la página principal</a>
 
 </div>
 
@@ -820,37 +798,290 @@ document.getElementById("modal-cotizar").onclick = (e) => {
   </div>
 </div>
 
-  <script>
-function abrirFormulario(producto) {
-    document.getElementById("producto").value = producto;
-    document.getElementById("popup-cotizacion").style.display = "flex";
+
+
+
+  <style>
+/* ====== GRID PRINCIPAL ====== */
+.noticias-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial;
 }
 
-function cerrarFormulario() {
-    document.getElementById("popup-cotizacion").style.display = "none";
+/* ====== TARJETA GRANDE ====== */
+.noticia-principal {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #111;
+  color: white;
 }
 
-function enviarCorreo() {
-    const producto = document.getElementById("producto").value;
-    const nombre = document.getElementById("nombre").value;
-    const telefono = document.getElementById("telefono").value;
-    const correo = document.getElementById("correo").value;
-    const mensaje = document.getElementById("mensaje").value;
-
-    const cuerpo = 
-`Producto: ${producto}
-Nombre: ${nombre}
-Teléfono: ${telefono}
-Correo: ${correo}
-Mensaje: ${mensaje}`;
-
-    const mailtoLink = `mailto:tu_correo@dominio.com?subject=Solicitud de cotización&body=${encodeURIComponent(cuerpo)}`;
-
-    window.location.href = mailtoLink;
+.noticia-principal img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  opacity: 0.85;
 }
-</script>
+
+.noticia-principal .texto {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+}
+
+.noticia-principal h2 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.noticia-principal p {
+  margin-top: 8px;
+  font-size: 15px;
+  opacity: 0.8;
+}
+
+/* ====== TARJETAS PEQUEÑAS ====== */
+.noticias-secundarias {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.noticia-mini {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.noticia-mini img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.noticia-mini .contenido {
+  padding: 15px;
+}
+
+.noticia-mini h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #222;
+}
+
+.noticia-mini p {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #444;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .noticias-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<!-- ======== SECCIÓN ESTILO ABB ======== -->
+<div class="noticias-grid">
+
+  <!-- === TARJETA PRINCIPAL === -->
+ <div class="noticia-principal">
+    <video src="assets/soldaador1.mp4" autoplay muted loop playsinline 
+           style="width:100%; border-radius:10px;">
+    </video>
+
+    <div class="texto">
+      <h2>Entrenamiento y Optimización del Sistema de Soldadura Robótica</h2>
+      <p>Nuestros robots colaborativos soldadores de Villa Automation se encuentran en un proceso permanente de actualización, aprendizaje y optimización.
+        Gracias a sistemas avanzados de inteligencia artificial y calibración continua, los robots mejoran su precisión, adaptabilidad y calidad de soldadura en cada ciclo de trabajo.
+        El sistema de soldadura robótica de Villa Automation mostrado en la imagen corresponde a un prototipo de plataforma móvil equipada con un brazo automatizado para procesos de soldadura por arco. El robot utiliza una 
+        fuente de soldadura tipo inverter conectada al sistema de control principal, lo que permite regular la corriente y el ciclo de trabajo en tiempo real durante las pruebas.
+        Durante el entrenamiento, el robot ejecuta secuencias repetitivas para mejorar:
+Precisión de trayectoria mediante la calibración de motores y retroalimentación de sensores.
+Estabilidad del arco eléctrico, ajustando parámetros como amperaje, velocidad de avance y distancia electrodo–pieza.
+Compensación dinámica de vibraciones propias de la plataforma móvil, optimizando la fusión del material.
+Alineación del soplete a través de algoritmos de aprendizaje que analizan desviaciones durante la soldadura.
+La generación de chispas observada indica que el sistema está ejecutando una prueba de soldadura activa, evaluando penetración, continuidad del cordón y respuesta del control. 
+El entorno de desarrollo incluye equipos de medición, cableado experimental y módulos electrónicos que permiten el registro de datos para actualizar el modelo de entrenamiento del robot..</p>
+    </div>
+</div>
+
+
+  <!-- === TARJETAS SECUNDARIAS === -->
+  <div class="noticias-secundarias">
+
+   <div class="noticia-mini">
+  <img src="assets/robotagricola8.jpeg" alt="Noticia secundaria"
+       style="width:100%; height:170px; object-fit:cover; border-radius:10px;">
+  <div class="contenido">
+    <h3>Nuestros diseños robustos</h3>
+    <p>Nuestros robots colaborativos están diseñados para trabajar de forma segura y eficiente junto a operadores humanos, ofreciendo robustez, precisión y alta productividad en procesos de soldadura y pintura.
+Gracias a su estructura reforzada, sensores avanzados y un sistema de control inteligente, garantizan acabados uniformes, menor desperdicio de material y ciclos de trabajo continuos..</p>
+  </div>
+</div>
+
+
+    <div class="noticia-mini">
+      <img src="https://villa-automation-sac.github.io/villa-automation/assets/soldador13.jpg" alt="">
+      <div class="contenido">
+        <h3>Trabajo continuo de alta eficiencia </h3>
+        <p>Nuestros sistemas robotizados están diseñados para operar sin interrupciones, manteniendo un rendimiento constante y preciso incluso en procesos industriales exigentes. Gracias a su arquitectura robusta, control inteligente y optimización energética, 
+          garantizan máxima productividad, menor tiempo muerto y una calidad uniforme en cada ciclo de trabajo..</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+.kuka-section {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  font-family: Arial;
+}
+
+/* --- GRID DE LAS 3 TARJETAS --- */
+.kuka-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  margin-top: 40px;
+}
+
+/* --- TARJETA --- */
+.kuka-card {
+  text-align: left;
+}
+
+.kuka-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.kuka-card p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* --- IMAGEN --- */
+.kuka-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+/* --- BOTÓN REDONDO --- */
+.kuka-btn {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.kuka-btn:hover {
+  background: #f0f0f0;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .kuka-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<!-- ==================== SECCIÓN KUKA ==================== -->
+<div class="kuka-section">
+
+  <div class="kuka-grid">
+
+   <div class="kuka-card">
+  <h3>Sistemas de robots</h3>
+  <p>Villa Automation ofrece robots industriales en una gran variedad de versiones con distintas capacidades y alcances de carga útil.</p>
+  <!-- VIDEO EN VEZ DE IMAGEN -->
+  <video src="assets/soldaador2.mp4" autoplay muted loop playsinline
+         style="width:100%; height:220px; object-fit:cover; border-radius:10px; margin-bottom:15px;">
+  </video>
+  <div class="kuka-btn">→</div>
+</div>
+
+   <div class="kuka-card">
+  <h3>Máquinas de producción</h3>
+  <p>Nuestras máquinas permiten integrar componentes estandarizados en procesos de producción personalizados.</p>
+  <!-- VIDEO EN LUGAR DE IMAGEN -->
+  <video src="assets/soldaador3.mp4" autoplay muted loop playsinline
+         style="width:100%; height:220px; object-fit:cover; border-radius:10px; margin-bottom:15px;">
+  </video>
+  <div class="kuka-btn">→</div>
+</div>
+
+
+  <div class="kuka-card">
+  <h3>Sistemas de producción</h3>
+  <p>Desde células de producción individuales hasta sistemas industriales completos para automatización avanzada.</p>
+  <!-- IMAGEN DESDE TU CARPETA ASSETS -->
+  <video src="assets/soldaador4.mp4" autoplay muted loop playsinline
+       style="width:100%; height:220px; object-fit:cover; border-radius:10px; margin-bottom:15px;">
+  <div class="kuka-btn">→</div>
+</div>
+
+  </div>
+
+</div>
+
+<div class="video-section">
+  <div class="video-gallery">
+
+    <!-- Tarjeta 1 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/embed/HKXMj2b_gEA" allowfullscreen></iframe>
+      </div>
+      <h3>ROBOT SOLDADOR – video 01</h3>
+    </div>
+
+    <!-- Tarjeta 2 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/z8NVXm7lHJ0" allowfullscreen></iframe>
+      </div>
+      <h3>ROBOT SOLDADOR – video 02</h3>
+    </div>
+
+    <!-- Tarjeta 3 -->
+    <div class="video-card">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/I690H0TMttk" allowfullscreen></iframe>
+      </div>
+      <h3>ROBOT SOLDADOR – video 03</h3>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
+
 
 
 
