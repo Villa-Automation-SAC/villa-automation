@@ -6,16 +6,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 <link href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="/develop/static/common/css/css.css">
 <link rel="stylesheet" href="/js/jqpagination/jqpagination.css" />
@@ -34,11 +24,6 @@
 		$("title").text($("title").text().replace(/<\/?[^>]*>/g,""));
 	});
 </script>
-
-
-
-
-
 
 
 
@@ -104,7 +89,7 @@ function collectArticle(id) {
 	});
 }
 
-//可视化开始
+//
 $(document).ready(function(){
     var arrSpan=$("[id^='span_visual_article_']");
     if(arrSpan && arrSpan.length && arrSpan.length>0 ){
@@ -118,13 +103,13 @@ $(document).ready(function(){
         }
     }
 });
-//可视化结束
+//
 
 $(document).ready(function(){
 	$(".figureClass").colorbox({rel:'figureClass', transition:"none", width:"80%", height:"80%"});
 	
 });
-//选中文章  文章块  变色
+//
 function hightlightrowaction(rowid) {
 	var thisrow = $("#"+rowid);
 	if ($(thisrow).hasClass("selectedrow")) {
@@ -155,13 +140,13 @@ function selectall(argu,checkBoxName){
         }
     }
 }
-//文章图片显示隐藏用
+//
 function togthumb() {
 	$(".apwrap").toggleClass("hiden");
 	if($('.apwrap').hasClass('hiden'))
-		$("#thumbtn").attr("src", $("#mag-common-journal-url").val()+"/images/sele_pic2.png");
+		$("#thumbtn").attr("src", $("#mag-common-journal-url").val()+"/assets/cohetex1.jpg");
 	else
-		$("#thumbtn").attr("src", $("#mag-common-journal-url").val()+"/images/sele_pic1.png");
+		$("#thumbtn").attr("src", $("#mag-common-journal-url").val()+"/assets/linxs.png");
 }
 //导出
 function downloadCitations(type){
@@ -463,7 +448,7 @@ function downloadCitations(){
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--顶部快速导航下拉导航菜单特效css-->
+<!---->
 <link rel="stylesheet" href="https://htkz.magtechjournal.com/images/1006-3242/css/bootsnav.css">
 <!--网站css-->
 <link rel="stylesheet" href="https://htkz.magtechjournal.com/images/1006-3242/css/font-awesome.min.css">
@@ -2012,5 +1997,6 @@ $("#mag-getDianJiRichHtmlShu-298").load('/EN/article/getDianJiRichHtmlShu.jsp?ar
 </body>
 <script language="javascript" type="text/javascript" src="https://htkz.magtechjournal.com/images/1006-3242/js/j-query.js"></script><!--滚动图片-->
 <script language="javascript" type="text/javascript" src="https://htkz.magtechjournal.com/images/1006-3242/js/ss.js"></script><!--滚动图片 -->
+
 
 </html>
