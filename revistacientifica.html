@@ -115,6 +115,16 @@ footer {
   background-color: #ffffff;
 }
 
+.download_templates .btn {
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.download_templates .glyphicon {
+  margin-right: 8px;
+}
+
 </style>
 </head>
 
@@ -248,12 +258,12 @@ footer {
     <!-- 🔐 OFFICE ONLINE / BOTONES -->
     <div class="col-lg-3 col-md-3 col-sm-12">
       <div class="office_list box1">
-        <div class="title_1">Office Online</div>
+        <div class="title_1"> Oficina en Linea</div>
         <ul>
           <li>
             <a href="../../jx_htkz/authorLogOn.action" target="_blank" class="btn btn-shadow btn_en">
               <img src="https://htkz.magtechjournal.com/images/1006-3242/images/z1.png" class="img-responsive">
-              <div class="bgwz">Author Login</div>
+              <div class="bgwz">Login Author </div>
             </a>
           </li>
 
@@ -287,6 +297,29 @@ footer {
         </ul>
       </div>
     </div>
+
+	  <!-- 📥 DOWNLOAD TEMPLATES -->
+<div class="box1 download_templates">
+  <div class="title_1">Downloads</div>
+
+  <a href="assets/templates/JICAAT_Article_Template.docx" 
+     class="btn btn-primary btn-block" download>
+    <span class="glyphicon glyphicon-download"></span>
+    Full Article Template
+  </a>
+
+  <a href="assets/templates/JICAAT_Abstract_Template.docx" 
+     class="btn btn-info btn-block" download>
+    <span class="glyphicon glyphicon-download"></span>
+    Abstract Template
+  </a>
+
+  <a href="assets/templates/JICAAT_LaTeX_Template.zip" 
+     class="btn btn-success btn-block" download>
+    <span class="glyphicon glyphicon-download"></span>
+    LaTeX Template
+  </a>
+</div>
 
   </div>
 </div>
@@ -1716,6 +1749,7 @@ $("#mag-getDianJiRichHtmlShu-298").load('/EN/article/getDianJiRichHtmlShu.jsp?ar
 
 
 </html>
+
 
 
 
