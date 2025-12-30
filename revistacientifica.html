@@ -1,0 +1,2016 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Aerospace Control</title>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/develop/static/common/css/css.css">
+<link rel="stylesheet" href="/js/jqpagination/jqpagination.css" />
+<script src="/js/jquery/jquery.min.js"></script>
+<script src="/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.qrcode.min.js"></script>
+<script src="/develop/static/common/js/common_en.js"></script>
+<script src="/develop/static/common/js/component_en.js"></script>
+<script language="javascript" src="/js/store.js"></script>
+<script language="javascript" src="/develop/static/common/js/download_en.js"></script>
+<script language="javascript" src="/js/My97DatePicker/WdatePicker.js"></script>
+<link rel="stylesheet" href="/develop/static/common/bootstrap/js/font-awesome.min.css">
+
+<script>
+	$(document).ready(function(){
+		$("title").text($("title").text().replace(/<\/?[^>]*>/g,""));
+	});
+</script>
+
+
+
+
+
+
+
+
+<meta name="renderer"  content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="windows-target" content="_top">
+<meta name="robots" content="follow,noarchive"/>
+
+<meta name="keywords" content="航天控制"> <!-- 中文刊名 -->
+
+
+<meta name="keywords" content="Aerospace Control">  <!-- 英文刊名 -->
+
+<meta name="description" content="Aerospace Control">  <!-- 刊名缩写 -->
+<meta name="generator" content="Magtech">  
+
+<LINK rel=stylesheet type=text/css href="/js/manu/lrtk.css">
+<script language="javascript" src="/js/manu/manu.js"></script>
+<link rel="stylesheet" href="/js/colorbox/colorbox.css" />
+<script src="/js/colorbox/jquery.colorbox.js"></script>
+
+<script>
+MathJax = {
+tex: {
+inlineMath: [['$', '$'], ['\\(', '\\)']]
+},
+svg: {
+fontCache: 'global'
+}
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async src="/js/mathJax3.0/tex-mml-chtml.js"></script>
+<!--[if lt IE 9]>
+<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<script language="javascript">
+function collectArticle(id) {
+	var url = window.location.href;
+	jQuery.ajax({
+		url: $("#mag-common-journal-url").val()+"/EN/user/addCollectArticle.do",
+		data: {
+			"articleId": id,
+			"url": url
+		},
+		type: "post",
+		success: function(res) {
+			if (res == "true") {
+				mag_layer({content:"Sucess to collect!"});
+			} else if (res == "false") {
+				mag_layer({content:"This article has been collected!"});
+			} else if (res.length > 5) {
+				window.location.href = $("#mag-common-journal-url").val()+"/EN/user/userInfo_en.jsp?url=" + res;
+			} else {
+				mag_layer({content:"Fail to collect this article!"});
+			}
+		},
+		error: function() {
+			mag_layer({content:"Fail to collect this article!"});
+		}
+	});
+}
+
+//可视化开始
+$(document).ready(function(){
+    var arrSpan=$("[id^='span_visual_article_']");
+    if(arrSpan && arrSpan.length && arrSpan.length>0 ){
+        for(var i=0;i<arrSpan.length;i++){
+            var articleID=arrSpan[i].id.toString().replace("span_visual_article_","");
+            jQuery.getJSON($("#mag-common-journal-url").val()+"/EN/lexeme/existsCnctstInArticle.do?articleID="+articleID, null, function(json){
+                if(json.result){
+                    $("#span_visual_article_"+json.articleID).show();
+                }
+            });
+        }
+    }
+});
+//可视化结束
+
+$(document).ready(function(){
+	$(".figureClass").colorbox({rel:'figureClass', transition:"none", width:"80%", height:"80%"});
+	
+});
+//选中文章  文章块  变色
+function hightlightrowaction(rowid) {
+	var thisrow = $("#"+rowid);
+	if ($(thisrow).hasClass("selectedrow")) {
+		$(thisrow).removeClass("selectedrow");
+		$(thisrow).addClass("noselectrow");
+	} else {
+		$(thisrow).addClass("selectedrow");
+		$(thisrow).removeClass("noselectrow");
+	}
+}
+
+function selectall(argu,checkBoxName){
+	var obj = document.getElementsByName(checkBoxName);
+    for(var i= 0;i<obj.length;i++){
+		obj[i].checked = argu.checked;
+        //hightlightrowaction('art'+obj[i].value);
+        var thisrow = $("#art"+obj[i].value);
+        if(obj[i].checked){
+        	if (!$(thisrow).hasClass("selectedrow")) {
+				$(thisrow).addClass("selectedrow");
+				$(thisrow).removeClass("noselectrow");
+			}
+        }else{
+        	if ($(thisrow).hasClass("selectedrow")) {
+				$(thisrow).removeClass("selectedrow");
+				$(thisrow).addClass("noselectrow");
+			}
+        }
+    }
+}
+//文章图片显示隐藏用
+function togthumb() {
+	$(".apwrap").toggleClass("hiden");
+	if($('.apwrap').hasClass('hiden'))
+		$("#thumbtn").attr("src", $("#mag-common-journal-url").val()+"/images/sele_pic2.png");
+	else
+		$("#thumbtn").attr("src", $("#mag-common-journal-url").val()+"/images/sele_pic1.png");
+}
+//导出
+function downloadCitations(type){
+	var flag=0;
+	var ids="";
+	var obj = document.getElementsByName('pid');
+	for(var i= 0;i<obj.length;i++){
+		if(obj[i].checked){
+			flag=1;
+			ids+=obj[i].value+",";
+		}
+    }
+	if(flag==0){
+		mag_layer({content:"Please select article!"});
+		return  false;
+	}
+	window.location.href=$("#mag-common-journal-url").val()+"/EN/article/getTxtFiles.do?fileType="+type+"&articleIds="+ids;
+}
+function DrawImage(ImgD,FitWidth,FitHeight){
+	var image=new Image();
+	image.src=ImgD.src;
+	if(image.width>0 && image.height>0){
+		if(image.width/image.height>= FitWidth/FitHeight){
+			if(image.width>FitWidth){
+				ImgD.width=FitWidth;
+				ImgD.height=(image.height*FitWidth)/image.width;
+			}else{
+				ImgD.width=image.width;
+				ImgD.height=image.height;
+			}
+		} else{
+			if(image.height>FitHeight){
+				ImgD.height=FitHeight;
+				ImgD.width=(image.width*FitHeight)/image.height;
+			}else{
+				ImgD.width=image.width;
+				ImgD.height=image.height;
+			}
+		}
+	}
+}
+
+
+function exportCitations(){
+	var articleSelected=false;
+	var ids=''
+	var checkboxs = document.getElementsByName("pid");
+	if(checkboxs && checkboxs.length && checkboxs.length>0){
+		for(var i=0;i<checkboxs.length;i++){
+			if(checkboxs[i].checked){
+				articleSelected=true;
+				if(ids==''){
+					ids += checkboxs[i].value;
+				}else{
+					ids += ','+checkboxs[i].value;
+				}
+			}
+		}
+	}
+	if(articleSelected){
+		$("#export-citation-form-ids").val(ids);
+		mag_layer({
+			type:4,
+			title:'Download Citations',
+			dom:'export-citation-div'
+		})
+	}else{
+		mag_layer({content:'This article has been collected.'});
+	}
+}
+
+//导出
+function downloadCitations(){
+	mag_layer_close();
+	$("#export-citation-form").submit();
+}
+</SCRIPT>
+	
+<!-- 浮动广告开始-->
+<SCRIPT type=text/javascript>
+	function hidead() {
+		document.getElementById("ad1").style.display = "none";
+	}
+	function addEvent(obj, evtType, func, cap) {
+		cap = cap || false;
+		if (obj.addEventListener) {
+			obj.addEventListener(evtType, func, cap);
+			return true;
+		} else if (obj.attachEvent) {
+			if (cap) {
+				obj.setCapture();
+				return true;
+			} else {
+				return obj.attachEvent("on" + evtType, func);
+			}
+		} else {
+			return false;
+		}
+	}
+	function getPageScroll() {
+		var xScroll, yScroll;
+		if (self.pageXOffset) {
+			xScroll = self.pageXOffset;
+		} else if (document.documentElement
+				&& document.documentElement.scrollLeft) {
+			xScroll = document.documentElement.scrollLeft;
+		} else if (document.body) {
+			xScroll = document.body.scrollLeft;
+		}
+		if (self.pageYOffset) {
+			yScroll = self.pageYOffset;
+		} else if (document.documentElement
+				&& document.documentElement.scrollTop) {
+			yScroll = document.documentElement.scrollTop;
+		} else if (document.body) {
+			yScroll = document.body.scrollTop;
+		}
+		arrayPageScroll = new Array(xScroll, yScroll);
+		return arrayPageScroll;
+	}
+	function GetPageSize() {
+		var xScroll, yScroll;
+		if (window.innerHeight && window.scrollMaxY) {
+			xScroll = document.body.scrollWidth;
+			yScroll = window.innerHeight + window.scrollMaxY;
+		} else if (document.body.scrollHeight > document.body.offsetHeight) {
+			xScroll = document.body.scrollWidth;
+			yScroll = document.body.scrollHeight;
+		} else {
+			xScroll = document.body.offsetWidth;
+			yScroll = document.body.offsetHeight;
+		}
+		var windowWidth, windowHeight;
+		if (self.innerHeight) {
+			windowWidth = self.innerWidth;
+			windowHeight = self.innerHeight;
+		} else if (document.documentElement
+				&& document.documentElement.clientHeight) {
+			windowWidth = document.documentElement.clientWidth;
+			windowHeight = document.documentElement.clientHeight;
+		} else if (document.body) {
+			windowWidth = document.body.clientWidth;
+			windowHeight = document.body.clientHeight;
+		}
+		if (yScroll < windowHeight) {
+			pageHeight = windowHeight;
+		} else {
+			pageHeight = yScroll;
+		}
+		if (xScroll < windowWidth) {
+			pageWidth = windowWidth;
+		} else {
+			pageWidth = xScroll;
+		}
+		arrayPageSize = new Array(pageWidth, pageHeight, windowWidth,
+				windowHeight)
+		return arrayPageSize;
+	}
+
+	var AdMoveConfig = new Object();
+	AdMoveConfig.IsInitialized = false;
+	AdMoveConfig.ScrollX = 0;
+	AdMoveConfig.ScrollY = 0;
+	AdMoveConfig.MoveWidth = 0;
+	AdMoveConfig.MoveHeight = 0;
+	AdMoveConfig.Resize = function() {
+		var winsize = GetPageSize();
+		AdMoveConfig.MoveWidth = winsize[2];
+		AdMoveConfig.MoveHeight = winsize[3];
+		AdMoveConfig.Scroll();
+	}
+	AdMoveConfig.Scroll = function() {
+		var winscroll = getPageScroll();
+		AdMoveConfig.ScrollX = winscroll[0];
+		AdMoveConfig.ScrollY = winscroll[1];
+	}
+	addEvent(window, "resize", AdMoveConfig.Resize);
+	addEvent(window, "scroll", AdMoveConfig.Scroll);
+	function AdMove(id) {
+		if (!AdMoveConfig.IsInitialized) {
+			AdMoveConfig.Resize();
+			AdMoveConfig.IsInitialized = true;
+		}
+		var obj = document.getElementById(id);
+		obj.style.position = "absolute";
+		var W = AdMoveConfig.MoveWidth - obj.offsetWidth;
+		var H = AdMoveConfig.MoveHeight - obj.offsetHeight;
+		var x = W * Math.random(), y = H * Math.random();
+		var rad = (Math.random() + 1) * Math.PI / 6;
+		var kx = Math.sin(rad), ky = Math.cos(rad);
+		var dirx = (Math.random() < 0.5 ? 1 : -1), diry = (Math.random() < 0.5 ? 1
+				: -1);
+		var step = 1;
+		var interval;
+		this.SetLocation = function(vx, vy) {
+			x = vx;
+			y = vy;
+		}
+		this.SetDirection = function(vx, vy) {
+			dirx = vx;
+			diry = vy;
+		}
+		obj.CustomMethod = function() {
+			obj.style.left = (x + AdMoveConfig.ScrollX) + "px";
+			obj.style.top = (y + AdMoveConfig.ScrollY) + "px";
+			rad = (Math.random() + 1) * Math.PI / 6;
+			W = AdMoveConfig.MoveWidth - obj.offsetWidth;
+			H = AdMoveConfig.MoveHeight - obj.offsetHeight;
+			x = x + step * kx * dirx;
+			if (x < 0) {
+				dirx = 1;
+				x = 0;
+				kx = Math.sin(rad);
+				ky = Math.cos(rad);
+			}
+			if (x > W) {
+				dirx = -1;
+				x = W;
+				kx = Math.sin(rad);
+				ky = Math.cos(rad);
+			}
+			y = y + step * ky * diry;
+			if (y < 0) {
+				diry = 1;
+				y = 0;
+				kx = Math.sin(rad);
+				ky = Math.cos(rad);
+			}
+			if (y > H) {
+				diry = -1;
+				y = H;
+				kx = Math.sin(rad);
+				ky = Math.cos(rad);
+			}
+		}
+		this.Run = function() {
+			var delay = 10;
+			interval = setInterval(obj.CustomMethod, delay);
+			obj.onmouseover = function() {
+				clearInterval(interval);
+			}
+			obj.onmouseout = function() {
+				interval = setInterval(obj.CustomMethod, delay);
+			}
+		}
+	}
+	
+	$(document).ready(function(){
+		var ad1 = new AdMove("ad1");
+		ad1.Run();
+	});
+
+</SCRIPT>
+<!--漂浮结束-->
+
+<style type="text/css">
+.hiden {
+  display: none;
+}
+.black_overlay{
+    display: none;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #D8D8D8;
+    z-index:1001;
+    -moz-opacity: 0.8;
+    opacity:.80;
+    filter: alpha(opacity=80);
+}
+.waiting_content {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 50%;
+    padding: 16px;
+    border: 1px solid orange;
+    background-color: white;
+    z-index:1002;
+    overflow: auto;
+}
+.STYLE58{
+	text-indent: 2em;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--顶部快速导航下拉导航菜单特效css-->
+<link rel="stylesheet" href="https://htkz.magtechjournal.com/images/1006-3242/css/bootsnav.css">
+<!--网站css-->
+<link rel="stylesheet" href="https://htkz.magtechjournal.com/images/1006-3242/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://htkz.magtechjournal.com/images/1006-3242/css/css.css">
+<script src="https://htkz.magtechjournal.com/images/1006-3242/js/indexjs.js"></script>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+<input type="hidden" id="mag-common-contextPath" value=""/>
+
+<div id="mag-component-store-div" style="display:none;"></div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="magModal" tabindex="-1" role="dialog" data-keyboard=false data-backdrop='static' aria-labelledby="magModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button buttonGroup="0" type="button" class="close" aria-hidden="true" onclick="mag_layer_close();">
+					&times;
+				</button>
+				<h4 class="modal-title" id="magModalLabel">
+					模态框（Modal）标题
+				</h4>
+			</div>
+			<div class="modal-body" id="mag-modal-body" style="overflow:auto;">
+				在这里添加一些文本
+			</div>
+			<div id="mag-layer-button-div" class="modal-footer">
+				<button buttonGroup="1" type="button" class="btn btn-default" onclick="mag_layer_close();">Close
+				</button>
+				<button buttonGroup="2" type="button" class="btn btn-default" onclick="mag_layer_close();">Close
+				</button>
+				<button buttonGroup="2" type="button" class="btn btn-primary" onclick="mag_submit()" id="mag_layer_submit_button_2">
+					Submit
+				</button>
+				<button buttonGroup="3" type="button" class="btn btn-default" onclick="mag_layer_close();">Cancel
+				</button>
+				<button buttonGroup="3" type="button" class="btn btn-primary" onclick="mag_submit()" id="mag_layer_submit_button_3">
+					Confirm
+				</button>
+				
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<div id="magModal_2" style="display:none;position:fixed;left:0px;top:0px;right:0px;bottom:0px;z-index:1060">
+	<div class="modal-dialog" style="margin-top:60px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button buttonGroup="0" type="button" id="mag-madal-close_bt_2"  class="close"  aria-hidden="true" onclick="mag_layer_close_2();">
+					&times;
+				</button>
+				<h4 class="modal-title" id="magModalLabel_2">
+					模态框（Modal）标题
+				</h4>
+			</div>
+			<div id="modal-body_2" class="modal-body"></div>
+		</div>
+	</div>
+</div>
+
+<!-- 模态框-Tab -->
+<div class="modal fade" id="magTabModal" tabindex="-1" role="dialog" data-keyboard=false data-backdrop='static' aria-labelledby="magTabModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header" style="border-bottom:0px;padding:15px 0px;">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="padding-right:15px;">
+					&times;
+				</button>
+				
+<ul id="magTab" class="nav nav-tabs">
+
+</ul>
+			</div>
+			<div class="modal-body">
+				
+<div id="magTabContent" class="tab-content">
+
+</div>
+			</div>
+			<div id="mag-tablayer-button-div" class="modal-footer">
+				
+			</div>
+			
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+
+		
+
+<input type="hidden" id="mag-common-journal-url" value="https://htkz.magtechjournal.com"/>
+<input type="hidden" id="mag-common-journal-issn" value="1006-3242"/>
+
+
+<!--Export弹出-->
+<div id="export-citation-div" class="" style="display:none;">
+	<form id="export-citation-form" action="https://htkz.magtechjournal.com/EN/article/exportCitation.do">
+	<input type="hidden" id="export-citation-form-ids" name="articleIds" />
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h4 class="panel-title">Please choose a citation manager</h4>
+		</div>
+		<div class="panel-body">
+			<div class="radio">
+				<label> <input type="radio" value="Ris" checked="checked" name="fileType">
+					RIS (ProCite, Reference Manager)
+				</label>
+			</div>
+			<div class="radio">
+				<label> <input type="radio" value="BibTex" name="fileType">
+					BibTeX
+				</label>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-warning">
+		<div class="panel-heading">
+			<h4 class="panel-title">Content to export</h4>
+		</div>
+		<div class="panel-body">
+			<div class="radio">
+				<label> <input type="radio" value="md" checked="checked" name="contentType">
+					Citation
+				</label>
+			</div>
+			<div class="radio">
+				<label> <input type="radio" value="ab" name="contentType">
+					Citation and abstract
+				</label>
+			</div>
+		</div>
+	</div>
+	
+	<button type="button" class="btn btn-lg btn-primary modal-button" style="width:50%;margin:0 auto;display: block;padding: 7px;"
+		onclick="downloadCitations()">Export</button>
+	</form>
+</div>
+<!--Export弹出end-->
+
+
+<script src='https://tongji.journalreport.cn/mstatistics.service.js' ></script><script>recordAdd('3cd3b2655e084e50a72b4ebbfb5c7006')</script>
+<!--#include virtual="/develop/static/vm/top_en/develop_top_en_body_include.jsp?j_id=1"-->
+<!--头部-->
+<div class="ding">
+	<div class="ding2">
+		<span class="pull-left">
+			<SCRIPT language=JavaScript>
+			function PageDate()
+			{
+			currentDate = new Date()
+			with (currentDate)
+			{
+			day=getDay()
+			month=getMonth()
+			if (month==0){document.write('January ')}
+			if (month==1){document.write('February ')}
+			if (month==2){document.write('March ')}
+			if (month==3){document.write('April ')}
+			if (month==4){document.write('May ')}
+			if (month==5){document.write('June ')}
+			if (month==6){document.write('July ')}
+			if (month==7){document.write('August ')}
+			if (month==8){document.write('September ')}
+			if (month==9){document.write('October ')}
+			if (month==10){document.write('November ')}
+			if (month==11){document.write('December ')}
+			this.document. write(getDate()+', '+getFullYear())
+			}
+			}
+			PageDate()
+            </SCRIPT>
+		 </span>
+		 <span class="pull-right"><a href="https://htkz.magtechjournal.com/EN/alert/showAlertInfo.do"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email Alert</a>　<a href="https://htkz.magtechjournal.com/EN/rss/showRssInfo.do"><i class="fa fa-rss" aria-hidden="true"></i> RSS</a></span>
+	</div>
+</div>
+<div class="header">
+<div class="banner">
+		<div class="col-lg-7 col-md-7 col-sm-7 banner hidden-xs"><img src="https://htkz.magtechjournal.com/images/1006-3242/images/banner.png" class="img-responsive"></div>
+		<div class="visible-xs"><img src="https://htkz.magtechjournal.com/images/1006-3242/images/banner_mobile.png" class="img-responsive"></div>		
+		<div class="col-lg-5 col-md-5 col-sm-5">
+			  <div class="article-search">
+				<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/EN/article/quickSearch.do"></div>
+			  </div>
+		</div>	
+</div>
+</div>
+<!--导航-->
+<div class="daohang">
+		<div class="navbar site-nav site_nav_en">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand visible-xs" href="https://htkz.magtechjournal.com/EN/1006-3242/home.shtml"></a>
+			</div>
+			<div class="navbar-collapse collapse" role="navigation">
+				
+				<ul class="nav navbar-nav">
+					<li><a href="https://htkz.magtechjournal.com/EN/home">Home</a></li>
+					<li><a href="https://htkz.magtechjournal.com/EN/column/column1.shtml">About Journal</a></li>
+					<li><a href="https://htkz.magtechjournal.com/EN/column/column2.shtml">Editorial Board</a></li>
+					<li role="presentation" class="dropdown"> 
+			  			<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Journal Online <b class="caret"></b></a>
+					  	<ul class="dropdown-menu">
+						<li><a href="https://htkz.magtechjournal.com/EN/current">Current Issue</a></li>
+						<li><a href="https://htkz.magtechjournal.com/EN/archive_by_years">Archive</a></li>
+						<li><a href="https://htkz.magtechjournal.com/EN/top_access">Most Read</a></li>
+						<li><a href="https://htkz.magtechjournal.com/EN/top_download">Most Download</a></li>
+						</ul>
+					</li>
+					<li><a href="https://htkz.magtechjournal.com/EN/column/column3.shtml">Instruction</a></li>
+					<li><a href="https://htkz.magtechjournal.com/EN/column/column4.shtml">Subscription</a></li>
+					<li><a href="https://htkz.magtechjournal.com/EN/column/column5.shtml">Download</a></li>
+					<li><a href="https://htkz.magtechjournal.com/EN/column/column6.shtml">Contact Us</a></li>
+					<li><a href="https://htkz.magtechjournal.com/CN/home" target="_blank">中文</a></li>
+				</ul>
+			</div>
+		</div>		
+</div>
+<!--导航end-->
+
+
+
+
+
+		
+
+
+<!--图片切换-->
+	<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/CN/1006-3242/model/dzzz_en.htm"></div>
+<!--图片切换end-->
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6">
+			<div class="qkxx box1">
+				<div class="qkxx_fm">
+					<a href="https://htkz.magtechjournal.com/EN/current"><img src="https://htkz.magtechjournal.com/fileup/1006-3242/COVER/20251028150834.jpg" class="img-responsive"></a>
+				</div>
+				<div class="qkxx_xx">
+					<span>Bimonthly, Founded in 1983</span><br>
+					主办单位：北京航天自动控制研究所<br>
+					协办单位：北京控制工程研究所<br>
+					　　　　　上海机电工程研究所<br>
+					主　　编：禹春梅<br>
+					主　　任：高世文<br>
+					<span>Column</span><br>
+					Review; Guidance, Navigation and Control; Intelligent Computing and Data; Simulation; Test, Launch and Control; Reliability,Safety and Maintainability; Opto-mechatronics Integration
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="xw_tab box1">
+			<div class="title_1"><span class="t1">News</span>  <a href="https://htkz.magtechjournal.com/EN/folder/4/news"><div class="gd">More >></div></a></div>
+			<div id="de">  
+				<div id="de1">  
+					<ul class="right-middle">  
+						<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/CN/1006-3242/model/xwgg_en.htm"></div>
+					</ul>
+				</div>  
+				<div id="de2"></div>  
+			</div>  
+
+<script>  
+    var dome = document.getElementById("de");  
+    var dome1 = document.getElementById("de1");  
+    var dome2 = document.getElementById("de2");  
+    var speed = 50;//设置向上轮动的速度    
+    dome2.innerHTML = dome1.innerHTML;//复制节点    
+    function moveTop() {  
+        if (dome1.offsetHeight - dome.scrollTop <= 0) {  
+            dome.scrollTop = 0;  
+        } else {  
+            dome.scrollTop++;  
+        }  
+    }  
+    var myFunction = setInterval("moveTop()", speed);  
+    dome.onmouseover = function () {  
+        clearInterval(myFunction);  
+    };  
+    dome.onmouseout = function () {  
+        myFunction = setInterval(moveTop, speed);  
+    };  
+</script> 
+
+</div>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3">
+			<div class="office_list box1">
+			<div class="title_1"><span class="t1"> Office Online</span></div>
+			<ul>
+				<li><a href="../../jx_htkz/authorLogOn.action" target="_blank" class="btn btn-shadow btn_en">
+					<img src="https://htkz.magtechjournal.com/images/1006-3242/images/z1.png" class="img-responsive"><div class="bgwz">Author Login</div></a>
+				</li>
+				<li><a href="../../jx_htkz/expertLogOn.action" target="_blank" class="btn btn-shadow bgcd_2 btn_en">
+					<img src="https://htkz.magtechjournal.com/images/1006-3242/images/z2.png" class="img-responsive"><div class="bgwz">Peer Review</div></a>
+				</li>
+				<li><a href="../../jx_htkz/editorCommitteeLogOn.action" target="_blank" class="btn btn-shadow bgcd_3 btn_en">
+					<img src="https://htkz.magtechjournal.com/images/1006-3242/images/z3.png" class="img-responsive"><div class="bgwz">Editor Work</div></a>
+				</li>
+				<li><a href="../../jx_htkz/editorLogOn.action" target="_blank" class="btn btn-shadow bgcd_4 btn_en">
+					<img src="https://htkz.magtechjournal.com/images/1006-3242/images/z4.png" class="img-responsive"><div class="bgwz">Office Work</div></a>
+				</li>
+				<li><a href="../../jx_htkz/editorInChiefLogOn.action" target="_blank" class="btn btn-shadow bgcd_5 btn_en">
+					<img src="https://htkz.magtechjournal.com/images/1006-3242/images/z5.png" class="img-responsive"><div class="bgwz">Editor-in-Chief</div></a>
+				</li>
+			</ul>		
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--精选文章-->
+<div class="huise" style="padding:25px 0 20px;margin-bottom: 30px;">
+<div class="hot_tab">
+	<div class="title_2">Highlights</div>
+	<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/EN/highlights?forwardJsp=simple2"></div>
+	<div class="gd_all"><a href="https://htkz.magtechjournal.com/EN/highlights">More &gt;&gt;</a></div>
+</div>
+</div>
+<!--精选文章end-->
+
+<!--中间部分-->
+<div class="container">
+<div class="row">
+<!--左-->
+<div class="col-lg-9 col-md-9 col-sm-9 left-sidebar">
+
+<!--文章部分-->
+<div class="current_list box1">
+     	 <ul id="myTab" class="nav nav-tabs article-list nav-tabs_en">
+            <li class="active"><a href="#mytab1" data-toggle="tab">Current Issue</a></li>
+            <li class=""><a href="#mytab2" data-toggle="tab">Archive</a></li>
+            <li class=""><a href="#mytab3" data-toggle="tab">Most Read</a></li>
+            <li class=""><a href="#mytab4" data-toggle="tab">Most Download</a></li>
+        </ul>
+      <div id="myTabContent" class="tab-content article-box">
+            <div class="tab-pane fade active in kuang_en" id="mytab1">
+			<!--目录-->
+	            <section class="j-article paddc0">
+	                
+	                <div class="n-j-q">
+	                    28 October 2025, Volume 43 Issue 5
+						<div class="j-sx">
+							<span mag-component-type="previousIssue" mag-volumnId="25"></span>
+							&nbsp;&nbsp;
+							<span mag-component-type="nextIssue" mag-volumnId="25"></span>
+						</div>
+	                </div>
+	                <div class="row">
+	                										</div>
+					
+	                <ul class="article-choose">
+						<li>
+							<div class="choose">
+								<input class="article_checkbox" onclick="javascript:selectall(this,'pid');"  alt="Select" type="checkbox" id="sel"> <span>Select all</span>
+							</div>
+							<div class="other-tools">
+								<span class="other-tools-l"><i class="fa fa-share-square-o" onclick="exportCitations();" title="Download citations"></i></span> 
+								
+								<span class="fengexian"> | </span> <span class="other-tools-r">
+									<i class="fa fa-align-left" title="List display"></i> <i class="fa fa-file-text" title="Abstract display"></i> <i class="fa fa-file-image-o active" title="Thumbnails"></i>
+								</span>
+							</div>
+						</li>
+					</ul>
+					
+	                <ul class="article-list">
+	                	                	                		  				
+		  						                <div class="articlesectionlisting">
+		                <a name="Low-altitude Economy"></a>
+		                <div class=dbt_header>Low-altitude Economy</div>
+		                </div>
+		                		                		               
+	                	<li id="art287" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_287' class=article_checkbox onclick="hightlightrowaction('art287')" value='287' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_287'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/1" target="_blank">Reinforcement learning<strong>-</strong>based attitude control for aerospace vehicles using small<strong>-</strong>world spiking neural networks</a> <span mag-component-type="articleStatusIcon" mag-articleId="287"></span>
+								</div>
+								<div class="j-author">YU  Haitao, ZENG  Fanyi, ZHU  Zhihua, LIU  Xiaodong</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 1-9.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/1" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-287"></span>
+<script>
+$("#mag-getDinajiShu-287").load('/EN/article/getDianJiShu.jsp?articleid=287&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','287');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-287"></span>
+<script>
+$("#mag-getXiaZaiShu-287").load('/EN/article/getXiaZaiShu.jsp?articleid=287&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','287');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-287"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-287").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=287&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_287">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=287">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('287');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>To address the challenge of precise attitude stabilization control for spacecraft under varying body parameter deviations and environmental disturbances， a novel reinforcement learning-based attitude control method is proposed， which is integrated with small-world spiking neural networks （SW-SNN）. A spiking neural network with small-world topological properties is established as the core controller， and an enhanced actor-critic framework is designed， which is based on the proximal policy optimization algorithm. The parameters of the SW-SNN are updated through a spatiotemporal backpropagation algorithm that enables a synergistic mechanism for online policy optimization and offline evaluation. A Lyapunov stability reward mechanism is designed to dynamically optimize the system's energy function， which enhances asymptotic stability. Additionally， penalty terms for smoothness of attitude angle tracking error velocity and continuity are introduced to establish a joint optimization framework that integrates stability constraints with control accuracy. Simulation results demonstrate that the control system shows rapid dynamic response， high control performance and strong robustness. Under step response conditions， the settling time of control system is reduced to 0.32 seconds with a steady-state error lowered than 0.001&deg;. Even under extreme conditions with 50% deviation in aerodynamic torque coefficients and 25% deviation in inertial parameters， the control system remains stable. the system's region of attraction is effectively expanded by applying the designed Lyapunov stability reward mechanism that ensures robust stability over a much wider operating range.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art288" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_288' class=article_checkbox onclick="hightlightrowaction('art288')" value='288' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_288'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/10" target="_blank">Quadrotor dynamic pose tracking hyperbolic sliding mode control based on twistor</a> <span mag-component-type="articleStatusIcon" mag-articleId="288"></span>
+								</div>
+								<div class="j-author">CHEN  Wei, ZHOU  Jiaxing, GAO  Dengwei, DENG  Zhao</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 10-17.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/10" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-288"></span>
+<script>
+$("#mag-getDinajiShu-288").load('/EN/article/getDianJiShu.jsp?articleid=288&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','288');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-288"></span>
+<script>
+$("#mag-getXiaZaiShu-288").load('/EN/article/getXiaZaiShu.jsp?articleid=288&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','288');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-288"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-288").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=288&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_288">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=288">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('288');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>In order to avoid the extra computational burden inherent in traditional modelling methods， the six-degree-of-freedom twistor is employed for the pose integrated description of a quadrotor UAV that realizes compact pose parameterization and establishes a singularity-free and non-redundant dynamic model. Based on Lyapunov stability theory， a novel controller integrated a hyperbolic tangent sliding surface with a hyperbolic cosine switching term is designed， and rigorous proof of the closed-loop system's global asymptotic stability is provided via LaSalle's invariance principle. Finally， validation is conducted by using the Links-RT hardware-in-the-loop simulation platform. The results demonstrate enhanced dynamic performance， superior disturbance rejection and improved real-time capability compared with conventional schemes， and confirm the method's feasibility in engineering.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art289" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_289' class=article_checkbox onclick="hightlightrowaction('art289')" value='289' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_289'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/18" target="_blank">Integrated position and attitude control method for de-icing UAV based on twistor framework</a> <span mag-component-type="articleStatusIcon" mag-articleId="289"></span>
+								</div>
+								<div class="j-author">CHEN  Yuhao, ZHOU  Jiaxing, GAO  Dengwei, DENG  Zhao</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 18-25.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/18" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-289"></span>
+<script>
+$("#mag-getDinajiShu-289").load('/EN/article/getDianJiShu.jsp?articleid=289&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','289');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-289"></span>
+<script>
+$("#mag-getXiaZaiShu-289").load('/EN/article/getXiaZaiShu.jsp?articleid=289&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','289');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-289"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-289").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=289&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_289">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=289">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('289');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>To address the issue of pose control challenges of de-icing UAV systems under wind field disturbances and de-icing collisions， an integrated particle swarm optimization sliding mode control method is proposed， which is based on twistor theory. A dynamic model of de-icing UAVs incorporating both wind disturbances and collision impacts is established in this approach， which achieves realization of unified description of positional and attitudinal motions through twistor theory. On this basis， an adaptive gain adjustment mechanism is employed to coordinate pose control， which realizes integrated motion control under framework of the twistor theory.The results of simulation experiments ultimately demonstrate that the trajectory tracking accuracy and disturbance rejection capability are significantly enhanced by using this proposed method under complex working conditions involving coupled wind disturbances and collision effects.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art290" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_290' class=article_checkbox onclick="hightlightrowaction('art290')" value='290' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_290'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/26" target="_blank">Dynamic event<strong>-</strong>triggered model predictive control for multi<strong>-</strong>aircraft under communication delays</a> <span mag-component-type="articleStatusIcon" mag-articleId="290"></span>
+								</div>
+								<div class="j-author">LU  Zhan, REN  Yan, WENG  Kai, SHI  Chenglong, ZHANG  Bowen, HU  Yuanzhuo</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 26-33.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/26" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-290"></span>
+<script>
+$("#mag-getDinajiShu-290").load('/EN/article/getDianJiShu.jsp?articleid=290&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','290');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-290"></span>
+<script>
+$("#mag-getXiaZaiShu-290").load('/EN/article/getXiaZaiShu.jsp?articleid=290&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','290');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-290"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-290").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=290&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_290">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=290">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('290');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>The consensus problem of general linear multi-vehicle systems with communication delays is investigated. Firstly， a model predictive control （MPC） method is proposed to compensate for communication delays occurring among controllers and actuators， controllers and sensors， as well as neighboring vehicles. Secondly， in order to conserve resources and reduce communication frequency and control update frequency among vehicles， a dynamic event-triggered model predictive control method is developed by integrating MPC with event-triggering mechanisms through differential equation-based dynamic term configurations. By using this proposed control algorithm， consensus achievement is confirmed under communication delays and system stability is guaranteed through theoretical analysis. Finally， the results of numerical simulation experiments verify the effectiveness of the proposed algorithm. Compared with periodic triggering， this method reduces triggering frequency by 76.4% and achieves lower triggering frequency by 31.4% than static event-triggered approaches， and communication and computational resources of the system are effectively saved.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art291" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_291' class=article_checkbox onclick="hightlightrowaction('art291')" value='291' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_291'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/34" target="_blank">Optimized deployment of cooperative fixed-wing UAVs for area coverage surveillance</a> <span mag-component-type="articleStatusIcon" mag-articleId="291"></span>
+								</div>
+								<div class="j-author">CAI  Xinyi, LIU  Yi, ZHANG  Enqi, CHEN  Xinzhuang</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 34-41.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/34" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-291"></span>
+<script>
+$("#mag-getDinajiShu-291").load('/EN/article/getDianJiShu.jsp?articleid=291&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','291');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-291"></span>
+<script>
+$("#mag-getXiaZaiShu-291").load('/EN/article/getXiaZaiShu.jsp?articleid=291&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','291');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-291"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-291").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=291&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_291">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=291">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('291');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>Aiming at addressing the issue of insufficient compatibility of the dynamic detection characteristics and traditional method in the area coverage monitor task of fixed-wing UAVs， an optimal deployment strategy based on a cooperative multi-UAV joint detection-probability model is first proposed in this paper. Regarding two UAVs loitering side-by-side， the spatial detection probability and temporal coverage ratio are jointly considered， and an iterative algorithm is designed to solve and determine two UAVs optimal deployment parameters due to the purpose of maximizing the largest axis-aligned rectangle within the effective surveillance region. This approach is then extended to multi-UAV cooperative monitor missions via a square-grid layout. The simulation results show that， compared with conventional exhaustive coverage， when the spacial detection probability reaches by 90% and detection intervals shorter than 40 s， the effective monitored area is boosted by 80.8% and the number of required UAV counts by 60% reduced.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						                <div class="articlesectionlisting">
+		                <a name="Guidance, Navigation and Control"></a>
+		                <div class=dbt_header>Guidance, Navigation and Control</div>
+		                </div>
+		                		                		               
+	                	<li id="art292" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_292' class=article_checkbox onclick="hightlightrowaction('art292')" value='292' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_292'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/42" target="_blank">Analysis of aerodynamic coupling characteristics for hypersonic morphing vehicles</a> <span mag-component-type="articleStatusIcon" mag-articleId="292"></span>
+								</div>
+								<div class="j-author">GONG  Menglin, LONG  Jiateng, LIU  Xiaodong, LU  Kunfeng</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 42-48.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/42" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-292"></span>
+<script>
+$("#mag-getDinajiShu-292").load('/EN/article/getDianJiShu.jsp?articleid=292&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','292');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-292"></span>
+<script>
+$("#mag-getXiaZaiShu-292").load('/EN/article/getXiaZaiShu.jsp?articleid=292&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','292');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-292"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-292").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=292&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_292">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=292">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('292');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>Regarding the aerodynamic-deformation-control multi-coupling problem encountered in high-speed morphing aircraft during dynamic morphing， a six-degree-of-freedom dynamic model is established and the aerodynamic moment coupling matrix is derived. The coupling strength of the roll， yaw and pitch channels is quantitatively analyzed， and the effect laws of angle of attack， Mach number， and deformation magnitude on coupling characteristics are systematically investigated. The results show that， for the given simulation case， the pitch channel is most significantly influenced by deformation， which presents a nonlinear increase followed by the growing deformation magnitude. The roll channel exhibits moderate coupling that is affected jointly by the angle of attack and Mach number， and the effect of coupling intensifies under low angle of attack and high Mach number conditions. In contrast， the yaw channel exhibits weak coupling among attitude angles， and that result shows that attitude angles coupling can be reasonably neglected in control design. Additionally， the analysis of control surface deflection coupling indicates that the roll and sideslip channels are decoupled， while the coupling degree in pitch control remains low and deformation has no significant impact on control coupling. These research results provide theoretical support for the decoupling control design and flight stability improvement of high-speed morphing aircraft.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art293" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_293' class=article_checkbox onclick="hightlightrowaction('art293')" value='293' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_293'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/49" target="_blank">Research on aircraft control method integrating DDPG and PID</a> <span mag-component-type="articleStatusIcon" mag-articleId="293"></span>
+								</div>
+								<div class="j-author">SUN  Guobing, SUN  Qi, GUO  Jianhao</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 49-55.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/49" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-293"></span>
+<script>
+$("#mag-getDinajiShu-293").load('/EN/article/getDianJiShu.jsp?articleid=293&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','293');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-293"></span>
+<script>
+$("#mag-getXiaZaiShu-293").load('/EN/article/getXiaZaiShu.jsp?articleid=293&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','293');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-293"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-293").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=293&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_293">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=293">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('293');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>To address the issue of control performance degradation in vehicles under structural disturbances， aerodynamic parameter variations， and external environmental interference， a hybrid control approach that integrates the deep deterministic policy gradient （DDPG） algorithm with a traditional PID controller is proposed in this paper. The initial stable control capability is provided by PID controller， while the reinforcement learning strategy enables online adaptive tuning of the flight controller. A nonlinear dynamic simulation platform is established， which is based on the vehicle model. Experimental results demonstrate that， in typical altitude step-response control tasks， the method shortenes the system response time by 62.8%， with overshoot and steady-state error maintained within 1%. Even under complex conditions involving &plusmn;20% parameter variations， the system still retains high-precision control. Compared with the conventional PID controller， the proposed method shows superior performance in terms of response speed， stability and adaptability and can be served as reference for prospects of engineering application.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art294" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_294' class=article_checkbox onclick="hightlightrowaction('art294')" value='294' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_294'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/56" target="_blank">Load relief control technology based on double-loop observer of force and moment</a> <span mag-component-type="articleStatusIcon" mag-articleId="294"></span>
+								</div>
+								<div class="j-author">ZHANG  Fei, XU  Chao, DING  Xiufeng, HU  Cunming, GUI  Liang</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 56-61.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/56" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-294"></span>
+<script>
+$("#mag-getDinajiShu-294").load('/EN/article/getDianJiShu.jsp?articleid=294&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','294');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-294"></span>
+<script>
+$("#mag-getXiaZaiShu-294").load('/EN/article/getXiaZaiShu.jsp?articleid=294&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','294');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-294"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-294").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=294&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_294">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=294">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('294');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>Aiming at solving the insufficient aerodynamic load margin， a load relief control method based on double-loop observer of force and moment is proposed for a new generation launch vehicle. The control swing angle compensation is formed through disturbing torque acquisition by usig structural observer in moment circle， which can effectively reduce attitude deviation； The attitude compensation angle is formed through disturbing force acquisition by using structural observer in force circle，which can effectively reduce velocity deviation and attack angle. The load relief effects of traditional accelerometer feed-back control in steady wind is improved by using this method that keeps load relief ability in shear wind and meanwhile promotes nominal trajectory tracking effect. The simulation results show that attitude deviation and velocity deviation is significantly decreased and load relief effect can reach by 20%， that can effectively increase the launch probability.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art295" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_295' class=article_checkbox onclick="hightlightrowaction('art295')" value='295' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_295'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/62" target="_blank">Active disturbance rejection guaranteed-performance formation tracking control for multiple spacecraft</a> <span mag-component-type="articleStatusIcon" mag-articleId="295"></span>
+								</div>
+								<div class="j-author">MA  Aojia, GAO  Weirong, WU  Xia, WEI  Caisheng</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 62-70.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/62" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-295"></span>
+<script>
+$("#mag-getDinajiShu-295").load('/EN/article/getDianJiShu.jsp?articleid=295&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','295');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-295"></span>
+<script>
+$("#mag-getXiaZaiShu-295").load('/EN/article/getXiaZaiShu.jsp?articleid=295&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','295');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-295"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-295").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=295&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_295">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=295">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('295');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>Regarding the multi-spacecraft formation flying， a distributed formation tracking control scheme that integrates active disturbance rejection control with prescribed performance control is proposed， considering model uncertainties and external disturbances. Firstly， based on the principle of active disturbance rejection control， an extended state observer is employed to estimate and compensate for system uncertainties and external disturbances. Secondly， a prescribed performance-based controller is designed to enable the multi-spacecraft system to form and maintain the desired formation configuration， while ensuring fixed-time convergence. On this basis， the stability of the closed-loop controlled system is proved by using Lyapunov theory. Comparative simulations are conducted to validate the superority of the proposed designed on transient and steady-state performance.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						               
+	                	<li id="art296" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_296' class=article_checkbox onclick="hightlightrowaction('art296')" value='296' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_296'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/71" target="_blank">Research on prescribed performance cooperative guidance with input delay</a> <span mag-component-type="articleStatusIcon" mag-articleId="296"></span>
+								</div>
+								<div class="j-author">YANG  Xiaofei, WU  Yunjie, LIU  Xiaodong, MA  Fei</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 71-78.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/71" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-296"></span>
+<script>
+$("#mag-getDinajiShu-296").load('/EN/article/getDianJiShu.jsp?articleid=296&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','296');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-296"></span>
+<script>
+$("#mag-getXiaZaiShu-296").load('/EN/article/getXiaZaiShu.jsp?articleid=296&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','296');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-296"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-296").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=296&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_296">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=296">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('296');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>In this paper， a distributed prescribed performance cooperative guidance law is proposed for multi-vehicle with input delay. In order to improve the guidance performance， a novel continuous prescribed performance method is developed， which ensures the system error satisfies both dynamic and steady-state performance. By integrating the continuous prescribed performance method with finite-time control theory， the cooperative guidance laws based on the line-of-sight direction and the line-of-sight normal direction are designed， which realize the simultaneous attack of multi-vehicle on stationary target. The simulation results show that the multi-vehicle can hit the stationary target in performance of prescribed dynamic and steady state by applying the proposed cooperative guidance law.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						                <div class="articlesectionlisting">
+		                <a name="Aerospace Software"></a>
+		                <div class=dbt_header>Aerospace Software</div>
+		                </div>
+		                		                		               
+	                	<li id="art297" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_297' class=article_checkbox onclick="hightlightrowaction('art297')" value='297' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_297'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/79" target="_blank">Design of launch vehicle distributed trajectory planning system</a> <span mag-component-type="articleStatusIcon" mag-articleId="297"></span>
+								</div>
+								<div class="j-author">QIAN  Hang, HE  Xinhua</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 79-85.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/79" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-297"></span>
+<script>
+$("#mag-getDinajiShu-297").load('/EN/article/getDianJiShu.jsp?articleid=297&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','297');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-297"></span>
+<script>
+$("#mag-getXiaZaiShu-297").load('/EN/article/getXiaZaiShu.jsp?articleid=297&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','297');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-297"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-297").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=297&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_297">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=297">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('297');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>A design methodology for launch vehicle trajectory planning systems is proposed，which is compatible with multiple trajectory software suites and enables rapid trajectory computation with extensive peripheral support functions. The system consists of five modules about planning calculation， integrated management， comprehensive analysis， planning database and visualization. Through the systematic integration of architectural design and algorithmic optimization， the critical conflicts are solved among computational efficiency， universality， and decision-making coordination in launch vehicle trajectory planning by using proposed design methodology which provides extendable technical support for high-density launch mission and offers significant engineering applicability as well as practical value.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                		  				
+		  						                <div class="articlesectionlisting">
+		                <a name="Test， Launch and Control"></a>
+		                <div class=dbt_header>Test， Launch and Control</div>
+		                </div>
+		                		                		               
+	                	<li id="art298" class="noselectrow">
+	                		<div class="article-checkbox">
+								<INPUT id='thisart_298' class=article_checkbox onclick="hightlightrowaction('art298')" value='298' alt=Select type=checkbox name=pid> 
+	                  			<LABEL class=hidelabel for='thisart_298'>Select</LABEL>
+							</div>
+							<div class="article-l article-w">
+								
+								<div class="j-title-1">
+									<a href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/86" target="_blank">Research on automated testing technology for launch vehicles based on configuration files</a> <span mag-component-type="articleStatusIcon" mag-articleId="298"></span>
+								</div>
+								<div class="j-author">LIU  Jian, CHU  Jingyan, PANG  He, YE  Yuhui, YANG  Zhe, SHI  Jia</div>
+								<div class="j-volumn-doi">
+									<span class="j-volumn">
+										2025, 43(5): 86-92.
+									</span>
+																	</div>
+								
+								<div class="j-btn">
+									<span class="article-abstract">
+									<a class="j-abs" href="https://htkz.magtechjournal.com/EN/Y2025/V43/I5/86" target="_blank">Abstract</a> (<span class="red">
+
+
+
+
+
+<span id="mag-getDinajiShu-298"></span>
+<script>
+$("#mag-getDinajiShu-298").load('/EN/article/getDianJiShu.jsp?articleid=298&ajax=true');
+</script>
+	
+</span>)
+									</span>
+									<span class="article-pdf">	
+																			<a class="j-pdf" href="javascript:;" onclick="lsdy1('PDF','298');return false;">Download PDF</a> (<span class="red">
+
+
+
+
+	
+<span id="mag-getXiaZaiShu-298"></span>
+<script>
+$("#mag-getXiaZaiShu-298").load('/EN/article/getXiaZaiShu.jsp?articleid=298&ajax=true');
+</script>
+	
+
+
+</span>)
+																											</span>
+									<span class="richhtml">
+												                            <a class="j-html" id="dage" href="#" target="_blank" onclick="lsdy1('RICH_HTML','298');return false;">HTML</a>
+			                            (<span class="red">
+
+
+
+
+
+<span id="mag-getDianJiRichHtmlShu-298"></span>
+<script>
+$("#mag-getDianJiRichHtmlShu-298").load('/EN/article/getDianJiRichHtmlShu.jsp?articleid=298&ajax=true');
+</script>
+
+</span>)
+																		</span>
+									
+									<span class="knomap" id="span_visual_article_298">
+										&nbsp;<img src="/images/knowledge_map.png" width="16" height="16" />
+										<a href="https://htkz.magtechjournal.com/EN/lexeme/showArticleByLexeme.do?articleID=298">Knowledge map</a>
+		                            </span>
+									<span class="shoucang">
+										&nbsp;<img src="/images/1006-3242/reb.png" width="16" height="16" />
+										<a href="javascript:;" onclick="collectArticle('298');">
+											<span class="shouc">Save</span>
+										</a>
+									</span>
+								</div>
+	
+								<div class="j-abstract">
+									<p>In response to the automated testing of launch vehicles and short development cycle and high quality requirements of aerospace software， an automated testing method by using configuration files is designed for test and launch control system of launch vehicles in this paper. By modularizing the functions of test and launch control software system， reusable modules are abstracted such as human-computer interaction， data communication， flow driver， data interpretation and log recording， and the flow driver module is responsible for driving oneself by working with multiple independent modules that follow its own configuration files to implement business work. During improving system automated test capability， the software re-usability is improved and the software design complexity is reduced. Thus， the system reliability is guaranteed to be improved and development progress is accelerated.</p>
+								</div>
+								
+							</div>
+							
+								                	</li>
+	                	                	                    
+	                </ul>
+	            </section>
+			<!--目录 End--> 
+			</div>
+			
+            <div class="tab-pane fade kuang_en" id="mytab2">
+          		 	<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/EN/archive_by_years?forwardJsp=simple"></div>
+            </div>
+            <div class="tab-pane fade kuang_en" id="mytab3">
+				<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/EN/top_access?forwardJsp=simple"></div>
+            </div>
+            <div class="tab-pane fade kuang_en" id="mytab4">
+				<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/EN/top_download?forwardJsp=simple"></div>
+            </div>
+           
+	 </div>
+</div>
+<!--文章部分end-->
+</div>
+<!--左end-->
+
+<!--右-->
+<div class="col-lg-3 col-md-3 col-sm-3 right-sidebar">
+
+<div class="tab_list2 box1">
+	<div class="title_3"><span class="t1"> Archive By Column</span> <a href="https://htkz.magtechjournal.com/EN/article/showChannelList.do"><span class="gd">More&gt;&gt;</span></a></div>
+	<ul>
+	<div mag-component-type="ajaxPage" mag-page-url="https://htkz.magtechjournal.com/EN/article/showChannelListSimple.do"></div>
+	</ul>	
+</div>
+
+<div class="tab_list box1">
+	<div class="title_3"><span class="t1">Links</span> <a href="https://htkz.magtechjournal.com/EN/column/7/items"><div class="gd">More&gt;&gt;</div></a> </div>
+	<ul>
+		                        		<li class="icon_list3">
+		<a href="https://www.spacejournal.cn/" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                                        		<li class="icon_list3">
+		<a href="http://www.qk.sjtu.edu.cn/ktfy" class="news-title" target="_blank">
+		Air &amp; Space Defense
+		</a>
+		</li>
+                        	</ul>		
+</div>
+<div class="tab_list box1">
+	<div class="title_3"><span class="t1">Download</span> <a href="https://htkz.magtechjournal.com/EN/column/5/items"><div class="gd">More&gt;&gt;</div></a></div>
+	<ul>
+		                        		<li class="icon_list3">
+		<a href="https://htkz.magtechjournal.com/CN/item/downloadFile.do?id=14" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                                        		<li class="icon_list3">
+		<a href="https://htkz.magtechjournal.com/CN/item/downloadFile.do?id=12" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                                        		<li class="icon_list3">
+		<a href="https://htkz.magtechjournal.com/CN/item/downloadFile.do?id=11" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                                        		<li class="icon_list3">
+		<a href="https://htkz.magtechjournal.com/CN/item/downloadFile.do?id=10" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                                        		<li class="icon_list3">
+		<a href="https://htkz.magtechjournal.com/CN/item/downloadFile.do?id=9" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                                        		<li class="icon_list3">
+		<a href="https://htkz.magtechjournal.com/CN/item/downloadFile.do?id=8" class="news-title" target="_blank">
+		
+		</a>
+		</li>
+                        		
+	</ul>
+</div>
+
+
+
+<div class="tongji box1">
+	<div class="title_3"><span class="t1">Visited </span> </div>
+	<ul>
+	<script>record('3cd3b2655e084e50a72b4ebbfb5c7006')</script>   
+	Total visitors: <label id="pvVisitsSum"></label><br>
+	Visitors of today: <label id="ipDaySum"></label><br>
+	Now online: <label id="currentOnLine"></label>
+	</ul>
+</div>
+
+
+
+</div>
+<!--右end-->
+
+</div>
+</div>
+<!--中间end-->
+
+<!--底部-->
+<!--#include virtual="/develop/static/vm/bottom_en/develop_bottom_en_body_include.jsp?j_id=1"-->
+
+<div class="footer">
+	<div class="banquan">
+	　
+      Copyright &copy; Aerospace Control, All Rights Reserved.<br>
+		Tel: 010-68762264、68388585　<br class="visible-xs"> E-mail：htkz2013@163.com<br>		<a href="https://www.magtech.com.cn/" target="_blank" class="baise">Powered by Beijing Magtech Co. Ltd,.</a>
+	</div>
+</div>
+
+<!--返回顶部-->
+<div class="top_web" id="backtop" style="display:block;"><span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span></div>
+<!--返回顶部end--> 
+</body>
+<script language="javascript" type="text/javascript" src="https://htkz.magtechjournal.com/images/1006-3242/js/j-query.js"></script><!--滚动图片-->
+<script language="javascript" type="text/javascript" src="https://htkz.magtechjournal.com/images/1006-3242/js/ss.js"></script><!--滚动图片 -->
+
+</html>
