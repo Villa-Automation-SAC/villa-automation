@@ -70,8 +70,200 @@ function toggleCitation(){
 }
 </script>
 
+  <article class="container article-jicaat my-5">
+
+  <!-- TÍTULO -->
+  <header class="mb-4">
+    <h1 class="text-center">Modelamiento de robot colaborativo Sentinel-V.A</h1>
+    <p class="text-center">
+      <strong>José Luis Huayanay Villar</strong><br>
+      Centro de Investigaciones de Villa Automation, Huamanga – Ayacucho, Perú<br>
+      <a href="https://villa-automation-sac.github.io/doi/10.JICAAT/REV-C.2025.001" target="_blank">
+        https://doi.org/10.JICAAT/REV-C.2025.001
+      </a>
+    </p>
+
+    <p class="text-center text-muted">
+      Revista JICAAT · Vol. 1 · Núm. 1 · 2026
+    </p>
+  </header>
+
+  <hr>
+
+  <!-- INFORMACIÓN DEL ARTÍCULO -->
+  <section>
+    <h3>Información del artículo</h3>
+    <ul>
+      <li><strong>Recepción:</strong> 02/10/2026</li>
+      <li><strong>Aceptación:</strong> 22/12/2026</li>
+      <li><strong>Evaluado por:</strong> Comité Editorial JICAAT</li>
+    </ul>
+  </section>
+
+  <hr>
+
+  <!-- RESUMEN -->
+  <section>
+    <h3>Resumen</h3>
+    <p>
+      Se presenta un modelamiento integral del Robot Colaborativo Sentinel-V.A desarrollado por
+      Villa Automation, orientado a aplicaciones agrícolas, civiles y de vigilancia. El trabajo
+      aborda el análisis cinemático y dinámico del sistema, la implementación del control en
+      tiempo continuo y discreto, y su validación experimental mediante microcontrolador Arduino.
+      El sistema incorpora alimentación fotovoltaica, fusión sensorial y estrategias de
+      seguimiento de trayectoria, constituyendo una plataforma base para robótica móvil autónoma.
+    </p>
+  </section>
+
+  <!-- PALABRAS CLAVE -->
+  <section>
+    <h4>Palabras clave</h4>
+    <p>
+      Robot colaborativo, Robótica móvil, Seguimiento de trayectoria, Control automático,
+      Automatización.
+    </p>
+  </section>
+
+  <hr>
+
+  <!-- 1. INTRODUCCIÓN -->
+  <section>
+    <h2>1. Introducción</h2>
+    <p>
+      El Robot Colaborativo Sentinel-V.A se concibe como una plataforma robótica móvil terrestre
+      orientada a aplicaciones agrícolas, civiles y de vigilancia, cuyo diseño integra principios
+      de robótica colaborativa, automatización y control avanzado.
+    </p>
+
+    <p>
+      Desde el punto de vista cinemático, el Sentinel-V.A se modela como un robot de tracción
+      diferencial, donde el movimiento en el plano depende directamente de la velocidad angular
+      de sus ruedas (Ogata, 1998; Katsuhiko, 2011).
+    </p>
+
+    <p>
+      El modelamiento dinámico incorpora efectos físicos reales como masa, inercia rotacional,
+      torque de los motores y fuerzas de fricción, permitiendo diseñar controladores más robustos
+      ante perturbaciones externas.
+    </p>
+  </section>
+
+  <!-- 2. MATERIALES Y MÉTODOS -->
+  <section>
+    <h2>2. Materiales y métodos</h2>
+
+    <h4>Modelamiento eléctrico del motor DC</h4>
+    <p>
+      La fuerza contraelectromotriz depende de la velocidad angular del rotor y de la constante
+      del motor. Aplicando la ley de Kirchhoff se obtiene el modelo eléctrico del sistema
+      (Åström, 2013).
+    </p>
+
+    <figure class="text-center my-4">
+      <img src="assets/figura1_motor_dc.png" class="img-fluid" alt="Arquitectura del motor DC">
+      <figcaption>
+        <strong>Figura 1.</strong> Arquitectura de la armadura del motor DC y tren de engranajes.
+      </figcaption>
+    </figure>
+
+    <h4>Seguimiento de trayectoria</h4>
+    <p>
+      Se implementa odometría mediante sensores encoder acoplados a las ruedas del robot,
+      permitiendo estimar la velocidad angular y la posición del vehículo (Nylamp Electronics, 2020).
+    </p>
+
+    <figure class="text-center my-4">
+      <img src="assets/figura2_encoder.png" class="img-fluid" alt="Sensor encoder">
+      <figcaption>
+        <strong>Figura 2.</strong> Sensor encoder para medición de velocidad angular.
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section>
+    <h2>3. Resultados y discusión</h2>
+
+    <p>
+      Los parámetros del modelo fueron obtenidos del fabricante y de pruebas experimentales.
+      Se integró un sistema fotovoltaico para la alimentación del robot móvil.
+    </p>
+
+    <h4>Parámetros del sistema</h4>
+
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Parámetro</th>
+            <th>Símbolo</th>
+            <th>Valor</th>
+            <th>Unidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Resistencia del inducido</td>
+            <td>R</td>
+            <td>2.6</td>
+            <td>Ω</td>
+          </tr>
+          <tr>
+            <td>Constante de torque</td>
+            <td>Kt</td>
+            <td>0.00767</td>
+            <td>N·m/A</td>
+          </tr>
+          <tr>
+            <td>Relación de engranajes</td>
+            <td>n</td>
+            <td>14</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- CONCLUSIONES -->
+  <section>
+    <h2>Conclusiones</h2>
+    <p>
+      El peso estructural del prototipo influye directamente en la autonomía del sistema.
+      Se recomienda optimizar el perfil estructural para mejorar eficiencia energética.
+    </p>
+
+    <p>
+      La separación entre la alimentación del sistema de potencia y control garantiza estabilidad
+      eléctrica durante el funcionamiento del robot.
+    </p>
+  </section>
+
+  <!-- REFERENCIAS -->
+  <section>
+    <h2>Referencias bibliográficas</h2>
+    <ol>
+      <li>Ogata, K. (1998). <em>Ingeniería de control moderno</em>. Prentice Hall.</li>
+      <li>Åström, K. J., & Wittenmark, B. (2013). <em>Computer-controlled systems</em>.</li>
+      <li>Gasparetto, A., & Scalera, L. (2019). A brief history of industrial robotics.</li>
+      <li>Sarmiento Gamboa, K. S. et al. (2016). Planeación de trayectorias.</li>
+    </ol>
+  </section>
+
+  <hr>
+
+  <!-- PDF -->
+  <div class="text-center">
+    <a href="assets/articulo2_jicaat.pdf" target="_blank" class="btn btn-primary">
+      📄 Descargar PDF
+    </a>
+  </div>
+
+</article>
+
 </body>
 </html>
+
 
 
 
