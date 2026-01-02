@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+
+  <meta charset="UTF-8">
+  <title>Título del artículo – Revista JICAAT</title>
+
+  <!-- Bootstrap, CSS, etc -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <!-- === Google Scholar / Revista JICAAT === -->
+  <meta name="citation_title" content="TÍTULO COMPLETO DEL ARTÍCULO">
+  <meta name="citation_author" content="Huayanay Villar, José Luis">
+  <meta name="citation_author" content="Apellido, Nombre">
+  <meta name="citation_publication_date" content="2026/01/01">
+  <meta name="citation_journal_title" content="Revista JICAAT">
+  <meta name="citation_volume" content="1">
+  <meta name="citation_issue" content="1">
+  <meta name="citation_firstpage" content="1">
+  <meta name="citation_lastpage" content="12">
+  <meta name="citation_pdf_url" content="https://jicaat.org/pdf/JICAAT001.pdf">
+  <meta name="citation_language" content="es">
+  <meta name="citation_issn" content="XXXX-XXXX">
+
+</head>
+
+<body>
+ <article class="container article-jicaat">
+
+  <h1>TÍTULO COMPLETO DEL ARTÍCULO</h1>
+
+  <p><strong>Autor(es):</strong> José Luis Huayanay Villar</p>
+  <p><strong>Revista:</strong> Revista JICAAT</p>
+  <p><strong>Año:</strong> 2026 | Vol. 1, Núm. 1</p>
+
+  <hr>
+
+  <h3>Resumen</h3>
+  <p>
+    Aquí va el resumen científico del artículo...
+  </p>
+
+  <h3>Palabras clave</h3>
+  <p>Astrodinámica, Control, Satélites, Teledetección</p>
+
+  <hr>
+
+  <a href="https://jicaat.org/pdf/JICAAT001.pdf"
+     class="btn btn-primary"
+     target="_blank">
+     📄 Descargar PDF
+  </a>
+
+</article>
+<button class="btn btn-default" onclick="toggleCitation()">
+  📑 Citar
+</button>
+
+<div id="citationAPA" style="display:none; margin-top:10px;">
+  Huayanay Villar, J. L. (2026).
+  <em>Título del artículo</em>.
+  Revista JICAAT, 1(1), 1–12.
+</div>
+
+<script>
+function toggleCitation(){
+  var c = document.getElementById("citationAPA");
+  c.style.display = (c.style.display === "none") ? "block" : "none";
+}
+</script>
+
+</body>
+</html>
