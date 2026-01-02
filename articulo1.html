@@ -26,49 +26,6 @@
 </head>
 
 <body>
- <article class="container article-jicaat">
-
-  <h1>Modelamiento de robot colaborativo Sentinel-V.A</h1>
-
-  <p><strong>Autor(es):</strong> José Luis Huayanay Villar</p>
-  <p><strong>Revista:</strong> Revista JICAAT</p>
-  <p><strong>Año:</strong> 2026 | Vol. 1, Núm. 1</p>
-
-  <hr>
-
-  <h3>Resumen</h3>
-  <p>
-    Se presenta un modelamiento integral del Robot Colaborativo Sentinel-V.A desarrollado por el Centro de Investigaciones de Villa Automation, orientado a aplicaciones agrícolas, civiles y de vigilancia. El trabajo aborda el análisis cinemático y dinámico del sistema, la implementación de control en tiempo continuo y discreto, y su validación experimental mediante microcontrolador Arduino. El sistema incorpora alimentación fotovoltaica, fusión sensorial y estrategias de seguimiento de trayectoria, constituyendo una plataforma base para robótica móvil autónoma.
-  </p>
-
-  <h3>Palabras clave</h3>
-  <p>Astrodinámica, Control, Satélites, Teledetección</p>
-
-  <hr>
-
-  <a href="https://villa-automation-sac.github.io/villa-automation/assets/articulo2_jicaat.pdf"
-     class="btn btn-primary"
-     target="_blank">
-     📄 Descargar PDF
-  </a>
-
-</article>
-<button class="btn btn-default" onclick="toggleCitation()">
-  📑 Citar
-</button>
-
-<div id="citationAPA" style="display:none; margin-top:10px;">
-  Huayanay Villar, J. L. (2026).
-  <em>Modelamiento de robot colaborativo Sentinel-V.A</em>.
-  Revista JICAAT, 1(1), 1–12.
-</div>
-
-<script>
-function toggleCitation(){
-  var c = document.getElementById("citationAPA");
-  c.style.display = (c.style.display === "none") ? "block" : "none";
-}
-</script>
 
   <article class="container article-jicaat my-5">
 
@@ -87,7 +44,17 @@ function toggleCitation(){
       Revista JICAAT · Vol. 1 · Núm. 1 · 2026
     </p>
   </header>
+    
+<button class="btn btn-outline-secondary mb-3" onclick="toggleCitation()">
+  📑 Citar
+</button>
 
+<div id="citationAPA" style="display:none;">
+  Huayanay Villar, J. L. (2026).
+  <em>Modelamiento de robot colaborativo Sentinel-V.A</em>.
+  Revista JICAAT, 1(1), 1–12.
+</div>
+    
   <hr>
 
   <!-- INFORMACIÓN DEL ARTÍCULO -->
@@ -263,6 +230,7 @@ function toggleCitation(){
 
 </body>
 </html>
+
 
 
 
