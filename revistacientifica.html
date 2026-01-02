@@ -130,6 +130,20 @@ footer {
   padding-left: 8px;
 }
 
+	<style>
+.cite-box {
+  margin-top: 8px;
+  padding: 10px;
+  font-size: 13px;
+  background: #f8f9fa;
+  border-left: 3px solid #1a73e8;
+  max-width: 650px;
+}
+.j-btn span {
+  margin-right: 14px;
+}
+</style>
+
 </style>
 </head>
 
@@ -621,7 +635,7 @@ footer {
     <!-- VOLUMEN / AÑO + DOI -->
     <div class="j-volumn-doi">
       <span class="j-volumn">
-        2025 · Revista JICAAT · Artículo original<br>
+        Volumen:001-2025<br>
         DOI:
         <a href="https://villa-automation-sac.github.io/villa-automation/doi/10.JICAAT/REV-C.2025.001/" target="_blank">
           10.JICAAT/REV-C.2025.001
@@ -630,36 +644,61 @@ footer {
     </div>
 
     <!-- BOTONES -->
-    <div class="j-btn">
+   <div class="j-btn">
 
-      <!-- ABSTRACT (ANCLA INTERNA, CORRECTO) -->
-      <span class="article-abstract">
-        <a class="j-abs" href="#abstract-JICAAT001">Abstract</a>
-      </span>
+  <!-- ABSTRACT -->
+  <span class="article-abstract">
+    <a class="j-abs" href="#abstract-JICAAT001">Abstract</a>
+  </span>
 
-      <!-- PDF (DESCARGA DIRECTA, CORRECTO) -->
-      <span class="article-pdf">
-        <a class="j-pdf" href="assets/articulo2_jicaat.pdf" target="_blank">
-          Download PDF
-        </a>
-      </span>
+  <!-- PDF -->
+  <span class="article-pdf">
+    <a class="j-pdf" href="assets/articulo2_jicaat.pdf" target="_blank">
+      Download PDF
+    </a>
+  </span>
 
-      <!-- HTML DEL ARTÍCULO (OPCIONAL, CORRECTO) -->
-      <span class="richhtml">
-        <a class="j-html" href="sentinel-va.html" target="_blank">
-          HTML
-        </a>
-      </span>
+  <!-- HTML -->
+  <span class="richhtml">
+    <a class="j-html" href="sentinel-va.html" target="_blank">
+      HTML
+    </a>
+  </span>
 
-      <!-- SAVE -->
-      <span class="shoucang">
-        <img src="/images/1006-3242/reb.png" width="16" height="16" />
-        <a href="javascript:;" onclick="collectArticle('JICAAT001');">
-          <span class="shouc">Save</span>
-        </a>
-      </span>
+  <!-- GUARDAR -->
+  <span class="shoucang">
+    <img src="/images/1006-3242/reb.png" width="16" height="16" />
+    <a href="javascript:;" onclick="collectArticle('JICAAT001');">
+      <span class="shouc">Guardar</span>
+    </a>
+  </span>
 
-    </div>
+  <!-- CITAR -->
+  <span class="article-cite">
+    <a href="javascript:;" onclick="toggleCite('cite-JICAAT001')">
+      Citar
+    </a>
+  </span>
+
+  <!-- CITADO POR -->
+  <span class="article-citedby">
+    <a href="#cited-JICAAT001">
+      Citado por 01 Artículos
+    </a>
+  </span>
+
+</div>
+	  
+<!-- BLOQUE CITA APA -->
+<div class="cite-box" id="cite-JICAAT001" style="display:none;">
+  <strong>Cita (APA):</strong>
+  <p>
+    Huayanay Villar, J. L. (2025).
+    <em>Modelamiento de robot colaborativo Sentinel-V.A</em>.
+    Revista JICAAT, 1.
+    https://doi.org/10.JICAAT/REV-C.2025.001
+  </p>
+</div>
 
     <!-- ABSTRACT (DESTINO INTERNO) -->
     <div class="j-abstract" id="abstract-JICAAT001">
@@ -1749,8 +1788,16 @@ $("#mag-getDianJiRichHtmlShu-298").load('/EN/article/getDianJiRichHtmlShu.jsp?ar
 <script language="javascript" type="text/javascript" src="https://htkz.magtechjournal.com/images/1006-3242/js/j-query.js"></script><!--滚动图片-->
 <script language="javascript" type="text/javascript" src="https://htkz.magtechjournal.com/images/1006-3242/js/ss.js"></script><!--滚动图片 -->
 
-
+			<script>
+function toggleCite(id) {
+  const box = document.getElementById(id);
+  box.style.display = (box.style.display === "none") ? "block" : "none";
+}
+</script>
+			
+</body>
 </html>
+
 
 
 
