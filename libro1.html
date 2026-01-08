@@ -103,7 +103,7 @@
 
   <div class="cover">
     <!-- CAMBIAR RUTA SI ES NECESARIO -->
-    <img src="guia.png" alt="Portada Guía y Catálogo de Proyectos con Arduino">
+    <img src="assets/guia.png" alt="Portada Guía y Catálogo de Proyectos con Arduino">
   </div>
 
   <h2>Resumen</h2>
@@ -131,6 +131,163 @@
     https://doi.org/10.JICAAT/BOOK-VA.2026.001
   </p>
 
+<section id="cap1-arduino">
+
+  <h1>Introducción a Arduino</h1>
+
+  <p>
+    Una placa Arduino es un dispositivo electrónico compuesto por un
+    microcontrolador llamado <strong>ATMEGA328</strong>, que le permite
+    procesar datos y realizar diversas tareas como mover un motor,
+    detectar la presencia de un objeto, medir el tiempo entre dos eventos,
+    encender o apagar una luz, entre otras aplicaciones.
+  </p>
+
+  <p>
+    La placa <strong>Arduino UNO</strong> puede ser programada mediante
+    un software <em>open source</em> o software libre, es decir, un
+    software que no necesita licencia para ser instalado. Este software
+    puede descargarse desde la página oficial de la fundación Arduino.
+  </p>
+
+  <p>
+    La placa Arduino posee diversos pines donde se conectan cables, lo que
+    permite controlar sensores, motores o pantallas LCD sin necesidad de
+    soldar.
+  </p>
+
+  <figure>
+    <img src="assets/ardu.png" alt="Arduino UNO esquematizado">
+    <figcaption>
+      Figura 1.1: Arduino UNO esquematizado y partes importantes.
+    </figcaption>
+  </figure>
+
+  <p>
+    En los pines mostrados en la figura 1.1 se pueden incorporar sensores
+    para monitorear múltiples parámetros del mundo físico. Para ello se
+    debe programar el Arduino de manera que “sepa” qué dispositivo tiene
+    conectado en cada pin, ya sea digital o analógico.
+  </p>
+
+  <p>
+    Arduino actúa como una interfaz capaz de conectar el mundo digital con
+    el mundo físico. El Arduino UNO puede ser programado con pines como
+    entradas (sensores o botones) o salidas (pantallas, luces o sonido).
+  </p>
+
+  <h2>Pines analógicos y digitales</h2>
+
+  <p>
+    El Arduino UNO posee seis pines analógicos, desde <strong>A0</strong>
+    hasta <strong>A5</strong>, capaces de leer voltajes entre 0 y 5 V con
+    una resolución de 10 bits, permitiendo detectar cambios de
+    aproximadamente 4.88 mV.
+  </p>
+
+  <p>
+    Por otra parte, el Arduino UNO dispone de 14 pines digitales, desde el
+    pin 0 al 13, los cuales solo pueden interpretar dos estados:
+    <strong>HIGH</strong> (5 V) y <strong>LOW</strong> (0 V).
+  </p>
+
+  <h2>Simulación con Tinkercad y Proteus</h2>
+
+  <p>
+    El trabajo con Arduino puede realizarse tanto de forma real como
+    mediante simulaciones. Cuando no se dispone del hardware necesario,
+    es posible realizar las actividades mediante el software en línea
+    <strong>Autodesk® Tinkercad®</strong>.
+  </p>
+
+  <figure>
+    <img src="figuras/fig1_2_tinkercad_home.png" alt="Página principal de Tinkercad">
+    <figcaption>
+      Figura 1.2: Página principal de Tinkercad®.
+    </figcaption>
+  </figure>
+
+  <h2>Estructura básica de un programa Arduino</h2>
+
+  <p>
+    Todo programa en Arduino utiliza dos funciones principales:
+  </p>
+
+  <pre><code class="language-cpp">
+void setup() {
+  // Se ejecuta una sola vez
+}
+
+void loop() {
+  // Se ejecuta de forma indefinida
+}
+  </code></pre>
+
+  <p>
+    La función <code>setup()</code> se ejecuta una sola vez al iniciar el
+    Arduino, mientras que <code>loop()</code> se repite continuamente
+    mientras la placa esté energizada.
+  </p>
+
+  <h3>Lectura de entradas analógicas</h3>
+
+  <pre><code class="language-cpp">
+lectura = analogRead(pin);
+  </code></pre>
+
+  <p>
+    Esta instrucción entrega un valor entre 0 y 1023 proporcional al nivel
+    de voltaje de entrada.
+  </p>
+
+  <h3>Lectura de entradas digitales</h3>
+
+  <pre><code class="language-cpp">
+pinMode(pin, INPUT);
+lectura = digitalRead(pin);
+  </code></pre>
+
+  <p>
+    Las entradas digitales solo reconocen dos estados: HIGH o LOW.
+  </p>
+
+  <h2>Alimentación</h2>
+
+  <p>
+    El Arduino UNO puede alimentarse desde el puerto USB del computador,
+    mediante un transformador o una batería externa. Posee salidas de
+    voltaje de 5 V y 3.3 V, además de pines GND.
+  </p>
+
+  <figure>
+    <img src="figuras/fig1_5_gnd_y_alimentacion.png" alt="Pines de alimentación Arduino">
+    <figcaption>
+      Figura 1.5: Tierras y salidas de alimentación del Arduino UNO.
+    </figcaption>
+  </figure>
+
+  <h2>Resumen de puertos</h2>
+
+  <ul>
+    <li>Puertos digitales: pines 0–7 y 8–13.</li>
+    <li>Puertos analógicos: pines A0–A5.</li>
+    <li>Puertos de energía: 5 V, 3.3 V y GND.</li>
+  </ul>
+
+  <h2>Desafío</h2>
+
+  <p>
+    Conecte la placa Arduino a la computadora y explore la interfaz del
+    entorno de programación IDE. Si no dispone de una placa real, explore
+    el simulador disponible en
+    <a href="https://www.tinkercad.com" target="_blank">https://www.tinkercad.com</a>.
+  </p>
+
+</section>
+
+    
+
+    
   <footer>
     © 2026 – Villa Automation SAC · JICAAT Publications
   </footer>
@@ -139,5 +296,6 @@
 
 </body>
 </html>
+
 
 
