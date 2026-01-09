@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automatización, Comunicación e Integración SCADA | Villa Automation</title>
+  <meta name="description" content="Soluciones de automatización industrial, comunicación y sistemas SCADA integrados por Villa Automation." />
+  <style>
+    :root{
+      --blue:#0a3d62;
+      --blue2:#1e6fa3;
+      --gray:#f5f7fa;
+      --dark:#1f2933;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--dark);background:#fff;line-height:1.6}
+    header{background:linear-gradient(135deg,var(--blue),var(--blue2));color:#fff;padding:60px 20px}
+    header h1{margin:0;font-size:2.2rem}
+    header p{max-width:900px;font-size:1.05rem}
+    nav{background:#082f49;color:#fff;padding:10px 20px;position:sticky;top:0;z-index:10}
+    nav a{color:#fff;margin-right:15px;text-decoration:none;font-weight:bold}
+    section{padding:60px 20px}
+    .container{max-width:1100px;margin:auto}
+    .section-title{color:var(--blue);font-size:1.8rem;margin-bottom:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:var(--gray);border-radius:10px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    .card h3{margin-top:0;color:var(--blue2)}
+    .example{background:#fff;border-left:5px solid var(--blue2);padding:15px;margin-top:10px}
+    .badge{display:inline-block;background:var(--blue2);color:#fff;padding:4px 10px;border-radius:20px;font-size:.8rem;margin-right:6px}
+    footer{background:#082f49;color:#fff;padding:30px 20px}
+    footer a{color:#9ddcff;text-decoration:none}
+    @media(max-width:600px){header h1{font-size:1.7rem}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <h1>Automatización, Comunicación e Integración SCADA</h1>
+    <p>
+      En <strong>Villa Automation</strong> desarrollamos soluciones completas de automatización industrial,
+      integrando instrumentación, control, comunicaciones y plataformas SCADA para supervisión,
+      adquisición de datos y toma de decisiones en tiempo real.
+    </p>
+  </div>
+</header>
+
+<nav>
+  <a href="#automatizacion">Automatización</a>
+  <a href="#comunicacion">Comunicación</a>
+  <a href="#scada">Integración SCADA</a>
+  <a href="#ejemplos">Ejemplos</a>
+</nav>
+
+<section id="automatizacion">
+  <div class="container">
+    <h2 class="section-title">Automatización Industrial</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Control de Procesos</h3>
+        <p>
+          Diseño e implementación de sistemas de control automático para procesos industriales,
+          agrícolas y energéticos.
+        </p>
+        <span class="badge">PID</span>
+        <span class="badge">Control Predictivo</span>
+        <span class="badge">Lógica Difusa</span>
+      </div>
+      <div class="card">
+        <h3>PLC y Controladores</h3>
+        <p>
+          Programación de PLC, microcontroladores y sistemas embebidos para control robusto
+          y confiable en campo.
+        </p>
+        <span class="badge">PLC</span>
+        <span class="badge">Arduino</span>
+        <span class="badge">RTU</span>
+      </div>
+      <div class="card">
+        <h3>Instrumentación</h3>
+        <p>
+          Integración de sensores y actuadores para medición de variables físicas y ambientales
+          en tiempo real.
+        </p>
+        <span class="badge">Temperatura</span>
+        <span class="badge">Presión</span>
+        <span class="badge">Nivel</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="comunicacion" style="background:var(--gray)">
+  <div class="container">
+    <h2 class="section-title">Comunicación Industrial</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Protocolos Industriales</h3>
+        <p>
+          Implementamos protocolos estándar para asegurar interoperabilidad entre equipos
+          de diferentes fabricantes.
+        </p>
+        <span class="badge">Modbus</span>
+        <span class="badge">OPC UA</span>
+        <span class="badge">MQTT</span>
+      </div>
+      <div class="card">
+        <h3>Redes Cableadas e Inalámbricas</h3>
+        <p>
+          Diseño de arquitecturas de comunicación industrial confiables, seguras y escalables.
+        </p>
+        <span class="badge">Ethernet</span>
+        <span class="badge">RS485</span>
+        <span class="badge">LoRa</span>
+      </div>
+      <div class="card">
+        <h3>IoT Industrial</h3>
+        <p>
+          Conectamos procesos industriales a la nube para monitoreo remoto y análisis avanzado.
+        </p>
+        <span class="badge">IIoT</span>
+        <span class="badge">Cloud</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="scada">
+  <div class="container">
+    <h2 class="section-title">Integración SCADA</h2>
+    <p>
+      Los sistemas <strong>SCADA</strong> (Supervisory Control and Data Acquisition) permiten
+      supervisar, controlar y registrar información crítica de los procesos desde una interfaz
+      centralizada.
+    </p>
+    <div class="grid">
+      <div class="card">
+        <h3>Supervisión en Tiempo Real</h3>
+        <p>
+          Visualización de variables de proceso, estados de equipos y alarmas operativas.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Históricos y Reportes</h3>
+        <p>
+          Registro de datos para análisis, optimización de procesos y toma de decisiones.
+        </p>
+      </div>
+      <div class="card">
+        <h3>Control Remoto Seguro</h3>
+        <p>
+          Operación remota con niveles de acceso y seguridad industrial.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ejemplos" style="background:var(--gray)">
+  <div class="container">
+    <h2 class="section-title">Ejemplos de Aplicación</h2>
+
+    <div class="card">
+      <h3>Ejemplo 1: Sistema de Tanques con SCADA</h3>
+      <div class="example">
+        <p>
+          Monitoreo de nivel, control de bombas y visualización de alarmas en un sistema de
+          almacenamiento de agua.
+        </p>
+        <ul>
+          <li>Sensores de nivel ultrasónicos</li>
+          <li>PLC / Arduino como controlador</li>
+          <li>SCADA para visualización y control</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Ejemplo 2: Invernadero Automatizado</h3>
+      <div class="example">
+        <p>
+          Control automático de temperatura, humedad y CO₂ con acceso remoto.
+        </p>
+        <ul>
+          <li>Sensores ambientales integrados</li>
+          <li>Comunicación MQTT</li>
+          <li>Dashboard SCADA web</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h3>Ejemplo 3: Monitoreo Industrial Remoto</h3>
+      <div class="example">
+        <p>
+          Supervisión de motores y consumo energético desde una sala de control central.
+        </p>
+        <ul>
+          <li>Medición de corriente y voltaje</li>
+          <li>Red Ethernet industrial</li>
+          <li>Históricos y alarmas SCADA</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>
+      © 2026 <strong>Villa Automation</strong> – Automatización, Comunicación e Integración SCADA
+    </p>
+    <p>
+      Contacto: <a href="https://villa-automation-sac.github.io/villa-automation" target="_blank">
+      villa-automation-sac.github.io</a>
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
