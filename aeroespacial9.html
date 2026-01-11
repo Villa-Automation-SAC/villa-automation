@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JICAAT V – Sistema Orbital</title>
+
+<style>
+/* =========================
+   ESTILOS GENERALES
+========================= */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================
+   HEADER
+========================= */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.menu {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* =========================
+   SECCIÓN PRINCIPAL
+========================= */
+.section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 80px;
+  gap: 60px;
+  position: relative;
+}
+
+/* Línea roja central */
+.section::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 80%;
+  width: 2px;
+  background: #e10600;
+}
+
+/* =========================
+   COLUMNA TEXTO
+========================= */
+.text-box {
+  max-width: 620px;
+}
+
+.text-box h1 {
+  font-size: 52px;
+  letter-spacing: 6px;
+  margin-bottom: 20px;
+}
+
+.text-box p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 30px;
+}
+
+/* =========================
+   OBJETIVOS
+========================= */
+.text-box h2 {
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-left: 3px solid #e10600;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.card ul {
+  padding-left: 18px;
+  font-size: 14px;
+}
+
+/* =========================
+   COLUMNA IMAGEN
+========================= */
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 90vh;
+  overflow: hidden;   /* CLAVE */
+}
+
+
+.image-box img {
+  max-height: 90vh;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;   /* CLAVE para infografías */
+  transform-origin: center;
+  filter: drop-shadow(0 0 30px rgba(255,255,255,0.25));
+}
+
+   
+.rotate-up {
+  transform: rotate(90deg);
+}
+
+.rotate-right {
+  transform: rotate(90deg);
+}
+
+.rotate-none {
+  transform: rotate(0deg);
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .rotate-up {
+    transform: rotate(90deg);
+    max-height: 60vh;
+  }
+}
+
+
+@media (max-width: 900px) {
+  .section {
+    grid-template-columns: 1fr;
+    padding: 40px;
+  }
+
+  .section::before {
+    display: none;
+  }
+
+  .image-box {
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .text-box h1 {
+    font-size: 40px;
+  }
+}
+.infografia {
+  max-height: 85vh;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .infografia {
+    max-height: 60vh;
+  }
+}
+.cohete-principal {
+  height: 90vh;        /* ALTURA FIJA */
+  width: auto;
+  max-width: none;
+  transform: rotate(90deg);
+}
+.image-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  overflow: visible;   /* IMPORTANTE */
+}
+.text-box ul {
+  padding-left: 18px;
+}
+
+.text-box li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.cohete-principal {
+  max-width: 100%;
+  border: 1px solid #ccc;
+}
+.image-box {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.cohete-principal {
+  display: block;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.image-box-vertical {
+  display: flex;
+  flex-direction: column;   /* VERTICAL */
+  gap: 20px;
+  max-width: 100%;
+}
+
+.image-box-vertical img {
+  width: 100%;              /* NUNCA se sale */
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">LYNX SPACE &nbsp;|&nbsp; VILLA AUTOMATION</div>
+  <div class="menu">☰</div>
+</header>
+
+<section class="section">
+
+  <!-- COLUMNA IZQUIERDA -->
+  <div class="text-box">
+   <h1>ASTROFÍSICA Y ASTRODINÁMICA JICAAT</h1>
+<p>
+El programa <strong>JICAAT</strong> de <strong>Villa Automation S.A.C.</strong>
+integra fundamentos avanzados de <strong>astrofísica</strong> y
+<strong>astrodinámica</strong> para el análisis del movimiento orbital,
+la dinámica gravitacional y el diseño de trayectorias espaciales en
+entornos Tierra–Luna.
+</p>
+
+<p>
+Estas disciplinas permiten comprender la interacción entre fuerzas
+gravitacionales, energía orbital y estabilidad dinámica, sentando las
+bases para futuras misiones suborbitales, orbitales y cislunares
+desarrolladas en el Perú.
+</p>
+
+ <h2>Objetivos Científicos</h2>
+
+<div class="grid">
+
+  <div class="card">
+    <h3>🌌 Astrofísica</h3>
+    <ul>
+      <li>Modelar el entorno gravitacional Tierra–Luna</li>
+      <li>Analizar estabilidad en puntos de equilibrio</li>
+      <li>Evaluar perturbaciones orbitales</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛰️ Astrodinámica</h3>
+    <ul>
+      <li>Simulación CR3BP en 3D</li>
+      <li>Órbitas NRHO y trayectorias cislunares</li>
+      <li>Maniobras impulsivas de bajo Δv</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📐 Modelado Numérico</h3>
+    <ul>
+      <li>Integración Runge–Kutta de orden 6</li>
+      <li>Evaluación de energía y momento</li>
+      <li>Búsqueda de colisión lunar controlada</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🚀 Aplicación JICAAT</h3>
+    <ul>
+      <li>Diseño de perfiles de vuelo</li>
+      <li>Validación de sistemas de guiado</li>
+      <li>Preparación para misiones orbitales</li>
+    </ul>
+  </div>
+
+</div>
+<section class="section">
+
+  <div class="text-box">
+    <h2>Dinámica Orbital Cislunar</h2>
+
+    <p>
+      El análisis astrodinámico del programa JICAAT se basa en el
+      <strong>Problema Restringido de los Tres Cuerpos (CR3BP)</strong>,
+      considerando el sistema Tierra–Luna como marco de referencia
+      para el estudio de trayectorias espaciales complejas.
+    </p>
+
+    <p>
+      Se emplean órbitas del tipo
+      <strong>Near Rectilinear Halo Orbit (NRHO)</strong>,
+      caracterizadas por su estabilidad cuasi–periódica y bajo consumo
+      energético, similares a las utilizadas por la misión CAPSTONE.
+    </p>
+
+    <ul>
+      <li>Movimiento tridimensional no lineal</li>
+      <li>Maniobras impulsivas de Δv reducido</li>
+      <li>Transferencias lunares eficientes</li>
+      <li>Control de colisión lunar para mitigación de detritos</li>
+    </ul>
+  </div>
+
+  <div class="image-box-vertical">
+    <img src="assets/CR3BP2.png" alt="Órbita NRHO en el sistema Tierra-Luna">
+    <img src="assets/libracion.png" alt="Simulación CR3BP 3D">
+      <img src="assets/simu04.png" alt="Simulación CR3BP">
+      <img src="assets/simu05.png" alt="Simulación CR3BP">
+  </div>
+
+</section>
+
+
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
