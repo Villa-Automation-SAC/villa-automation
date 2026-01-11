@@ -229,6 +229,20 @@ header {
   box-shadow: none;
   outline: none;
 }
+.image-box-vertical {
+  display: flex;
+  flex-direction: column;   /* VERTICAL */
+  gap: 20px;
+  max-width: 100%;
+}
+
+.image-box-vertical img {
+  width: 100%;              /* NUNCA se sale */
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
 
 </style>
 </head>
@@ -324,102 +338,11 @@ Villa Automation se encuentra en una etapa experimental y de prototipado, con pr
   </div>
 
   <!-- COLUMNA DERECHA -->
-  <div class="image-box">
-    <img src="assets/jicaatx.png"
-         alt="Programa JICAAT"
-         class="cohete-principal">
-  </div>
+<div class="image-box-vertical">
+  <img src="assets/jicaatx.png" alt="Feria Tecnológica Villa Automation">
+  <img src="assets/cohetevi.png" alt="Dinámica Matemática Cohete">
+</div>
 
-</section>
-
-   <section class="section">
-
-  <!-- COLUMNA IZQUIERDA -->
-  <div class="text-box">
-     
- <h2>Guiamiento, Navegación y Control (GNC)</h2>
-<p>
-  El sistema de Guiamiento, Navegación y Control (GNC) del cohete JICAAT V es el
-  encargado de estimar, supervisar y corregir la orientación, posición y
-  trayectoria del vehículo durante todas las fases del vuelo: despegue,
-  ascenso, vuelo balístico y recuperación.
-</p>
-
-<p>
-  Para la estimación de actitud y navegación, el sistema integra sensores
-  inerciales (IMU con acelerómetros y giróscopos), receptor GPS y sensores
-  ambientales, combinados mediante algoritmos de fusión de sensores que
-  permiten obtener datos confiables de posición, velocidad y orientación en
-  tiempo real.
-</p>
-
-<p>
-  El subsistema de control implementa algoritmos de control experimental,
-  incluyendo control PID y esquemas predictivos simplificados, los cuales
-  actúan sobre las superficies de control y/o sistemas de estabilización para
-  minimizar perturbaciones aerodinámicas, vibraciones estructurales y errores
-  de trayectoria.
-</p>
-
-<p>
-  El GNC del JICAAT V ha sido diseñado como una plataforma modular y escalable,
-  permitiendo la validación de nuevas estrategias de control, pruebas de
-  software en vuelo y la futura incorporación de algoritmos avanzados de
-  control autónomo y navegación de alta precisión.
-</p>
-  </div>
-  <!-- COLUMNA DERECHA -->
-  <div class="image-box">
-    <img src="assets/cohete25.jpeg" alt="JICAAT V" class="rotate-none infografia">
-  </div>
-</section>
-
-   <section class="section">
-  <div class="text-box">
-    <h2>Cohetes de la Familia JICAAT I</h2>
-
-    <p>
-      El vehículo <strong>JICAAT</strong> presenta una configuración longitudinal modular,
-      optimizada para estabilidad aerodinámica y correcta distribución de masas.
-      En la figura se distinguen claramente los siguientes subsistemas:
-    </p>
-
-    <ul>
-      <li>
-        <strong>Cono de nariz:</strong>
-        Elemento aerodinámico frontal diseñado para minimizar la resistencia
-        y proteger la electrónica sensible durante la fase de ascenso.
-      </li>
-
-      <li>
-        <strong>Compartimiento de aviónica:</strong>
-        Ubicado inmediatamente detrás del cono, alberga sensores inerciales,
-        computadora de vuelo, telemetría y sistema de adquisición de datos.
-      </li>
-
-      <li>
-        <strong>Sección de carga útil:</strong>
-        Módulo central destinado a experimentos, instrumentación o cargas científicas,
-        con sujeción estructural interna.
-      </li>
-
-      <li>
-        <strong>Sistema de recuperación:</strong>
-        Zona intermedia donde se alojan paracaídas, líneas de eyección
-        y mecanismos pirotécnicos de separación.
-      </li>
-
-      <li>
-        <strong>Tanque y estructura trasera:</strong>
-        Incluye el alojamiento del sistema de propulsión y refuerzos estructurales
-        para soportar cargas axiales y vibraciones.
-      </li>
-    </ul>
-  </div>
-
-  <div class="image-box">
-    <img src="assets/cohete25.jpeg" class="cohete-principal">
-  </div>
 </section>
 
    
@@ -504,6 +427,7 @@ Villa Automation se encuentra en una etapa experimental y de prototipado, con pr
    
 </body>
 </html>
+
 
 
 
