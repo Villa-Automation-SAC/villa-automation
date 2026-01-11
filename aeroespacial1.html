@@ -255,6 +255,20 @@ header {
   height: auto;
   border-radius: 12px;
 }
+.image-box-vertical {
+  display: flex;
+  flex-direction: column;   /* VERTICAL */
+  gap: 20px;
+  max-width: 100%;
+}
+
+.image-box-vertical img {
+  width: 100%;              /* NUNCA se sale */
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+}
 
 </style>
 </head>
@@ -334,12 +348,11 @@ header {
   </div>
 
 <!-- COLUMNA DERECHA -->
-<div class="image-box">
-  <img src="assets/feria9.jpg" alt="Feria Villa Automation">
-  <img src="assets/cohete34.png"
-       alt="Asesoría Tecnológica Villa Automation"
-       class="cohete-principal">
+<div class="image-box-vertical">
+  <img src="assets/feria9.jpg" alt="Feria Tecnológica Villa Automation">
+  <img src="assets/cohete34.png" alt="Dinámica Matemática Cohete">
 </div>
+
 
 </section>
 
@@ -413,6 +426,7 @@ Registro de parámetros de vuelo (altitud, orientación, aceleración) en memori
    
 </body>
 </html>
+
 
 
 
