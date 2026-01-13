@@ -10,18 +10,75 @@ img { width:100%; border-radius:12px; margin-bottom:15px; }
 .container { max-width:800px; margin:auto; }
 a { color:lightgreen; text-decoration:none; }
 .back-btn { margin-top:20px; display:inline-block; }
-</style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-</head>
+    /* =========================
+   HEADER SUPERIOR
+========================= */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  background: #081b2d;
+}
 
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
 
-<body>
-<div class="container">
-<h1>Cursos y Capacitaciones</h1>
+.menu a {
+  margin-left: 25px;
+  font-weight: 500;
+  color: #fff;
+}
 
-<!-- ⭐ BOTÓN DE DONACIÓN ELEGANTE -->
-<style>
-  .boton-donacion-elegante {
+/* =========================
+   HERO SECTION
+========================= */
+.hero {
+  position: relative;
+  height: 85vh;
+  background: url("assets/eventos4.jpeg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  background: #1e90ff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+}
+ .boton-donacion-elegante {
       background: linear-gradient(135deg, #ff4fa3, #ff78c8);
       color: white;
       padding: 12px 26px;
@@ -52,37 +109,103 @@ a { color:lightgreen; text-decoration:none; }
       object-fit: cover;  /* ajusta la imagen al círculo */
       box-shadow: 0 0 8px rgba(255, 120, 200, 0.7);
   }
+
+    /* =========================
+   HERO CON VIDEO
+========================= */
+.hero {
+  position: relative;
+  height: 85vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 900px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.hero-btn {
+  background: #1e90ff;
+  padding: 12px 28px;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+}
+
 </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+<!-- =========================
+     HEADER + HERO
+========================= -->
+<header class="main-header">
+  <div class="logo">Villa Automation SAC</div>
+  <nav class="menu">
+    <a href="index.html">Inicio</a>
+    <a href="servicios.html">Servicios</a>
+    <a href="cursos.html">Capacitación</a>
+    <a href="publicaciones.html">Publicaciones</a>
+    <a href="profesionales.html">Profesionales</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="assets/curso.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>CURSOS Y CAPACITACIONES</h1>
+    <p>
+      Formación especializada en automatización, robótica, inteligencia artificial,
+      control, sistemas aeroespaciales y tecnologías emergentes.
+    </p>
+    <a href="index.html" class="hero-btn">Ir a página principal</a>
+  </div>
+</section>
 
 
-<div style="text-align:right; margin: 10px 20px;">
-  <a href="assets/qr.jpeg" target="_blank" class="boton-donacion-elegante">
-      <img src="assets/images.jpg" class="icono-donacion" alt="">
-      Donaciones Aquí
-  </a>
-</div>
-
-<!-- ❤️ BOTÓN SPONSOR -->
-<div style="text-align:right; margin: 10px 20px;">
-  <a href="https://github.com/sponsors/Villa-Automation-SAC" target="_blank" 
-     style="background:#ff4081; padding:8px 14px; color:white; 
-            font-size:14px; border-radius:8px; text-decoration:none;">
-    ❤️ Apoya con Sponsor
-  </a>
-</div>
-
-
-<p>Programas de formación profesional en automatización, robótica, IA y control.</p>
-
-<!-- Imagen referenciada -->
-<img src="assets/eventos4.jpeg" alt="Curso Villa Automation">
-
-<p>
-En Villa Automation SAC, creemos que el conocimiento es la base del progreso.
-Por eso, ofrecemos cursos y capacitaciones especializadas en automatización, robótica, control, programación, satélites y cohetería experimental.
-Nuestros programas combinan formación teórica y práctica, orientados a estudiantes, técnicos, ingenieros y público en general
-que desea desarrollar competencias en tecnologías avanzadas e innovación aplicada.
-</p>
 
 <!-- ===== FORMULARIO DE ENVÍO DE COMPROBANTE ===== -->
 <style>
