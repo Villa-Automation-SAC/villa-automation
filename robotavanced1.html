@@ -82,13 +82,49 @@ p{
 @media(min-width:900px){
   .video-grid{ grid-template-columns:1fr 1fr; }
 }
+  /* Botón volver */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 18px;
+  background:linear-gradient(135deg, #0077cc, #005fa3);
+  color:#fff;
+  border:none;
+  border-radius:999px;
+  font-size:0.95rem;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 6px 16px rgba(0,119,204,0.35);
+  transition:all .25s ease;
+}
+
+.back-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,119,204,0.45);
+}
+
+.back-btn:active{
+  transform:scale(0.96);
+}
+
+.back-wrapper{
+  margin-bottom:18px;
+}
+
 </style>
 </head>
 
 <body>
 
 <div class="container">
+<div class="back-wrapper">
+  <button class="back-btn" onclick="history.back()">
+    ← Volver a la página anterior
+  </button>
+</div>
 
+  
 <h1 style="text-align:center;color:var(--accent);">
 Robótica Avanzada
 </h1>
@@ -183,4 +219,5 @@ integrando teoría, análisis y aplicación práctica.
 
 </body>
 </html>
+
 
