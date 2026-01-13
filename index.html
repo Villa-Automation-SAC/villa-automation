@@ -90,7 +90,7 @@
 
 
 <div class="banner-navidad">
-  <h1 class="flameo">🦾🚀 Bienvenidos a Villa Automation 🤖</h1>
+  <h1 class="flameo">Bienvenidos a Villa Automation </h1>
 </div>
 
 <style>
@@ -128,34 +128,69 @@
 .chart-card{
   grid-column: span 2;
 }
+  .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 900px;
+}
+
+.stat-card {
+  background: rgba(0, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 18px;
+  backdrop-filter: blur(6px);
+}
+
+.tendencia {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tendencia {
+    grid-column: auto;
+    grid-row: auto;
+  }
+}
+
 </style>
 
     
 <section class="finance-dashboard">
 
-  <div class="finance-card">
+ <div class="stats-grid">
+
+  <div class="stat-card">
     <h4>Visitantes Totales</h4>
     <span id="totalVisitas">---</span>
     <small>Histórico</small>
   </div>
 
-  <div class="finance-card">
+  <div class="stat-card">
     <h4>Hoy</h4>
     <span id="visitasHoy">---</span>
     <small>Últimas 24h</small>
   </div>
 
-  <div class="finance-card">
+  <div class="stat-card tendencia">
+    <h4>Tendencia</h4>
+    <canvas id="visitasChart"></canvas>
+  </div>
+
+  <div class="stat-card">
     <h4>Crecimiento</h4>
     <span id="crecimiento">--%</span>
     <small>vs ayer</small>
   </div>
 
-  <div class="finance-card chart-card">
-    <h4>Tendencia</h4>
-    <canvas id="visitasChart" height="90"></canvas>
-  </div>
-
+</div>
+ 
 </section>
 
 
