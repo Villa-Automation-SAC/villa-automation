@@ -1037,7 +1037,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <!-- === Librería del gráfico === -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -1116,23 +1115,6 @@ setInterval(() => {
 
     sensorChart.update();
 }, 1500); // cada 1.5 segundos
-</script>
-
-    <script>
-const url = "https://script.google.com/macros/s/AKfycbxOWPGXWeJ8EL2z_VYSCwr16dRFwVBuwsW4gnxB1TwvPj7BV6Wza4fkipxTWTopd17G/exec";
-
-fetch(url)
-  .then(res => res.json())
-  .then(data => {
-    const numero = String(data.visitas).padStart(3, '0');
-    document.getElementById("contadorBtn").innerHTML =
-      `Visitantes: ${numero}`;
-  })
-  .catch(err => {
-    console.error("Error:", err);
-    document.getElementById("contadorBtn").innerHTML =
-      `Visitantes: ---`;
-  });
 </script>
 
     
@@ -1272,56 +1254,54 @@ window.addEventListener("load", () => {
 
 </script>
 
-    <script>
-const url = "https://script.google.com/macros/s/AKfycbxOWPGXWeJ8EL2z_VYSCwr16dRFwVBuwsW4gnxB1TwvPj7BV6Wza4fkipxTWTopd17G/exec";
+ <script>
+document.addEventListener("DOMContentLoaded", () => {
 
-let historial = [];
+  const VISITAS_URL = "https://script.google.com/macros/s/AKfycbxOWPGXWeJ8EL2z_VYSCwr16dRFwVBuwsW4gnxB1TwvPj7BV6Wza4fkipxTWTopd17G/exec";
+  let historial = [];
 
-fetch(url)
-  .then(res => res.json())
-  .then(data => {
+  fetch(VISITAS_URL)
+    .then(res => res.json())
+    .then(data => {
 
-    const total = data.visitas;
-    const hoy = Math.floor(total * 0.06);       // estimado diario
-    const ayer = Math.floor(hoy * 0.9);
+      if (!data.visitas) return;
 
-    const crecimiento = (((hoy - ayer) / ayer) * 100).toFixed(2);
+      const total = data.visitas;
+      const hoy = Math.floor(total * 0.06);
+      const ayer = Math.max(hoy * 0.9, 1);
+      const crecimiento = (((hoy - ayer) / ayer) * 100).toFixed(2);
 
-    document.getElementById("totalVisitas").innerText = total;
-    document.getElementById("visitasHoy").innerText = hoy;
-    document.getElementById("crecimiento").innerText = crecimiento + "%";
+      document.getElementById("totalVisitas").textContent = total;
+      document.getElementById("visitasHoy").textContent = hoy;
+      document.getElementById("crecimiento").textContent = crecimiento + "%";
 
-    // Simulación histórica tipo mercado
-    for(let i=0;i<20;i++){
-      historial.push(total - Math.floor(Math.random()*500));
-    }
-
-    crearGrafico(historial);
-  });
-
-function crearGrafico(datos){
-  const ctx = document.getElementById("visitasChart");
-
-  new Chart(ctx,{
-    type:"line",
-    data:{
-      labels: datos.map((_,i)=>i),
-      datasets:[{
-        data: datos,
-        borderWidth:2,
-        tension:0.4
-      }]
-    },
-    options:{
-      plugins:{legend:{display:false}},
-      scales:{
-        x:{display:false},
-        y:{display:false}
+      for (let i = 0; i < 20; i++) {
+        historial.push(total - Math.floor(Math.random() * 500));
       }
-    }
-  });
-}
+
+      const canvas = document.getElementById("visitasChart");
+      if (!canvas) return;
+
+      new Chart(canvas, {
+        type: "line",
+        data: {
+          labels: historial.map((_, i) => i + 1),
+          datasets: [{
+            data: historial,
+            borderWidth: 2,
+            tension: 0.4
+          }]
+        },
+        options: {
+          plugins: { legend: { display: false } },
+          scales: { x: { display: false }, y: { display: false } }
+        }
+      });
+    })
+    .catch(err => console.error("Error visitas:", err));
+});
 </script>
+
 
 </body>
 </html>
