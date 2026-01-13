@@ -171,47 +171,42 @@ a { color:lightgreen; text-decoration:none; }
 /* =========================
    BOTÓN DONACIÓN COMPACTO
 ========================= */
+/* =========================
+   BOTÓN DONACIÓN – BORDE DERECHO
+========================= */
 .hero-donaciones {
-  position: absolute;
-  top: 90px;           /* debajo del menú */
-  right: 30px;
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  position: fixed;          /* siempre visible */
+  top: 40%;
+  right: 12px;              /* pegado al borde */
+  z-index: 999;
 }
 
-/* Ajuste del botón rosado */
+/* Botón compacto */
 .boton-donacion-elegante {
-  padding: 8px 16px !important;
-  font-size: 14px !important;
-  border-radius: 22px !important;
-  box-shadow: 0 4px 10px rgba(255, 100, 170, 0.35);
-  width: auto !important;
-  max-width: 220px;
+  padding: 10px 14px !important;
+  font-size: 13px !important;
+  border-radius: 30px !important;
+  max-width: 180px;
 }
 
-/* Ícono más pequeño */
+/* Icono pequeño */
 .icono-donacion {
-  width: 28px !important;
-  height: 28px !important;
+  width: 26px !important;
+  height: 26px !important;
 }
+
 
 /* Sponsor más discreto */
-.boton-sponsor {
-  font-size: 13px;
-  padding: 6px 12px;
-  border-radius: 8px;
-}
+
 @media (max-width: 768px) {
   .hero-donaciones {
-    top: 70px;
-    right: 15px;
+    top: auto;
+    bottom: 15px;
+    right: 10px;
   }
 
-  .boton-donacion-elegante {
-    font-size: 12px !important;
-    padding: 6px 12px !important;
+  .boton-donacion-elegante span {
+    display: none; /* solo icono */
   }
 }
 
@@ -1031,24 +1026,24 @@ const linkVerificacion =
     <!-- CURSO 1 -->
 
     <div class="course-card">
-        <div class="course-title">Sistema de Control para Cohetes Educativos e investigación</div>
+        <div class="course-title">Curso Coheteria y Astrofisica</div>
         <div class="course-description">
             6 SEMANAS: El curso extenso y detallado de Sistema de Control para Cohetes Educativos e Investigación introduce a los estudiantes y entusiastas aeroespaciales al diseño, análisis y aplicación de sistemas de guiado,
             navegación y control (GNC) utilizados en vehículos cohete de pequeña y mediana escala. Está orientado a proyectos académicos, universitarios, clubes de cohetería y equipos de investigación..
         </div>
-        <div class="price-tag">S/ 200</div>
+        <div class="price-tag">S/ 400</div>
         <a class="buy-btn" onclick="selectCourse('Sistema de Control para Cohetes Educativos e investigación')">Comprar Curso</a>
     </div>
 
     <!-- CURSO 2 -->
     <div class="course-card">
-        <div class="course-title">Control PID, MPC, SMC para Robots Colaborativos</div>
+        <div class="course-title">Curso de Robots Colaborativos </div>
         <div class="course-description">
             6 SEMANAS: El curso extenso y detallado de Control PID, MPC y SMC para Robots Colaborativos ofrece una formación completa en las técnicas más utilizadas y avanzadas para el control de cobots 
             en entornos industriales y de investigación. Se centra en el diseño,análisis y aplicación de controladores que permiten a los robots interactuar de forma segura,
             precisa y flexible con humanos y otros sistemas automatizados.
         </div>
-        <div class="price-tag">S/ 200</div>
+        <div class="price-tag">S/ 400</div>
         <a class="buy-btn" onclick="selectCourse('Control PID, MPC, SMC para Robots Colaborativos')">Comprar Curso</a>
     </div>
 
@@ -1060,7 +1055,7 @@ const linkVerificacion =
             tendencias basadas en inteligencia artificial para resolver problemas complejos en ingeniería moderna. 
             Combina teoría, simulación y aplicaciones prácticas en diferentes industrias.
         </div>
-        <div class="price-tag">S/ 150</div>
+        <div class="price-tag">S/ 350</div>
         <a class="buy-btn" onclick="selectCourse('Sitemas de control Automatico y Sistemas Inteligentes')">Comprar Curso</a>
     </div>
 
@@ -1100,9 +1095,9 @@ const linkVerificacion =
 let cart = [];
 
 const prices = {
-    "Sistema de Control para Cohetes Educativos e investigación": 200,
-    "Control PID, MPC, SMC para Robots Colaborativos": 200,
-    "Sitemas de control Automatico y Sistemas Inteligentes": 150
+    "coheteria y Astrofisica": 400,
+    "robots colaborativos": 400,
+    "Sitemas de control Automatico y Sistemas Inteligentes": 350
 };
 
 function selectCourse(courseName) {
@@ -1203,6 +1198,135 @@ function sendToWhatsApp() {
     </p>
   </div>
 
+<!-- ============================================= -->
+<!--   SECCIÓN DE TUTORIALES DE ROBOTICA AVANZADA -->
+<!-- ============================================= -->
+<section id="tutoriales-robotica" style="padding:40px 10px; margin-top:40px;">
+    <h1 style="text-align:center; color:white; text-shadow:0 2px 6px rgba(0,0,0,0.4);">
+        🤖 CURSO-TALLER VILLA AUTOMATION
+    </h1>
+
+    <!-- ESTILOS AISLADOS PARA NO AFECTAR TU PÁGINA -->
+    <style>
+        .robotica-filtros {
+            display:flex;
+            justify-content:center;
+            gap:12px;
+            margin:25px 0;
+        }
+        .robotica-pill {
+            padding:10px 18px;
+            border-radius:30px;
+            border:none;
+            cursor:pointer;
+            font-size:16px;
+            background:white;
+            color:#007bff;
+            font-weight:bold;
+            transition:.25s;
+        }
+        .robotica-pill.active {
+            background:#00aaff;
+            color:white;
+            box-shadow:0 4px 12px rgba(0,0,0,0.25);
+        }
+
+        .robotica-grid {
+            max-width:1200px;
+            margin:auto;
+            display:grid;
+            gap:20px;
+            grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+        }
+
+        .robotica-card {
+            background:white;
+            border-radius:18px;
+            overflow:hidden;
+            box-shadow:0 6px 16px rgba(0,0,0,0.2);
+            transition:.25s;
+            display:flex;
+            flex-direction:column;
+        }
+        .robotica-card:hover {
+            transform:scale(1.05);
+            box-shadow:0 12px 25px rgba(0,0,0,0.3);
+        }
+
+        .robotica-card img {
+            width:100%;
+            height:180px;
+            object-fit:cover;
+        }
+        .robotica-card .content {
+            padding:15px;
+        }
+        .robotica-card h3 {
+            margin:0;
+            color:#333;
+            font-size:20px;
+        }
+        .robotica-card p {
+            font-size:14px;
+            color:#666;
+        }
+        .robotica-link {
+            display:inline-block;
+            margin-top:10px;
+            background:#007bff;
+            color:white;
+            padding:10px 18px;
+            border-radius:12px;
+            text-decoration:none;
+            font-weight:bold;
+        }
+        .robotica-link:hover { background:#005fcc; }
+        .return-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #ff0077; /* Color llamativo */
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(255, 0, 119, 0.4);
+  transition: 0.3s;
+}
+
+.return-btn:hover {
+  background: #ff3399;
+  box-shadow: 0 6px 14px rgba(255, 0, 119, 0.6);
+  transform: translateY(-2px);
+}
+
+    </style>
+
+    <!-- FILTROS -->
+    <div class="robotica-filtros">
+        <button class="robotica-pill active" data-filter="all">Todos</button>
+        <button class="robotica-pill" data-filter="arduino">robots</button>
+        <button class="robotica-pill" data-filter="robotica">IA</button>
+        <button class="robotica-pill" data-filter="firebase">Aeroespacial</button>
+    </div>
+
+    <!-- GRID -->
+    <div class="robotica-grid">
+
+        <!-- CARD 1 -->
+        <div class="robotica-card" data-category="robots">
+            <img src="assets/robotavanzado.jpg" alt="Robot avanzado">
+            <div class="content">
+                <h3>Robotica Avanzada I</h3>
+                <p>¿Quieres llevar tus conocimientos de robótica y control al nivel profesional e industrial?
+Este curso está diseñado para quienes buscan dominar control avanzado aplicado a robots reales.</p>
+                <a class="robotica-link" href="robotavanced1.html">Ver Tutorial</a>
+            </div>
+        </div>
+        
+    </div>
+
+    
 <!-- ============================================= -->
 <!--   SECCIÓN DE TUTORIALES DE ROBÓTICA Y ARDUINO -->
 <!-- ============================================= -->
@@ -1389,6 +1513,9 @@ function sendToWhatsApp() {
         </div>
         
     </div>
+
+
+    
 
     <!-- SCRIPT DE FILTRO -->
     <script>
