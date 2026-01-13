@@ -168,15 +168,53 @@ a { color:lightgreen; text-decoration:none; }
   font-weight: bold;
   display: inline-block;
 }
+/* =========================
+   BOTÓN DONACIÓN COMPACTO
+========================= */
 .hero-donaciones {
   position: absolute;
-  top: 20px;
+  top: 90px;           /* debajo del menú */
   right: 30px;
-  z-index: 4;
+  z-index: 5;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
+
+/* Ajuste del botón rosado */
+.boton-donacion-elegante {
+  padding: 8px 16px !important;
+  font-size: 14px !important;
+  border-radius: 22px !important;
+  box-shadow: 0 4px 10px rgba(255, 100, 170, 0.35);
+  width: auto !important;
+  max-width: 220px;
+}
+
+/* Ícono más pequeño */
+.icono-donacion {
+  width: 28px !important;
+  height: 28px !important;
+}
+
+/* Sponsor más discreto */
+.boton-sponsor {
+  font-size: 13px;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  .hero-donaciones {
+    top: 70px;
+    right: 15px;
+  }
+
+  .boton-donacion-elegante {
+    font-size: 12px !important;
+    padding: 6px 12px !important;
+  }
+}
+
 </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
