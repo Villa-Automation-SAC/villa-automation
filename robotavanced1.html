@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Robótica Avanzada — Capítulo 1</title>
+
+<style>
+:root{
+  --accent:#0077cc;
+  --bg:#f4f7fb;
+  --card:#ffffff;
+}
+body{
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  background:var(--bg);
+  margin:0;
+  padding:24px;
+  color:#222;
+}
+.container{
+  max-width:1100px;
+  margin:auto;
+}
+.card{
+  background:var(--card);
+  padding:24px;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(18,38,63,0.08);
+  margin-bottom:22px;
+}
+.card h2{
+  color:var(--accent);
+  margin-top:0;
+}
+.card h3{
+  margin-bottom:6px;
+  color:#333;
+}
+p{
+  line-height:1.7;
+}
+.meta{
+  text-align:center;
+  font-size:0.9rem;
+  color:#555;
+}
+
+/* Tarjetas YouTube */
+.video-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:16px;
+  margin-top:18px;
+}
+.video-card{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 14px rgba(0,0,0,0.15);
+  transition:.25s;
+}
+.video-card:hover{
+  transform:translateY(-4px);
+}
+.video-card iframe{
+  width:100%;
+  height:220px;
+  border:none;
+}
+.video-info{
+  padding:14px;
+}
+.video-info h4{
+  margin:0;
+}
+.video-info p{
+  font-size:.9rem;
+  color:#555;
+}
+
+@media(min-width:900px){
+  .video-grid{ grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1 style="text-align:center;color:var(--accent);">
+Robótica Avanzada
+</h1>
+
+<p class="meta">
+Capítulo 1 — Introducción a la Robótica Avanzada<br>
+Adaptado del libro:<br>
+<strong>“Control Moderno, Sistemas Dinámicos y Robots Inteligentes”</strong><br>
+Ing. José Luis Huayanay Villar – 2026
+</p>
+
+<!-- CAPÍTULO 1 -->
+<div class="card">
+<h2>1. Introducción a la Robótica Avanzada</h2>
+
+<h3>1.1 Concepto de Robótica Avanzada</h3>
+<p>
+La robótica avanzada es una disciplina de la ingeniería que integra mecánica,
+electrónica, control automático e inteligencia artificial para el diseño de
+sistemas capaces de percibir su entorno, tomar decisiones y ejecutar acciones
+de manera autónoma o semiautónoma.
+</p>
+
+<h3>1.2 Evolución de la Robótica</h3>
+<p>
+La evolución de la robótica ha transitado desde sistemas rígidos y repetitivos
+hasta plataformas inteligentes capaces de aprendizaje, adaptación y cooperación.
+Este avance ha sido impulsado por el desarrollo del control moderno,
+microcontroladores y sistemas embebidos.
+</p>
+
+<h3>1.3 Importancia del Control Avanzado</h3>
+<p>
+El control avanzado permite garantizar estabilidad, precisión y eficiencia en
+robots industriales y móviles. Técnicas modernas de control mejoran el desempeño
+dinámico frente a perturbaciones e incertidumbres del entorno.
+</p>
+
+<h3>1.4 Aplicaciones Actuales</h3>
+<p>
+La robótica avanzada se aplica en la industria, agricultura, medicina,
+exploración espacial, automatización inteligente y sistemas autónomos,
+contribuyendo al desarrollo tecnológico sostenible.
+</p>
+
+<h3>1.5 Estructura del Libro</h3>
+<p>
+El libro desarrolla progresivamente los fundamentos matemáticos, los sistemas
+dinámicos, el control moderno y su aplicación directa en robótica avanzada,
+integrando teoría, análisis y aplicación práctica.
+</p>
+
+<!-- TARJETAS YOUTUBE DEL CAPÍTULO 1 -->
+<div class="video-grid">
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/1QKp5zZ2FqM" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Introducción a la Robótica</h4>
+<p>Conceptos fundamentales y alcance de la robótica moderna.</p>
+</div>
+</div>
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/SqEw9J3M6nM" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Evolución de la Robótica</h4>
+<p>De robots industriales a sistemas inteligentes.</p>
+</div>
+</div>
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/F9X9y5JzKx8" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Control en Robótica</h4>
+<p>Importancia del control avanzado en robots modernos.</p>
+</div>
+</div>
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/7K9WJH6hJmY" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Aplicaciones Reales</h4>
+<p>Robótica aplicada en industria, agricultura y tecnología.</p>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>
