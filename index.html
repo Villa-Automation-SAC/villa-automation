@@ -93,12 +93,71 @@
   <h1 class="flameo">🎄 Bienvenidos a Villa Automation 🎅</h1>
 </div>
 
+<style>
+.finance-dashboard{
+  display:grid;
+  grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+  gap:16px;
+  margin:20px 0;
+}
+
+.finance-card{
+  background:#0b1b2b;
+  border-radius:12px;
+  padding:16px;
+  color:#00eaff;
+  box-shadow:0 0 15px rgba(0,255,255,0.15);
+}
+
+.finance-card h4{
+  font-size:14px;
+  margin-bottom:8px;
+  color:#9bdfff;
+}
+
+.finance-card span{
+  font-size:26px;
+  font-weight:800;
+  display:block;
+}
+
+.finance-card small{
+  color:#7aaac7;
+}
+
+.chart-card{
+  grid-column: span 2;
+}
+</style>
 
     
-<a href="index.html" class="btn-elegante" id="contadorBtn"
-   style="color: #00eaff; font-weight: bold; text-shadow: 0 0 8px #00eaff;">
-  Visitantes — Cargando...
-</a>
+<section class="finance-dashboard">
+
+  <div class="finance-card">
+    <h4>Visitantes Totales</h4>
+    <span id="totalVisitas">---</span>
+    <small>Histórico</small>
+  </div>
+
+  <div class="finance-card">
+    <h4>Hoy</h4>
+    <span id="visitasHoy">---</span>
+    <small>Últimas 24h</small>
+  </div>
+
+  <div class="finance-card">
+    <h4>Crecimiento</h4>
+    <span id="crecimiento">--%</span>
+    <small>vs ayer</small>
+  </div>
+
+  <div class="finance-card chart-card">
+    <h4>Tendencia</h4>
+    <canvas id="visitasChart" height="90"></canvas>
+  </div>
+
+</section>
+
 
 </div>
 
@@ -1211,6 +1270,57 @@ window.addEventListener("load", () => {
   box.style.display = "block";
 });
 
+</script>
+
+    <script>
+const url = "https://script.google.com/macros/s/AKfycbxOWPGXWeJ8EL2z_VYSCwr16dRFwVBuwsW4gnxB1TwvPj7BV6Wza4fkipxTWTopd17G/exec";
+
+let historial = [];
+
+fetch(url)
+  .then(res => res.json())
+  .then(data => {
+
+    const total = data.visitas;
+    const hoy = Math.floor(total * 0.06);       // estimado diario
+    const ayer = Math.floor(hoy * 0.9);
+
+    const crecimiento = (((hoy - ayer) / ayer) * 100).toFixed(2);
+
+    document.getElementById("totalVisitas").innerText = total;
+    document.getElementById("visitasHoy").innerText = hoy;
+    document.getElementById("crecimiento").innerText = crecimiento + "%";
+
+    // Simulación histórica tipo mercado
+    for(let i=0;i<20;i++){
+      historial.push(total - Math.floor(Math.random()*500));
+    }
+
+    crearGrafico(historial);
+  });
+
+function crearGrafico(datos){
+  const ctx = document.getElementById("visitasChart");
+
+  new Chart(ctx,{
+    type:"line",
+    data:{
+      labels: datos.map((_,i)=>i),
+      datasets:[{
+        data: datos,
+        borderWidth:2,
+        tension:0.4
+      }]
+    },
+    options:{
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{display:false},
+        y:{display:false}
+      }
+    }
+  });
+}
 </script>
 
 </body>
