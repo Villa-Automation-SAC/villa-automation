@@ -212,69 +212,130 @@ integrando teoría, análisis y aplicación práctica.
 </div>
 </div>
 
+  </div>
+</div>
+
 
   
 <!-- CAPÍTULO 2 -->
 <div class="card">
-<h2>2. Introducción a la Robótica Avanzada</h2>
+<h2>2. Modelado Matemático de Sistemas Robóticos</h2>
 
-<h3>1.1 Concepto de Robótica Avanzada</h3>
+<h3>2.1 Importancia del Modelado en Robótica</h3>
 <p>
-La robótica avanzada es una disciplina de la ingeniería que integra mecánica,
-electrónica, control automático e inteligencia artificial para el diseño de
-sistemas capaces de percibir su entorno, tomar decisiones y ejecutar acciones
-de manera autónoma o semiautónoma.
+El modelado matemático es un paso fundamental en el diseño y análisis de sistemas robóticos,
+ya que permite describir el comportamiento dinámico del robot mediante ecuaciones
+matemáticas. Un modelo adecuado facilita el diseño de controladores, la simulación
+y la validación del sistema antes de su implementación física.
 </p>
 
-<h3>1.2 Evolución de la Robótica</h3>
+<h3>2.2 Variables de Estado y Coordenadas Generalizadas</h3>
 <p>
-La evolución de la robótica ha transitado desde sistemas rígidos y repetitivos
-hasta plataformas inteligentes capaces de aprendizaje, adaptación y cooperación.
-Este avance ha sido impulsado por el desarrollo del control moderno,
-microcontroladores y sistemas embebidos.
+En robótica, el movimiento de un sistema se describe mediante coordenadas generalizadas,
+las cuales representan las posiciones articulares del robot. Estas variables, junto con
+sus derivadas temporales, conforman el vector de estado del sistema.
 </p>
 
-<h3>1.3 Importancia del Control Avanzado</h3>
+<h3>2.3 Cinemática Directa</h3>
 <p>
-El control avanzado permite garantizar estabilidad, precisión y eficiencia en
-robots industriales y móviles. Técnicas modernas de control mejoran el desempeño
-dinámico frente a perturbaciones e incertidumbres del entorno.
+La cinemática directa permite determinar la posición y orientación del efector final
+en función de los ángulos articulares. Para ello, se emplean métodos sistemáticos como
+los parámetros de Denavit–Hartenberg, ampliamente utilizados en robots industriales.
 </p>
 
-<h3>1.4 Aplicaciones Actuales</h3>
+<h3>2.4 Cinemática Inversa</h3>
 <p>
-La robótica avanzada se aplica en la industria, agricultura, medicina,
-exploración espacial, automatización inteligente y sistemas autónomos,
-contribuyendo al desarrollo tecnológico sostenible.
+La cinemática inversa consiste en calcular los valores articulares necesarios para que
+el robot alcance una posición y orientación deseadas. Este problema puede tener
+múltiples soluciones o, en algunos casos, no tener solución analítica.
 </p>
 
-<h3>1.5 Estructura del Libro</h3>
+<h3>2.5 Introducción al Modelado Dinámico</h3>
 <p>
-El libro desarrolla progresivamente los fundamentos matemáticos, los sistemas
-dinámicos, el control moderno y su aplicación directa en robótica avanzada,
-integrando teoría, análisis y aplicación práctica.
+El modelado dinámico describe la relación entre fuerzas, torques y movimiento.
+Se basa en principios físicos como la formulación de Lagrange o Newton–Euler,
+y es esencial para el diseño de controladores avanzados.
 </p>
 
-<!-- TARJETAS YOUTUBE DEL CAPÍTULO 1 -->
 <div class="video-grid">
 
 <div class="video-card">
 <iframe src="https://www.youtube.com/embed/w50XNQDBZjk" allowfullscreen></iframe>
 <div class="video-info">
-<h4>Modelamiento dinámico</h4>
-<p>Conceptos fundamentales y sistemas dinamicos.</p>
+<h4>Modelado Dinámico de Robots</h4>
+<p>Introducción al modelado matemático y dinámico de sistemas robóticos.</p>
 </div>
 </div>
 
+</div>
+</div>
 
+  <!-- CAPÍTULO 3 -->
+<div class="card">
+<h2>3. Dinámica y Control de Robots</h2>
+
+<h3>3.1 Dinámica de Sistemas Robóticos</h3>
+<p>
+La dinámica de un robot describe cómo las fuerzas y torques aplicados generan
+movimiento. El análisis dinámico es esencial para comprender el comportamiento
+real del sistema, especialmente en aplicaciones de alta precisión.
+</p>
+
+<h3>3.2 Ecuaciones de Movimiento</h3>
+<p>
+Las ecuaciones de movimiento de un robot se obtienen a partir de métodos
+energéticos o vectoriales. Estas ecuaciones permiten predecir la respuesta
+del sistema ante diferentes entradas de control.
+</p>
+
+<h3>3.3 Control Clásico en Robótica</h3>
+<p>
+Los controladores clásicos, como el control PID, siguen siendo ampliamente
+utilizados debido a su simplicidad y efectividad. Sin embargo, presentan
+limitaciones frente a sistemas no lineales y perturbaciones externas.
+</p>
+
+<h3>3.4 Introducción al Control Avanzado</h3>
+<p>
+El control avanzado incorpora técnicas modernas como control óptimo,
+control robusto y control predictivo. Estas estrategias mejoran la
+precisión, estabilidad y desempeño del robot en entornos dinámicos.
+</p>
+
+<h3>3.5 Aplicación del Control en Robots Reales</h3>
+<p>
+La implementación del control en robots reales requiere considerar
+limitaciones físicas, retardos, saturaciones y ruido en sensores,
+aspectos fundamentales para la ingeniería aplicada.
+</p>
+
+<div class="video-grid">
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/6DqcEH3Q7ko" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Control de Robots</h4>
+<p>Fundamentos del control aplicado a sistemas robóticos.</p>
+</div>
+</div>
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/6HgBLrH606k" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Control Avanzado</h4>
+<p>Introducción al control moderno y aplicaciones reales.</p>
+</div>
+</div>
 
 </div>
 </div>
+
 
 </div>
 
 </body>
 </html>
+
 
 
 
