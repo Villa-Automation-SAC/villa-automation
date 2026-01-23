@@ -108,6 +108,74 @@ footer{
   font-size: 1rem;
   color: #0b3c6f; /* azul institucional */
 }
+.evento-acceso {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    display: flex;
+    justify-content: center;
+}
+
+.evento-card {
+    background: #ffffff;
+    max-width: 500px;
+    width: 100%;
+    border-radius: 18px;
+    padding: 40px 35px;
+    text-align: center;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.evento-badge {
+    display: inline-block;
+    background: #1e88e5;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.evento-titulo {
+    font-size: 24px;
+    color: #1a2a3a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.evento-subtitulo {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.evento-info {
+    text-align: left;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.evento-info p {
+    margin: 10px 0;
+}
+
+.evento-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    color: #ffffff;
+    padding: 14px 34px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.evento-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(30, 136, 229, 0.45);
+}
 
 </style>
 </head>
@@ -119,6 +187,7 @@ footer{
     <h2>Astrodinámica y Teledetección – JICAAT 2026</h2>
     <p>23 y 24 de Enero · Evento Internacional Científico y Tecnológico</p>
   </div>
+  <a 
   </div>
       <div style="text-align:center;margin:20px 0;">
   <a 
@@ -141,6 +210,28 @@ footer{
   </a>
 </div>
 </header>
+
+  <section class="evento-acceso">
+    <div class="evento-card">
+
+        <span class="evento-badge">Evento en vivo</span>
+
+        <div class="evento-info">
+            <p><strong>📅 Fecha:</strong> Viernes 23 de enero</p>
+            <p><strong>⏰ Hora:</strong> 3:00 – 8:30 p.m.</p>
+            <p><strong>🌎 Zona horaria:</strong> América / Lima</p>
+            <p><strong>💻 Plataforma:</strong> :contentReference[oaicite:0]{index=0}</p>
+        </div>
+
+        <a 
+            href="https://meet.google.com/gef-krhx-urp" 
+            target="_blank" 
+            class="evento-btn">
+            Ingresar a la reunión
+        </a>
+
+    </div>
+</section>
 
 <section>
   <h2 class="section-title">Sobre el Evento</h2>
@@ -231,6 +322,7 @@ footer{
 </body>
 </html>
 ```
+
 
 
 
