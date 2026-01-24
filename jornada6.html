@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>JICAAT 2026 – Jornada Internacional de Ciencias Avanzadas</title>
-<link href="assets/jornada1.png" rel="stylesheet">
 <style>
 body{
   margin:0;
@@ -255,40 +254,57 @@ footer{
   font-size: 13px;
   color: #777;
 }
+header {
+  position: relative;
+  height: 75vh;
+
+  background-image:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.85)),
+    url("./assets/jicatt6.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
 
 </style>
 </head>
 <body>
 
 <header>
-  <div>
+  <div class="header-content">
     <h1>VI Jornada Internacional de Ciencias Avanzadas</h1>
     <h2>Astrodinámica y Teledetección – JICAAT 2026</h2>
     <p>23 y 24 de Enero · Evento Internacional Científico y Tecnológico</p>
+
+    <div style="margin-top:25px;">
+      <a 
+        href="index.html"
+        style="
+          display:inline-block;
+          padding:10px 22px;
+          font-size:14px;
+          font-weight:600;
+          color:white;
+          text-decoration:none;
+          border-radius:30px;
+          background:linear-gradient(135deg,#00c6ff,#0072ff);
+          box-shadow:0 6px 18px rgba(0,114,255,0.35);
+          font-family:Arial, sans-serif;
+        "
+      >
+        ← Ir a página principal
+      </a>
+    </div>
+
   </div>
-  <a 
-  </div>
-      <div style="text-align:center;margin:20px 0;">
-  <a 
-    href="index.html"
-    target="_blank"
-    style="
-      display:inline-block;
-      padding:10px 22px;
-      font-size:14px;
-      font-weight:600;
-      color:white;
-      text-decoration:none;
-      border-radius:30px;
-      background:linear-gradient(135deg,#00c6ff,#0072ff);
-      box-shadow:0 6px 18px rgba(0,114,255,0.35);
-      font-family:Arial, sans-serif;
-    "
-  >
-    <- ir a pagina principal
-  </a>
-</div>
 </header>
+
 
 <section class="evento-acceso">
     <div class="evento-card">
@@ -462,6 +478,7 @@ footer{
 </body>
 </html>
 ```
+
 
 
 
