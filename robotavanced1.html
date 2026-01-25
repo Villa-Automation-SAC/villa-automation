@@ -128,15 +128,27 @@ p{
 }
 
 .ecuacion {
-  background: #020617;
-  border: 1px solid #1e293b;
-  padding: 15px;
-  margin: 20px 0;
-  border-radius: 10px;
+  margin: 25px 0;
   text-align: center;
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 </style>
+
+  <!-- MathJax para ecuaciones LaTeX -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    }
+  };
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
 </head>
 
 <body>
@@ -451,6 +463,7 @@ aspectos fundamentales para la ingeniería aplicada.
 
 </body>
 </html>
+
 
 
 
