@@ -111,6 +111,30 @@ p{
 .back-wrapper{
   margin-bottom:18px;
 }
+.capitulo {
+  margin: 60px auto;
+  max-width: 1000px;
+  padding: 30px;
+}
+
+.capitulo h1 {
+  color: #38bdf8;
+  text-align: center;
+}
+
+.capitulo h2 {
+  margin-top: 35px;
+  color: #22d3ee;
+}
+
+.ecuacion {
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 15px;
+  margin: 20px 0;
+  border-radius: 10px;
+  text-align: center;
+}
 
 </style>
 </head>
@@ -321,11 +345,113 @@ aspectos fundamentales para la ingeniería aplicada.
 </div>
 </div>
 
+<section id="capitulo-4" class="capitulo">
+  
+  <h1>Capítulo 4: Dinámica de Manipuladores Robóticos</h1>
+
+  <h2>4.1 Introducción</h2>
+  <p>
+    La dinámica de manipuladores robóticos estudia la relación entre las fuerzas y
+    torques aplicados a las articulaciones y el movimiento resultante del sistema.
+    A diferencia de la cinemática, la dinámica considera efectos inerciales,
+    gravitacionales y de acoplamiento entre los eslabones, siendo fundamental para
+    el diseño de sistemas de control precisos.
+  </p>
+
+  <h2>4.2 Modelado Dinámico de Sistemas Mecánicos</h2>
+  <p>
+    Un manipulador robótico puede modelarse como un sistema mecánico compuesto por
+    cuerpos rígidos interconectados mediante articulaciones. El comportamiento
+    dinámico se describe mediante:
+  </p>
+
+  <div class="ecuacion">
+    $$ M(q)\ddot{q} + C(q,\dot{q})\dot{q} + G(q) = \tau $$
+  </div>
+
+  <ul>
+    <li><b>q</b>: vector de coordenadas articulares</li>
+    <li><b>M(q)</b>: matriz de inercia</li>
+    <li><b>C(q, q̇)</b>: términos de Coriolis y centrífugos</li>
+    <li><b>G(q)</b>: vector gravitacional</li>
+    <li><b>τ</b>: vector de torques</li>
+  </ul>
+
+  <h2>4.3 Formulación Lagrangiana</h2>
+  <p>
+    El método de Lagrange se basa en la diferencia entre la energía cinética
+    <b>T</b> y la energía potencial <b>V</b>:
+  </p>
+
+  <div class="ecuacion">
+    $$ L = T - V $$
+  </div>
+
+  <div class="ecuacion">
+    $$ \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_i}\right)
+    - \frac{\partial L}{\partial q_i} = \tau_i $$
+  </div>
+
+  <h2>4.4 Matriz de Inercia</h2>
+  <p>
+    La matriz de inercia <b>M(q)</b> es simétrica y definida positiva, y representa
+    la distribución de masas del manipulador:
+  </p>
+
+  <div class="ecuacion">
+    $$ M(q) = \sum_{i=1}^{n} J_i^T(q)\, I_i\, J_i(q) $$
+  </div>
+
+  <h2>4.5 Términos de Coriolis y Centrífugos</h2>
+  <p>
+    Estos términos representan fuerzas ficticias que aparecen debido al movimiento
+    relativo entre los eslabones:
+  </p>
+
+  <div class="ecuacion">
+    $$ C_{ij}(q,\dot{q}) =
+    \sum_{k=1}^{n} \frac{1}{2}
+    \left(
+    \frac{\partial M_{ij}}{\partial q_k} +
+    \frac{\partial M_{ik}}{\partial q_j} -
+    \frac{\partial M_{jk}}{\partial q_i}
+    \right)\dot{q}_k $$
+  </div>
+
+  <h2>4.6 Modelo Dinámico Completo</h2>
+  <div class="ecuacion">
+    $$ \tau = M(q)\ddot{q} + C(q,\dot{q})\dot{q} + G(q) $$
+  </div>
+
+  <h2>4.7 Importancia en el Control Robótico</h2>
+  <p>
+    El conocimiento del modelo dinámico permite compensar no linealidades,
+    mejorar la precisión del control y garantizar estabilidad en manipuladores
+    robóticos industriales, médicos y aeroespaciales.
+  </p>
+
+  <h2>4.8 Resumen del Capítulo</h2>
+  <p>
+    En este capítulo se desarrolló el modelado dinámico de manipuladores robóticos,
+    incluyendo la formulación lagrangiana, matriz de inercia, términos de Coriolis
+    y el modelo dinámico completo, base del control robótico avanzado.
+  </p>
+<div class="video-grid">
+
+<div class="video-card">
+<iframe src="https://www.youtube.com/embed/_YdLDiGF1UM" allowfullscreen></iframe>
+<div class="video-info">
+<h4>Modelado Dinámico de Robots</h4>
+<p>Introducción al modelado matemático y dinámico de sistemas robóticos.</p>
+</div>
+</div>
+</section>
 
 </div>
 
 </body>
 </html>
+
 
 
 
