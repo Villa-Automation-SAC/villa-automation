@@ -86,6 +86,39 @@
   color:#444;
 }
 
+.ppt-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+margin-top:40px;
+}
+.ppt-card{
+background:rgba(255,255,255,0.95);
+border-radius:16px;
+padding:25px 20px;
+text-align:center;
+text-decoration:none;
+color:#102a43;
+box-shadow:0 10px 25px rgba(0,0,0,0.25);
+transition:transform .3s ease, box-shadow .3s ease;
+}
+.ppt-card:hover{
+transform:translateY(-6px) scale(1.02);
+box-shadow:0 20px 40px rgba(0,0,0,0.35);
+}
+.ppt-icon{
+font-size:3rem;
+margin-bottom:15px;
+}
+.ppt-card h3{
+margin:0 0 8px;
+font-size:1.1rem;
+}
+.ppt-card p{
+margin:0;
+font-size:0.9rem;
+color:#555;
+}
 </style>
   
   <!-- Tailwind CDN -->
@@ -414,8 +447,38 @@
           <p>Análisis satelital, IA,robotica, Aeroespacial.</p>
         </div>
       </div>
-  
+      
+<!-- SUBSECCIÓN PRESENTACIONES PPT -->
+<h2 style="margin-top:80px;">📊 Presentaciones de Ponentes</h2>
+<p class="subtitle">Material académico oficial – VI JICAAT</p>
+
+
+<div class="ppt-grid">
+<!-- PPT CARD 1 -->
+<a href="assets/ppts/ponente1.pptx" class="ppt-card" download>
+<div class="ppt-icon">📘</div>
+<h3>Ponente 1</h3>
+<p>Astrodinámica Avanzada (PPT)</p>
+</a>
+
+
+<!-- PPT CARD 2 -->
+<a href="assets/ppts/ponente2.pptx" class="ppt-card" download>
+<div class="ppt-icon">📗</div>
+<h3>Ponente 2</h3>
+<p>Teledetección Satelital (PPT)</p>
+</a>
+
+
+<!-- PPT CARD 3 -->
+<a href="assets/ppts/ponente3.pptx" class="ppt-card" download>
+<div class="ppt-icon">📙</div>
+<h3>Ponente 3</h3>
+<p>IA y Robótica Espacial (PPT)</p>
+</a>
+</div>
     </div>
+    
   </div>
 </section>
 
@@ -556,6 +619,7 @@
 
 </body>
 </html>
+
 
 
 
