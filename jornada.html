@@ -31,6 +31,61 @@
   box-shadow:0 16px 40px rgba(0,114,255,0.5);
   background:linear-gradient(135deg,#0072ff,#00c6ff);
 }
+
+.videos-jicaat{
+  padding:80px 20px;
+  background:linear-gradient(135deg,#0b1c2d,#102a43);
+  color:#fff;
+}
+.videos-jicaat .container{
+  max-width:1200px;
+  margin:auto;
+}
+.videos-jicaat h2{
+  text-align:center;
+  font-size:2.2rem;
+  margin-bottom:10px;
+}
+.videos-jicaat .subtitle{
+  text-align:center;
+  color:#bcd6ff;
+  margin-bottom:50px;
+}
+.video-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:30px;
+}
+.video-card{
+  background:#ffffff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 30px rgba(0,0,0,0.25);
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.video-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 45px rgba(0,0,0,0.35);
+}
+.video-card iframe{
+  width:100%;
+  height:200px;
+  border:none;
+}
+.video-info{
+  padding:20px;
+  color:#102a43;
+}
+.video-info h3{
+  margin:0 0 10px;
+  font-size:1.1rem;
+}
+.video-info p{
+  margin:0;
+  font-size:0.95rem;
+  color:#444;
+}
+
 </style>
   
   <!-- Tailwind CDN -->
@@ -284,6 +339,58 @@
 </section>
       
 <!-- ================= VIDEO CARDS ================= -->
+  <!-- SECCIÓN VIDEOS YOUTUBE – VI JORNADA INTERNACIONAL DE CIENCIAS AVANZADAS -->
+<section class="videos-jicaat">
+  <div class="container">
+    <h2>🎥 VI Jornada Internacional de Ciencias Avanzadas</h2>
+    <p class="subtitle">Astrodinámica y Teledetección · JICAAT</p>
+
+    <div class="video-grid">
+      <!-- TARJETA 1 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/hjpm8QQzqbM" 
+          title="VI JICAAT - Día 1" allowfullscreen></iframe>
+        <div class="video-info">
+          <h3>Día 1 · Conferencias Magistrales</h3>
+          <p>Astrodinámica, misiones espaciales y fundamentos avanzados.</p>
+        </div>
+      </div>
+
+      <!-- TARJETA 2 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/ym_mzfTz3mQ" 
+          title="VI JICAAT - Día 2" allowfullscreen></iframe>
+        <div class="video-info">
+          <h3>Día 1 · Teledetección y Aplicaciones</h3>
+          <p>Análisis satelital, observación de la Tierra y casos reales.</p>
+        </div>
+      </div>
+
+      <!-- TARJETA 3 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/Q8-D1xmmHYQ" 
+          title="VI JICAAT - Día 2" allowfullscreen></iframe>
+        <div class="video-info">
+          <h3>Día 2 · Tecnologia y Aplicaciones</h3>
+          <p>Análisis satelital, observación de la Tierra y casos reales.</p>
+        </div>
+      </div>
+
+      <!-- TARJETA 3 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/Q8-D1xmmHYQ" 
+          title="VI JICAAT - Día 2" allowfullscreen></iframe>
+        <div class="video-info">
+          <h3>Día 2 · Tecnologia y Aplicaciones</h3>
+          <p>Análisis satelital, observación de la Tierra y casos reales.</p>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
 <section class="py-20">
   <div class="max-w-6xl mx-auto px-6">
     <h3 class="text-3xl font-semibold mb-12">Conferencias Destacadas (Video)</h3>
@@ -420,6 +527,7 @@
 
 </body>
 </html>
+
 
 
 
