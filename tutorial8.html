@@ -176,23 +176,78 @@
 </section>
 
 <!-- ================= EJEMPLOS ================= -->
+<!-- ================= PRIMEROS PASOS ================= -->
 <section>
-    <h2>💻 Ejemplos Prácticos</h2>
+    <h2>🚀 Primeros Pasos</h2>
 
-    <div class="cards">
+    <div class="steps">
+        <div class="step">
+            <h3>1️⃣ ¿Qué es un robot?</h3>
+            <p>Un robot combina <b>sensores</b>, <b>control</b> y <b>actuadores</b> para realizar tareas automáticamente.</p>
+        </div>
 
-        <div class="card">
-            <div class="card-content">
-                <h3>Ejemplo 1: LED Intermitente</h3>
-                <pre>
+        <div class="step">
+            <h3>2️⃣ Componentes básicos</h3>
+            <ul>
+                <li>🔌 Arduino o microcontrolador</li>
+                <li>📡 Sensores (ultrasónico, luz, temperatura)</li>
+                <li>⚙️ Actuadores (motores, servos, relés)</li>
+                <li>🔋 Fuente de energía</li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <h3>3️⃣ Primer programa</h3>
+            <p>Comenzamos con un LED para entender entradas, salidas y tiempos.</p>
+            <pre>
 void setup() {
   pinMode(13, OUTPUT);
 }
 
 void loop() {
   digitalWrite(13, HIGH);
-  delay(1000);
+  delay(500);
   digitalWrite(13, LOW);
+  delay(500);
+}
+            </pre>
+        </div>
+
+        <div class="step">
+            <h3>4️⃣ De lo simple a lo real</h3>
+            <p>Luego controlamos motores, leemos sensores y construimos robots funcionales.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- ================= COMPARACION PYTHON ================= -->
+<section>
+    <h2>⚖️ Arduino vs Python</h2>
+
+    <div class="cards">
+
+        <div class="card">
+            <div class="card-content">
+                <h3>🔧 Arduino (C/C++)</h3>
+                <ul>
+                    <li>✔️ Ideal para hardware y robótica</li>
+                    <li>✔️ Control en tiempo real</li>
+                    <li>✔️ Bajo consumo</li>
+                    <li>❌ Menos flexible para interfaces gráficas</li>
+                </ul>
+
+                <p><b>Ejemplo:</b></p>
+                <pre>
+int led = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led, HIGH);
+  delay(1000);
+  digitalWrite(led, LOW);
   delay(1000);
 }
                 </pre>
@@ -201,24 +256,27 @@ void loop() {
 
         <div class="card">
             <div class="card-content">
-                <h3>Ejemplo 2: Control de Servomotor</h3>
+                <h3>🐍 Python</h3>
+                <ul>
+                    <li>✔️ Fácil de aprender</li>
+                    <li>✔️ Ideal para IA, visión y análisis</li>
+                    <li>✔️ Interfaces gráficas</li>
+                    <li>❌ No tiempo real puro</li>
+                </ul>
+
+                <p><b>Ejemplo:</b></p>
                 <pre>
-#include <Servo.h>
+import time
+import RPi.GPIO as GPIO
 
-Servo motor;
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(18, GPIO.OUT)
 
-void setup() {
-  motor.attach(9);
-}
-
-void loop() {
-  motor.write(0);
-  delay(1000);
-  motor.write(90);
-  delay(1000);
-  motor.write(180);
-  delay(1000);
-}
+while True:
+    GPIO.output(18, True)
+    time.sleep(1)
+    GPIO.output(18, False)
+    time.sleep(1)
                 </pre>
             </div>
         </div>
@@ -226,9 +284,149 @@ void loop() {
     </div>
 </section>
 
+    <section id="cpp-python-comparacion" class="comparacion">
+  <h1>Comparación entre C++ y Python</h1>
+
+  <!-- EJEMPLO 1 -->
+  <h2>1. Imprimir números del 1 al 5</h2>
+  <div class="contenedor">
+    <div class="bloque cpp">
+      <h3>C++</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    for(int i = 1; i <= 5; i++) {
+        cout << i << endl;
+    }
+    return 0;
+}
+      </pre>
+    </div>
+
+    <div class="bloque python">
+      <h3>Python</h3>
+      <pre>
+for i in range(1, 6):
+    print(i)
+      </pre>
+    </div>
+  </div>
+
+  <!-- EJEMPLO 2 -->
+  <h2>2. Sumar dos números</h2>
+  <div class="contenedor">
+    <div class="bloque cpp">
+      <h3>C++</h3>
+      <pre>
+#include &lt;iostream&gt;
+using namespace std;
+
+int main() {
+    int a, b;
+    cin >> a >> b;
+    cout << a + b;
+    return 0;
+}
+      </pre>
+    </div>
+
+    <div class="bloque python">
+      <h3>Python</h3>
+      <pre>
+a = int(input())
+b = int(input())
+print(a + b)
+      </pre>
+    </div>
+  </div>
+
+  <!-- EJEMPLO 3 -->
+  <h2>3. Condicional (Aprobado / Desaprobado)</h2>
+  <div class="contenedor">
+    <div class="bloque cpp">
+      <h3>C++</h3>
+      <pre>
+int nota = 14;
+
+if (nota >= 11) {
+    cout << "Aprobado";
+} else {
+    cout << "Desaprobado";
+}
+      </pre>
+    </div>
+
+    <div class="bloque python">
+      <h3>Python</h3>
+      <pre>
+nota = 14
+
+if nota >= 11:
+    print("Aprobado")
+else:
+    print("Desaprobado")
+      </pre>
+    </div>
+  </div>
+
+  <!-- EJEMPLO 4 -->
+  <h2>4. Funciones</h2>
+  <div class="contenedor">
+    <div class="bloque cpp">
+      <h3>C++</h3>
+      <pre>
+int sumar(int a, int b) {
+    return a + b;
+}
+      </pre>
+    </div>
+
+    <div class="bloque python">
+      <h3>Python</h3>
+      <pre>
+def sumar(a, b):
+    return a + b
+      </pre>
+    </div>
+  </div>
+
+  <!-- EJEMPLO 5 -->
+  <h2>5. Robótica: Encender un LED</h2>
+  <div class="contenedor">
+    <div class="bloque cpp">
+      <h3>C++ (Arduino)</h3>
+      <pre>
+int led = 13;
+
+void setup() {
+  pinMode(led, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(led, HIGH);
+}
+      </pre>
+    </div>
+
+    <div class="bloque python">
+      <h3>Python (Simulación)</h3>
+      <pre>
+led = True
+
+if led:
+    print("LED encendido")
+      </pre>
+    </div>
+  </div>
+</section>
+
+
 <footer>
     <p>© 2026 Taller de Robótica y Programación | Villa Automation</p>
 </footer>
 
 </body>
 </html>
+
