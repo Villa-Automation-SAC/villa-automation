@@ -470,10 +470,166 @@ aspectos fundamentales para la ingeniería aplicada.
 </div>
 </section>
 
+<section id="mpc-formal" style="padding:40px; max-width:1000px; margin:auto;">
+  
+  <h2>Modelo de Control Predictivo (MPC) Formal</h2>
+
+  <p>
+    El <strong>Control Predictivo Basado en Modelo (Model Predictive Control, MPC)</strong>
+    es una estrategia avanzada de control que utiliza un modelo matemático del sistema
+    para predecir su comportamiento futuro y calcular la acción de control óptima
+    mediante la minimización de una función de costo.
+  </p>
+
+  <h3>1. Modelo matemático del servo</h3>
+
+  <p>
+    El servomotor MG995 se modela como un motor de corriente continua (DC) con carga mecánica.
+    El vector de estados se define como:
+  </p>
+
+  <p style="text-align:center;">
+    \( x = \begin{bmatrix} \theta & \omega & i \end{bmatrix}^T \)
+  </p>
+
+  <ul>
+    <li>\( \theta \): posición angular (°)</li>
+    <li>\( \omega \): velocidad angular (°/s)</li>
+    <li>\( i \): corriente del motor (A)</li>
+  </ul>
+
+  <h4>Ecuaciones dinámicas continuas</h4>
+
+  <p><strong>Cinemática:</strong></p>
+  <p style="text-align:center;">\( \dot{\theta} = \omega \)</p>
+
+  <p><strong>Dinámica mecánica:</strong></p>
+  <p style="text-align:center;">
+    \( J\dot{\omega} = K_t i - b\omega \)
+  </p>
+
+  <p><strong>Dinámica eléctrica:</strong></p>
+  <p style="text-align:center;">
+    \( L\dot{i} = V - Ri - K_e\omega \)
+  </p>
+
+  <h3>2. Representación en espacio de estados</h3>
+
+  <p>
+    El modelo puede expresarse en forma matricial como:
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \dot{x} =
+    \begin{bmatrix}
+    0 & 1 & 0 \\
+    0 & -\frac{b}{J} & \frac{K_t}{J} \\
+    0 & -\frac{K_e}{L} & -\frac{R}{L}
+    \end{bmatrix}
+    x +
+    \begin{bmatrix}
+    0 \\ 0 \\ \frac{1}{L}
+    \end{bmatrix} V
+    \]
+  </p>
+
+  <h3>3. Modelo discreto</h3>
+
+  <p>
+    Para su implementación digital, el modelo se discretiza con un tiempo de muestreo
+    \( T_s \), utilizando el método de Euler:
+  </p>
+
+  <p style="text-align:center;">
+    \( x_{k+1} = x_k + T_s \dot{x}_k \)
+  </p>
+
+  <h3>4. Horizonte de predicción</h3>
+
+  <p>
+    El MPC predice el comportamiento del sistema durante un horizonte finito de
+    \( N_p \) pasos futuros:
+  </p>
+
+  <p style="text-align:center;">
+    \( k = 1, 2, \dots, N_p \)
+  </p>
+
+  <h3>5. Función de costo</h3>
+
+  <p>
+    El objetivo del MPC es minimizar la siguiente función de costo cuadrática:
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    J =
+    \sum_{k=1}^{N_p}
+    \left[
+    Q_p(\theta_k - \theta_r)^2 +
+    Q_w\omega_k^2 +
+    Q_i i_k^2 +
+    R(\Delta u_k)^2
+    \right]
+    \]
+  </p>
+
+  <p>donde:</p>
+  <ul>
+    <li>\( \theta_r \): referencia de posición</li>
+    <li>\( Q_p \): peso del error de posición</li>
+    <li>\( Q_w \): peso de la velocidad</li>
+    <li>\( Q_i \): peso de la corriente</li>
+    <li>\( R \): penalización del esfuerzo de control</li>
+  </ul>
+
+  <h3>6. Optimización y restricciones</h3>
+
+  <p>
+    El problema de control se formula como:
+  </p>
+
+  <p style="text-align:center;">
+    \[
+    \min_{u}
+    \; J
+    \quad \text{sujeto a} \quad
+    x_{k+1} = f(x_k, u_k),
+    \quad 0 \le u_k \le 180
+    \]
+  </p>
+
+  <p>
+    En sistemas embebidos como Arduino, la optimización se resuelve mediante una
+    búsqueda discreta de acciones de control y la selección de aquella que minimiza
+    el costo total.
+  </p>
+
+  <h3>7. Horizonte deslizante</h3>
+
+  <p>
+    Solo la primera acción de control óptima se aplica al sistema. En el siguiente
+    instante de muestreo, el proceso se repite con el nuevo estado medido, lo que
+    se conoce como <strong>control de horizonte deslizante</strong>.
+  </p>
+
+  <p style="text-align:center;">
+    <em>
+      Este enfoque permite anticipar el comportamiento futuro del sistema,
+      respetar restricciones físicas y mejorar el desempeño frente a
+      controladores clásicos.
+    </em>
+  </p>
+
+</section>
+
+  
 </div>
 
 </body>
 </html>
+
 
 
 
