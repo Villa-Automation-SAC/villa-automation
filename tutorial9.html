@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Modelo LIPM + LQR + ZMP + IK - Derivación Matemática Completa</title>
+
+<style>
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    margin:40px;
+    background:#f5f7fb;
+    color:#222;
+}
+h1,h2,h3{
+    color:#0b3d91;
+}
+.section{
+    background:white;
+    padding:20px;
+    margin-bottom:25px;
+    border-radius:10px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.08);
+}
+.eq{
+    background:#eef3ff;
+    padding:10px;
+    border-radius:6px;
+    font-family: "Courier New", monospace;
+    margin:10px 0;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Modelo Matemático Humanoide: LIPM + LQR + ZMP + Cinemática Inversa</h1>
+
+<div class="section">
+<h2>1. Definición Física del Sistema</h2>
+
+<p>
+El modelo LIPM (Linear Inverted Pendulum Model) representa la dinámica del
+centro de masa (COM) de un robot humanoide asumiendo:
+</p>
+
+<ul>
+<li>Masa concentrada en el COM</li>
+<li>Altura constante del COM</li>
+<li>Movimiento en eje sagital X</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>2. Origen del parámetro Zc</h2>
+
+<p>
+Zc representa la altura del centro de masa respecto al suelo:
+</p>
+
+<div class="eq">
+zc = altura del COM
+</div>
+
+<p>
+Se obtiene del balance de momentos respecto al suelo (ZMP).
+</p>
+
+<div class="eq">
+p = x - (zc/g) * x¨
+</div>
+
+<div class="eq">
+x¨ = (g/zc)(x - p)
+</div>
+
+</div>
+
+<div class="section">
+<h2>3. Modelo Dinámico LIPM</h2>
+
+<h3>Ecuación diferencial</h3>
+
+<div class="eq">
+x¨ = (g/zc)(x - p)
+</div>
+
+<h3>Definición de estados</h3>
+
+<div class="eq">
+X = [ x ; x˙ ]
+</div>
+
+<h3>Forma estado</h3>
+
+<div class="eq">
+X˙ = A X + B p
+</div>
+
+<div class="eq">
+A = [ 0 1 ; g/zc 0 ]
+</div>
+
+<div class="eq">
+B = [ 0 ; -g/zc ]
+</div>
+
+</div>
+
+<div class="section">
+<h2>4. Control Óptimo LQR</h2>
+
+<h3>Función de costo</h3>
+
+<div class="eq">
+J = ∫ (Xᵀ Q X + uᵀ R u) dt
+</div>
+
+<p>
+La ley de control óptima es:
+</p>
+
+<div class="eq">
+u = -K X
+</div>
+
+<p>
+En el sistema humanoide:
+</p>
+
+<div class="eq">
+ZMP = -K X
+</div>
+
+</div>
+
+<div class="section">
+<h2>5. Sistema en Lazo Cerrado</h2>
+
+<div class="eq">
+X˙ = (A - B K) X
+</div>
+
+<p>
+El sistema es estable si:
+</p>
+
+<div class="eq">
+Eigen(A - BK) &lt; 0
+</div>
+
+</div>
+
+<div class="section">
+<h2>6. Trayectoria del Pie (Marcha)</h2>
+
+<h3>Movimiento Horizontal</h3>
+
+<div class="eq">
+x_foot = x_base + Lstep * phase
+</div>
+
+<h3>Altura del pie</h3>
+
+<div class="eq">
+z_foot = Hstep sin(π phase)
+</div>
+
+</div>
+
+<div class="section">
+<h2>7. Cinemática Inversa Pierna 2DOF</h2>
+
+<h3>Geometría</h3>
+
+<div class="eq">
+D = (px² + pz² - L1² - L2²) / (2 L1 L2)
+</div>
+
+<h3>Rodilla</h3>
+
+<div class="eq">
+θk = atan2( √(1-D²), D )
+</div>
+
+<h3>Cadera</h3>
+
+<div class="eq">
+θh = atan2(pz, px) - atan2(L2 sin θk , L1 + L2 cos θk)
+</div>
+
+<h3>Tobillo</h3>
+
+<div class="eq">
+θa = -θh - θk
+</div>
+
+</div>
+
+<div class="section">
+<h2>8. Cinemática Directa</h2>
+
+<h3>Rodilla</h3>
+
+<div class="eq">
+xk = xh + L1 sin(θh)
+</div>
+
+<div class="eq">
+zk = zh - L1 cos(θh)
+</div>
+
+<h3>Tobillo</h3>
+
+<div class="eq">
+xa = xk + L2 sin(θh + θk)
+</div>
+
+<div class="eq">
+za = zk - L2 cos(θh + θk)
+</div>
+
+</div>
+
+<div class="section">
+<h2>9. Interpretación Física</h2>
+
+<ul>
+<li>LIPM aproxima dinámica humanoide real</li>
+<li>LQR estabiliza el COM</li>
+<li>ZMP garantiza estabilidad de contacto</li>
+<li>IK genera movimiento biomecánico</li>
+</ul>
+
+</div>
+
+<div class="section">
+<h2>10. Modelo Completo Compacto</h2>
+
+<div class="eq">
+X˙ = A X + B(-KX)
+</div>
+
+<div class="eq">
+X˙ = (A - BK) X
+</div>
+
+<div class="eq">
+x¨ = (g/zc)(x - p)
+</div>
+
+</div>
+
+<div class="section">
+<h2>11. Nivel Investigación</h2>
+
+<p>
+Este modelo es base para:
+</p>
+
+<ul>
+<li>Preview Control Humanoide</li>
+<li>MPC Humanoide</li>
+<li>Divergent Component of Motion (DCM)</li>
+<li>Capture Point Walking</li>
+</ul>
+
+</div>
+
+</body>
+</html>
