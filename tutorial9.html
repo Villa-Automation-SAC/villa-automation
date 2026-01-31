@@ -28,6 +28,42 @@ h1,h2,h3{
     font-family: "Courier New", monospace;
     margin:10px 0;
 }
+
+    section{
+    padding:40px;
+    max-width:1100px;
+    margin:auto;
+}
+
+h1,h2{
+    color:#38bdf8;
+}
+
+.card{
+    background:#020617;
+    padding:20px;
+    border-radius:15px;
+    margin:20px 0;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.6);
+}
+
+img{
+    width:100%;
+    border-radius:10px;
+}
+
+iframe{
+    width:100%;
+    height:400px;
+    border-radius:10px;
+}
+
+.math{
+    background:#020617;
+    padding:15px;
+    border-left:4px solid #38bdf8;
+    margin:15px 0;
+}
 </style>
 </head>
 
@@ -51,6 +87,19 @@ centro de masa (COM) de un robot humanoide asumiendo:
 
 </div>
 
+    <!-- ====================== -->
+<!-- VIDEOS -->
+<!-- ====================== -->
+<section>
+
+<h2>🎥 Videos Educativos</h2>
+
+<div class="card">
+<h3>Péndulo Invertido en Carro - Control Systems</h3>
+<iframe src="https://www.youtube.com/embed/qjhAAQexzLg"></iframe>
+</div>
+</section>
+    
 <div class="section">
 <h2>2. Origen del parámetro Zc</h2>
 
@@ -79,6 +128,168 @@ x¨ = (g/zc)(x - p)
 <div class="section">
 <h2>3. Modelo Dinámico LIPM</h2>
 
+    <section>
+
+<h2>🔹 Geometría Real del Péndulo</h2>
+
+<div class="card">
+<img src="assets/inverted_pendulum_geometry.png">
+
+<div class="math">
+Centro de masa:
+
+x = l sin(θ)  
+z = l cos(θ)
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================== -->
+<!-- ENERGIA -->
+<!-- ====================== -->
+<section>
+
+<h2>🔹 Energía Cinética</h2>
+
+<div class="card">
+
+<div class="math">
+T = ½ m (ẋ² + ż²)
+</div>
+
+Derivando:
+
+<div class="math">
+ẋ = l cos(θ) θ̇  
+ż = -l sin(θ) θ̇
+</div>
+
+Entonces:
+
+<div class="math">
+T = ½ m l² θ̇²
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================== -->
+<!-- POTENCIAL -->
+<!-- ====================== -->
+<section>
+
+<h2>🔹 Energía Potencial</h2>
+
+<div class="card">
+
+<div class="math">
+V = m g l cos(θ)
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================== -->
+<!-- LAGRANGIANO -->
+<!-- ====================== -->
+<section>
+
+<h2>🔹 Lagrangiano</h2>
+
+<div class="card">
+
+<div class="math">
+L = T − V
+</div>
+
+<div class="math">
+L = ½ m l² θ̇² − m g l cos(θ)
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================== -->
+<!-- EULER LAGRANGE -->
+<!-- ====================== -->
+<section>
+
+<h2>🔹 Ecuación de Movimiento (Euler–Lagrange)</h2>
+
+<div class="card">
+
+<div class="math">
+d/dt (∂L/∂θ̇) − ∂L/∂θ = τ
+</div>
+
+Resultado:
+
+<div class="math">
+m l² θ¨ + m g l sin(θ) = τ
+</div>
+
+Forma final:
+
+<div class="math">
+θ¨ = − (g/l) sin(θ) + τ/(m l²)
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================== -->
+<!-- LIPM -->
+<!-- ====================== -->
+<section>
+
+<h2>🔹 Aproximación Pequeña → LIPM</h2>
+
+<div class="card">
+
+<div class="math">
+sin(θ) ≈ θ
+</div>
+
+<div class="math">
+x ≈ l θ
+</div>
+
+Entonces:
+
+<div class="math">
+x¨ = (g / zc) x
+</div>
+
+</div>
+
+</section>
+
+<!-- ====================== -->
+<!-- ZMP -->
+<!-- ====================== -->
+<section>
+
+<h2>🔹 Concepto ZMP</h2>
+
+<div class="card">
+
+<p>
+El ZMP es el punto donde la suma de momentos dinámicos es cero.
+Permite mantener estabilidad del robot mientras camina.
+</p>
+
+<img src="assets/zmp_diagram.png">
+
+</div>
+
+</section>
+    
 <h3>Ecuación diferencial</h3>
 
 <div class="eq">
@@ -269,3 +480,4 @@ Este modelo es base para:
 
 </body>
 </html>
+
